@@ -1,0 +1,20 @@
+<div class="sidenav-container">
+  <section class="sidenav-content">
+    <nav class="sidenav-content-nav">
+      <mat-button-toggle-group class="menu-list" vertical="true">
+        <mat-button-toggle *ngFor="let link of links" class="menu-item" mat-button [routerLink]="link.url"
+          routerLinkActive="mat-button-toggle-checked">
+          <i class="sidenav-icon-item material-icons">{{ link.icon }}</i>
+          {{ link.text }}
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </nav>
+  </section>
+
+  <section class="sidenav-footer">
+    <h3 class="sidenav-footer-name">Iván Córdoba</h3>
+    <h4 class="sidenav-footer-tagline">
+      Desarrollador de Software
+    </h4>
+  </section>
+</div>

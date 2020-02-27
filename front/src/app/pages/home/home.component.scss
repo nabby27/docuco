@@ -1,0 +1,14 @@
+.first-row-cards {
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+}
+
+.small-card {
+  height: 400px;
+}
+
+.large-card {
+  height: 237px;
+}

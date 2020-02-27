@@ -1,0 +1,13 @@
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+}
+
+.card {
+  min-height: 74.7vh;
+}
+
+.card__pdf {
+  background-color: #e0e0e0;
+}
