@@ -15,6 +15,6 @@ class DocumentModel extends Model
 
     public function users_group()
     {
-        return $this->belongsTo('Docuco\Models\UserGroupModel', 'users_group_id');
+        return $this->belongsTo('Docuco\Models\UsersGroupModel', 'users_group_id');
     }
 }

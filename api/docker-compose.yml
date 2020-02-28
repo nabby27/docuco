@@ -2,12 +2,12 @@ version: '3'
 services:
 
   #App Service
-  app:
+  docuco_app:
     build:
       context: .
       dockerfile: Dockerfile
     image: digitalocean.com/php
-    container_name: app
+    container_name: docuco_app
     restart: unless-stopped
     tty: true
     environment:
@@ -22,9 +22,9 @@ services:
       - app-network
 
   #Nginx Service
-  webserver:
+  docuco_webserver:
     image: nginx:alpine
-    container_name: webserver
+    container_name: docuco_webserver
     restart: unless-stopped
     tty: true
     ports:
@@ -37,9 +37,9 @@ services:
       - app-network
 
   #PostgresSQL Service
-  db:
+  docuco_db:
     image: postgres:11.1-alpine
-    container_name: db
+    container_name: docuco_db
     environment:
       POSTGRES_PASSWORD: postgres_root_password
       POSTGRES_DB: laravel
@@ -47,6 +47,7 @@ services:
       - '5432:5432'
     volumes:
       - ./docker/postgres/:/docker-entrypoint-initdb.d/
+      - ./docker/postgres/data:/var/lib/postgresql/data
     networks:
       - app-network
 

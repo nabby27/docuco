@@ -3,8 +3,9 @@
 namespace Docuco\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Docuco\Http\Controllers\Controller;
-use Docuco\Infrastructure\Repositories\Document\DocumentRepositoryORM;
+use Illuminate\Routing\Controller;
+
+use Docuco\Infrastructure\Repositories\Documents\DocumentsRepositoryORM;
 
 class DocumentController extends Controller
 {
@@ -12,6 +13,13 @@ class DocumentController extends Controller
 
     public function __construct()
     {
-        $this->documentRepository = new DocumentRepositoryORM();
+        $this->documentRepository = new DocumentsRepositoryORM();
     }
+
+    public function getAllDocuments()
+    {
+        $documents = [];
+        return response()->json($documents, 200);
+    }
+
 }

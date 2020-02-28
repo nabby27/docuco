@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Requests\Actions;
+namespace Tests\Unit\Documents\Actions;
 
 use Tests\TestCase;
 use Tests\Unit\Domain\Documents\Repositories\DocumentsRepositoryMock;

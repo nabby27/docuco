@@ -31,7 +31,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\Models\UserModel::class,
+        'model' => Docuco\Models\UserModel::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
         'webhook' => [

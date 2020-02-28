@@ -2,15 +2,15 @@
 
 namespace Docuco\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User;
 
-class UserModel extends Model
+class UserModel extends User
 {
     protected $table = 'users';
 
     public function group()
     {
-        return $this->belongsTo('Docuco\Models\UserGroupModel');
+        return $this->belongsTo('Docuco\Models\UsersGroupModel');
     }
 
     public function role()
