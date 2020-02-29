@@ -4,7 +4,6 @@ namespace Docuco\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
 use Docuco\Infrastructure\Repositories\Documents\DocumentsRepositoryORM;
 
 class DocumentController extends Controller
@@ -19,7 +18,6 @@ class DocumentController extends Controller
     public function getAllDocuments()
     {
         $documents = [];
-        return response()->json($documents, 200);
+        return response()->json(['documents' => $documents], 200);
     }
-
 }

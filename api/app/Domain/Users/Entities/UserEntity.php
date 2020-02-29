@@ -13,9 +13,4 @@ class UserEntity
     private $users_group_id;
     private $created_at;
     private $updated_at;
-
-    public function __construct(array $attributes = [])
-    {
-        SetDataInObjectFromArrayInUnderscore::execute($this, $attributes);
-    }
 }

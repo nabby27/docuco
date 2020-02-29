@@ -8,8 +8,8 @@ class TypeModel extends Model
 {
     protected $table = 'types';
 
-    public function documents()
-    {
-        return $this->hasMany('Docuco\Models\DocumentTypeModel', 'type_id');
-    }
+    // public function documents()
+    // {
+    //     return $this->hasMany('Docuco\Models\DocumentTypeModel', 'type_id');
+    // }
 }

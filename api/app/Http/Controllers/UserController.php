@@ -11,12 +11,24 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $auth = new Auth();
-        if ($this->areNotEmptyLoginParameters($request) && $this->isLoginSuccess($auth)) {
-            $token = ['token' => 'token_example'];
-            return response()->json($token, 200);
+        if ($this->isLoginSuccess($request, $auth)) {
+            $token = $this->createToken($auth);
+            return response()->json(['token' => $token], 200);
         } else {
-            return response()->json(['message' => 'Unauthenticated'], 401);
+            return response()->json(['message' => 'You have entered an invalid username or password.'], 401);
         }
+    }
+
+    private function isLoginSuccess($request, $auth)
+    {
+        if ($this->areNotEmptyLoginParameters($request)) {
+            return $auth::attempt([
+                'email' => request('email'),
+                'password' => request('password')
+            ]);
+        }
+
+        return false;
     }
 
     private function areNotEmptyLoginParameters(Request $request)
@@ -24,11 +36,8 @@ class UserController extends Controller
         return $request->has('email') && $request->has('password');
     }
 
-    private function isLoginSuccess($auth)
+    private function createToken($auth)
     {
-        return $auth::attempt([
-            'email' => request('email'), 
-            'password' => request('password')
-        ]);
+        return $auth::user()->createToken($_ENV['APP_SECRET_KEY_TOKEN'])->accessToken;
     }
 }

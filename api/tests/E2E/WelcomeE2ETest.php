@@ -18,6 +18,6 @@ class WelcomeE2ETest extends TestCase
 
         $response
           ->assertStatus(200)
-          ->assertExactJson(['message' => 'Wellcome to Docuco API']);
+          ->assertExactJson(['message' => 'Wellcome to Docuco API!']);
     }
 }

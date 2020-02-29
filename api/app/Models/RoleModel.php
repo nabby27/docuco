@@ -8,8 +8,8 @@ class RoleModel extends Model
 {
     protected $table = 'roles';
     
-    public function users()
-    {
-        return $this->hasMany('Docuco\Models\UserModel', 'role_id');
-    }
+    // public function users()
+    // {
+    //     return $this->hasMany('Docuco\Models\UserModel', 'role_id');
+    // }
 }

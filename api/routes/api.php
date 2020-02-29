@@ -13,14 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/unauthenticated', function () {
+    return response()->json(['message' => 'Unauthenticated.']);
+})->name('unauthenticated');
+
 Route::get('/', function () {
-    return response()->json(['message' => 'Wellcome to Docuco API']);
+    return response()->json(['message' => 'Wellcome to Docuco API!']);
 })->name('api');
 
 Route::post('/login', 'UserController@login')->name('login.api');
 
-// Route::group(['middleware' => ['auth:api', 'check.have.request.left', 'register.request'] ], function () {
+Route::group(['middleware' => ['auth:api'] ], function () {
     
-    Route::get('/documents', 'DocumentController@getAllDocuments')
-        ->name('documents.api');
-// }
+    Route::get('/documents', 'DocumentController@getAllDocuments')->name('documents.api');
+});

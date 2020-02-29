@@ -28,6 +28,8 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'env' => env('APP_SECRET_KEY_TOKEN', 'nabby27/Docuco_2020'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

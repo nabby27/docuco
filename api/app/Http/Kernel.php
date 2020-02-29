@@ -31,7 +31,6 @@ class Kernel extends HttpKernel
             \Docuco\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Docuco\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -51,17 +50,14 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        // 'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth' => \Docuco\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \Docuco\Http\Middleware\RedirectIfAuthenticated::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        // 'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        // 'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        // 'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'register.request' => \Docuco\Http\Middleware\RegisterRequest::class,
-        'check.have.request.left' => \Docuco\Http\Middleware\CheckHaveRequestLeftMiddleware::class,
+        // 'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 
     /**

@@ -8,13 +8,13 @@ class UserEntityCollection
 {
     private $userEntityCollection = [];
 
-    public function add(UserEntity $userEntity)
-    {
-        $this->userEntityCollection[] = $userEntity;
-    }
+    // public function add(UserEntity $userEntity)
+    // {
+    //     $this->userEntityCollection[] = $userEntity;
+    // }
 
-    public function all()
-    {
-        return $this->userEntityCollection;
-    }
+    // public function all()
+    // {
+    //     return $this->userEntityCollection;
+    // }
 }
