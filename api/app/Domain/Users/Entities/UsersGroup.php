@@ -1,18 +1,11 @@
 <?php
 
-namespace Docuco\Domain\Documents\Entities;
+namespace Docuco\Domain\Users\Entities;
 
-class Document
+class UsersGroup
 {
     public $id;
     public $name;
-    public $description;
-    public $price;
-    public $url;
-    public $dateOfIssue;
-    public $users_group_id;
-    public $updated_at;
-    public $created_at;
 
     public function __construct(array $attributes = [])
     {

@@ -6,7 +6,7 @@ use Docuco\Domain\Users\Entities\UserEntity;
 
 class UserEntityCollection
 {
-    private $userEntityCollection = [];
+    private $user_entity_collection = [];
 
     // public function add(UserEntity $userEntity)
     // {

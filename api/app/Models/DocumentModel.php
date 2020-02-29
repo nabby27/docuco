@@ -13,8 +13,8 @@ class DocumentModel extends Model
     //     return $this->hasMany('Docuco\Models\DocumentTypeModel', 'document_id');
     // }
 
-    // public function users_group()
-    // {
-    //     return $this->belongsTo('Docuco\Models\UsersGroupModel', 'users_group_id');
-    // }
+    public function users_group()
+    {
+        return $this->belongsTo('Docuco\Models\UsersGroupModel', 'users_group_id');
+    }
 }

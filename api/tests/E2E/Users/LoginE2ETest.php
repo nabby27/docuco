@@ -32,9 +32,9 @@ class UserE2ETest extends TestCase
 
     public function test_login_success_when_user_exist()
     {
+        $users_group = create_users_group();
         $password = '123456';
         $role = create_role();
-        $users_group = create_users_group();
         $user = create_user($users_group->id, $role->id, $password);
 
         $response = $this->json('POST', '/api/login', [
