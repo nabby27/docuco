@@ -25,5 +25,7 @@ Route::post('/login', 'UserController@login')->name('login.api');
 
 Route::group(['middleware' => ['auth:api'] ], function () {
     
-    Route::get('/documents', 'DocumentController@getAllDocuments')->name('documents.api');
+    Route::get('/documents', 'DocumentController@getAllDocuments')->name('all_documents.api');
+    Route::get('/documents/{document_id}', 'DocumentController@getOneDocument')->name('one_document.api');
+    Route::put('/documents/{document_id}', 'DocumentController@updateDocument')->name('update_document.api');
 });

@@ -2,16 +2,15 @@
 
 namespace Docuco\Domain\Users\Entities;
 
-class Role
+use Docuco\Domain\Users\Entities\Base;
+
+class Role extends Base
 {
-    public $id;
+
     public $name;
-    
+
     public function __construct(array $attributes = [])
     {
-        foreach ($this as $property => $value) {
-            $this->$property = $attributes[$property];
-        }
+        parent::__construct($attributes);
     }
-
 }

@@ -2,9 +2,10 @@
 
 namespace Docuco\Domain\Users\Entities;
 
-class User
+use Docuco\Domain\Users\Entities\Base;
+
+class User extends Base
 {
-    public $id;
     public $name;
     public $email;
     public $password;
@@ -15,8 +16,6 @@ class User
 
     public function __construct(array $attributes = [])
     {
-        foreach ($this as $property => $value) {
-            $this->$property = $attributes[$property];
-        }
+        parent::__construct($attributes);
     }
 }

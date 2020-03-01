@@ -9,7 +9,7 @@ class Document
     public $description;
     public $price;
     public $url;
-    public $dateOfIssue;
+    public $date_of_issue;
     public $users_group_id;
     public $updated_at;
     public $created_at;

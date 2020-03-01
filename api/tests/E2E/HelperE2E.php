@@ -49,3 +49,15 @@ function create_document(int $users_group_id): Document
 
     return new Document($document_model->toArray());
 }
+
+function get_user_group_document_user_and_token_after_login($that)
+{
+    $users_group = create_users_group();
+    $password = '123456';
+    $role = create_role();
+    $user = create_user($users_group->id, $role->id, $password);
+    $document = create_document($users_group->id);
+    $token = do_login_and_get_token($that, $user->email, $password);
+
+    return [$users_group, $document, $user, $token, $password];
+}

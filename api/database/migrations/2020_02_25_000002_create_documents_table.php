@@ -19,7 +19,7 @@ class CreateDocumentsTable extends Migration
             $table->longText('description')->nullable(true);
             $table->float('price')->nullable(true);
             $table->string('url');
-            $table->date('dateOfIssue')->default(date("Y-m-d H:i:s"));
+            $table->date('date_of_issue')->default(date("Y-m-d H:i:s"));
             $table->timestamps();
 
             $table->unsignedInteger('users_group_id');

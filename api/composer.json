@@ -69,6 +69,10 @@
         "test": [
             "vendor/bin/phpunit"
         ],
+        "coverage": [
+            "composer coverage:e2e",
+            "composer coverage:unit"
+        ],
         "test:unit": [
             "vendor/bin/phpunit --testsuite unit"
         ],
