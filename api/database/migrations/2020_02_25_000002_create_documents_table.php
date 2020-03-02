@@ -17,7 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable(true);
             $table->longText('description')->nullable(true);
-            $table->float('price')->nullable(true);
+            $table->float('price', 8, 3)->nullable(true);
             $table->string('url');
             $table->date('date_of_issue')->default(date("Y-m-d H:i:s"));
             $table->timestamps();

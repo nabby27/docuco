@@ -88,14 +88,13 @@
         "code:fix": [
             "vendor/bin/phpcbf --ignore=*/vendor/*,*/docker/*,*/public/*,*/storage/*,*/resources/*,*/config/*,*/bootstrap/*"
         ],
-        "code:copy-paste": [
+        "code:duplicate": [
             "vendor/bin/phpcpd --min-lines 3 --min-tokens 20 app tests"
         ],
         "code:quality": [
-            "composer code:fix",
             "vendor/bin/phpcs app tests",
             "vendor/bin/phpunit",
-            "composer code:copy-paste"
+            "composer code:duplicate"
         ]
     }
 }

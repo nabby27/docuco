@@ -19,9 +19,11 @@ class GetAllDocumentsE2ETest extends TestCase
             ->assertExactJson(['message' => 'Unauthenticated.']);
     }
 
-    public function test_return_empty_array_when_user_logged_and_not_have_documents()
+    public function test_return_empty_array_when_user_not_have_documents_but_are_other_documents()
     {
-        [$user, $token] = $this->get_user_and_token_after_login();
+        $users_group = create_users_group();
+        $document = create_document($users_group->id);
+        [$user, $token] = get_user_and_token_after_login($this);
 
         $response = $this->make_get_petition($token);
 
@@ -39,17 +41,7 @@ class GetAllDocumentsE2ETest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson(['documents' => [
-                [
-                    'id' => $document->id,
-                    'name' => $document->name,
-                    'description' => $document->description,
-                    'price' => $document->price,
-                    'url' => $document->url,
-                    'date_of_issue' => $document->date_of_issue,
-                    'users_group_id' => $document->users_group_id,
-                    'updated_at' => $document->updated_at,
-                    'created_at' => $document->created_at,
-                ]
+                get_document_structure_to_assert($document)
             ]]);
     }
 
@@ -84,16 +76,7 @@ class GetAllDocumentsE2ETest extends TestCase
             ]]);
     }
 
-    private function get_user_and_token_after_login()
-    {
-        $users_group = create_users_group();
-        $password = '123456';
-        $role = create_role();
-        $user = create_user($users_group->id, $role->id, $password);
-        $token = do_login_and_get_token($this, $user->email, $password);
 
-        return [$user, $token];
-    }
 
     private function make_get_petition($token = '')
     {

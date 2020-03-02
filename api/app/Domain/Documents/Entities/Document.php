@@ -17,7 +17,9 @@ class Document
     public function __construct(array $attributes = [])
     {
         foreach ($this as $property => $value) {
-            $this->$property = $attributes[$property];
+            if (isset($attributes[$property])) {
+                $this->$property = $attributes[$property];
+            }
         }
     }
 }

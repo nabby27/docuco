@@ -50,6 +50,17 @@ function create_document(int $users_group_id): Document
     return new Document($document_model->toArray());
 }
 
+function get_user_and_token_after_login($that)
+{
+    $users_group = create_users_group();
+    $password = '123456';
+    $role = create_role();
+    $user = create_user($users_group->id, $role->id, $password);
+    $token = do_login_and_get_token($that, $user->email, $password);
+
+    return [$user, $token];
+}
+
 function get_user_group_document_user_and_token_after_login($that)
 {
     $users_group = create_users_group();
@@ -60,4 +71,19 @@ function get_user_group_document_user_and_token_after_login($that)
     $token = do_login_and_get_token($that, $user->email, $password);
 
     return [$users_group, $document, $user, $token, $password];
+}
+
+function get_document_structure_to_assert($document)
+{
+    return [
+        'id' => $document->id,
+        'name' => $document->name,
+        'description' => $document->description,
+        'price' => $document->price,
+        'url' => $document->url,
+        'date_of_issue' => $document->date_of_issue,
+        'users_group_id' => $document->users_group_id,
+        'updated_at' => $document->updated_at,
+        'created_at' => $document->created_at,
+    ];
 }

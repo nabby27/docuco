@@ -47,4 +47,23 @@ class DocumentsRepositoryORM implements DocumentsRepository
 
         return null;
     }
+
+    public function update_document_by_users_group_id(int $users_group_id, $document): ?Document
+    {
+       
+        // foreach ($document as $property => $value) {
+        //     if ($property != 'id') {
+        //         $document_model->$property = $value;
+        //     }
+        // }
+        
+        // $document_model->save();
+
+        // dd($document_model);
+        // if (isset($document_model)) {
+        //     return new Document((array) $document);
+        // }
+
+        // return null;
+    }
 }

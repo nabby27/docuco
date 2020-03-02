@@ -41,10 +41,10 @@ services:
     image: postgres:11.1-alpine
     container_name: docuco_db
     environment:
-      POSTGRES_PASSWORD: postgres_root_password
-      POSTGRES_DB: laravel
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
     ports:
-      - '5432:5432'
+      - '${DB_PORT}:${DB_PORT}'
     volumes:
       - ./docker/postgres/:/docker-entrypoint-initdb.d/
       - ./docker/postgres/data:/var/lib/postgresql/data

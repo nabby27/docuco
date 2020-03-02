@@ -9,4 +9,5 @@ interface DocumentsRepository
 {
     public function get_all_documents_by_users_group_id(int $users_group_id): DocumentCollection;
     public function get_one_document_by_users_group_id(int $users_group_id, int $document_id): ?Document;
+    public function update_document_by_users_group_id(int $users_group_id, $document_to_update): ?Document;
 }

@@ -17,4 +17,8 @@ class DocumentModel extends Model
     {
         return $this->belongsTo('Docuco\Models\UsersGroupModel', 'users_group_id');
     }
+
+    protected $casts = [
+        'price' => 'float',
+    ];
 }
