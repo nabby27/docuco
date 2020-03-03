@@ -4,7 +4,6 @@ namespace Tests\E2E;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Docuco\Domain\Documents\Collections\DocumentCollection;
 
 class GetOneDocumentE2ETest extends TestCase
 {

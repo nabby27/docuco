@@ -4,7 +4,6 @@ namespace Tests\E2E;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Docuco\Domain\Documents\Collections\DocumentCollection;
 
 class GetAllDocumentsE2ETest extends TestCase
 {
@@ -12,7 +11,9 @@ class GetAllDocumentsE2ETest extends TestCase
 
     public function test_return_error_message_when_user_not_logged()
     {
-        $response = $this->json('GET', '/api/documents');
+        $token = 'token_example';
+
+        $response = $this->make_get_petition($token);
 
         $response
             ->assertStatus(401)

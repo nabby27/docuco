@@ -11,9 +11,11 @@ use Docuco\Domain\Users\Entities\Role;
 use Docuco\Domain\Users\Entities\User;
 use Docuco\Domain\Documents\Entities\Document;
 
-function create_role(): Role
+function create_role(string $name = ''): Role
 {
-    $role_model = factory('Docuco\Models\RoleModel'::class)->create();
+    $role_model = factory('Docuco\Models\RoleModel'::class)->create([
+        'name' => $name
+    ]);
     return new Role($role_model->toArray());
 }
 
@@ -50,22 +52,22 @@ function create_document(int $users_group_id): Document
     return new Document($document_model->toArray());
 }
 
-function get_user_and_token_after_login($that)
+function get_user_and_token_after_login($that, string $role = '')
 {
     $users_group = create_users_group();
     $password = '123456';
-    $role = create_role();
+    $role = create_role($role);
     $user = create_user($users_group->id, $role->id, $password);
     $token = do_login_and_get_token($that, $user->email, $password);
 
     return [$user, $token];
 }
 
-function get_user_group_document_user_and_token_after_login($that)
+function get_user_group_document_user_and_token_after_login($that, string $role = '')
 {
     $users_group = create_users_group();
     $password = '123456';
-    $role = create_role();
+    $role = create_role($role);
     $user = create_user($users_group->id, $role->id, $password);
     $document = create_document($users_group->id);
     $token = do_login_and_get_token($that, $user->email, $password);
@@ -86,4 +88,24 @@ function get_document_structure_to_assert($document)
         'updated_at' => $document->updated_at,
         'created_at' => $document->created_at,
     ];
+}
+
+function get_edit_user_and_token_after_login($that)
+{
+    return get_user_and_token_after_login($that, 'EDIT');
+}
+
+function get_admin_user_and_token_after_login($that)
+{
+    return get_user_and_token_after_login($that, 'ADMIN');
+}
+
+function get_user_group_document_edit_user_and_token_after_login($that)
+{
+    return get_user_group_document_user_and_token_after_login($that, 'EDIT');
+}
+
+function get_user_group_document_admin_user_and_token_after_login($that)
+{
+    return get_user_group_document_user_and_token_after_login($that, 'ADMIN');
 }

@@ -52,6 +52,8 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         // 'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth' => \Docuco\Http\Middleware\Authenticate::class,
+        'admin_or_edit_role' => \Docuco\Http\Middleware\AdminOrEditRole::class,
+        'admin_role' => \Docuco\Http\Middleware\AdminRole::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         // 'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         // 'can' => \Illuminate\Auth\Middleware\Authorize::class,

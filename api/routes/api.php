@@ -24,8 +24,14 @@ Route::get('/', function () {
 Route::post('/login', 'UserController@login')->name('login.api');
 
 Route::group(['middleware' => ['auth:api'] ], function () {
-    
     Route::get('/documents', 'DocumentController@get_all_documents')->name('all_documents.api');
     Route::get('/documents/{document_id}', 'DocumentController@get_one_document')->name('one_document.api');
+});
+
+Route::group(['middleware' => ['auth:api', 'admin_or_edit_role:api'] ], function () {
     Route::put('/documents/{document_id}', 'DocumentController@update_document')->name('update_document.api');
+});
+
+Route::group(['middleware' => ['auth:api', 'admin_role:api'] ], function () {
+    Route::delete('/documents/{document_id}', 'DocumentController@delete_document')->name('delete_document.api');
 });

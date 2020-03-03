@@ -50,20 +50,38 @@ class DocumentsRepositoryORM implements DocumentsRepository
 
     public function update_document_by_users_group_id(int $users_group_id, $document): ?Document
     {
-       
-        // foreach ($document as $property => $value) {
-        //     if ($property != 'id') {
-        //         $document_model->$property = $value;
-        //     }
-        // }
-        
-        // $document_model->save();
+        $document_model = $this->document_model
+            ->whereHas('users_group', function ($query) use ($users_group_id, $document) {
+                $query->where('users_group_id', $users_group_id);
+            })
+            ->find($document->id);
 
-        // dd($document_model);
-        // if (isset($document_model)) {
-        //     return new Document((array) $document);
-        // }
+        if (isset($document_model)) {
+            foreach ($document as $property => $value) {
+                if ($property != 'id') {
+                    $document_model->$property = $value;
+                }
+            }
+            $document_model->save();
+            return new Document((array) $document);
+        }
 
-        // return null;
+        return null;
+    }
+
+    public function delete_document_by_users_group_id(int $users_group_id, int $document_id): bool
+    {
+        $document_model = $this->document_model
+            ->whereHas('users_group', function ($query) use ($users_group_id, $document_id) {
+                $query->where('users_group_id', $users_group_id);
+            })
+            ->find($document_id);
+
+        if (isset($document_model)) {
+            $document_model->delete();
+            return true;
+        }
+
+        return false;
     }
 }

@@ -16,10 +16,10 @@ class UserModel extends User
     //     return $this->belongsTo('Docuco\Models\UsersGroupModel');
     // }
 
-    // public function role()
-    // {
-    //     return $this->belongsTo('Docuco\Models\RoleModel');
-    // }
+    public function role()
+    {
+        return $this->belongsTo('Docuco\Models\RoleModel');
+    }
     
     // public function blocked_documents()
     // {

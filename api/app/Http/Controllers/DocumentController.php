@@ -9,6 +9,7 @@ use Docuco\Infrastructure\Services\GetUsersGroupIdFromRequestService;
 use Docuco\Domain\Documents\Actions\GetAllDocumentsAction;
 use Docuco\Domain\Documents\Actions\GetOneDocumentAction;
 use Docuco\Domain\Documents\Actions\UpdateDocumentAction;
+use Docuco\Domain\Documents\Actions\DeleteDocumentAction;
 use Docuco\Domain\Documents\Entities\Document;
 
 class DocumentController extends Controller
@@ -47,13 +48,28 @@ class DocumentController extends Controller
         if ($document_to_update->id !== $document_id) {
             return response()->json(['message' => 'Document id on object not match with id in url.'], 400);
         }
-
+        
         $users_group_id = $this->get_users_group_id_from_request_service->execute($request);
+
         $update_document_action = new UpdateDocumentAction($this->document_repository);
         $document = $update_document_action->execute($users_group_id, $document_to_update);
 
         if (isset($document)) {
             return response()->json(['document' => $document], 200);
+        }
+
+        return response()->json(['message' => 'Document not exist.'], 404);
+    }
+
+    public function delete_document(Request $request, int $document_id)
+    {
+        $users_group_id = $this->get_users_group_id_from_request_service->execute($request);
+
+        $delete_document_action = new DeleteDocumentAction($this->document_repository);
+        $isDeleted = $delete_document_action->execute($users_group_id, $document_id);
+
+        if ($isDeleted) {
+            return response()->json(['message' => 'Document deleted successfully.'], 200);
         }
 
         return response()->json(['message' => 'Document not exist.'], 404);

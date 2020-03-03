@@ -9,5 +9,4 @@ composer.lock
 .env
 .env.prod
 .phpunit.result.cache
-/docker/postgres/data/*
 /storage/framework/cache/data/*
