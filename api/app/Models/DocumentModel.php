@@ -8,10 +8,10 @@ class DocumentModel extends Model
 {
     protected $table = 'documents';
 
-    // public function types()
-    // {
-    //     return $this->hasMany('Docuco\Models\DocumentTypeModel', 'document_id');
-    // }
+    public function types()
+    {
+        return $this->hasMany('Docuco\Models\DocumentTypeModel', 'document_id');
+    }
 
     public function users_group()
     {

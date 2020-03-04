@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth:api'] ], function () {
 });
 
 Route::group(['middleware' => ['auth:api', 'admin_or_edit_role:api'] ], function () {
+    Route::post('/documents', 'DocumentController@create_document')->name('create_document.api');
     Route::put('/documents/{document_id}', 'DocumentController@update_document')->name('update_document.api');
 });
 

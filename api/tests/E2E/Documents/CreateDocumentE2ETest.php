@@ -9,57 +9,59 @@ class CreateDocumentE2ETest extends TestCase
 {
     use DatabaseTransactions;
 
-    // public function test_return_error_message_when_user_not_logged()
-    // {
-    //     $token = 'token_example';
-    //     $document_id = 1;
+    public function test_return_error_message_when_user_not_logged()
+    {
+        $token = 'token_example';
+        $document = [];
 
-    //     $response = $this->make_post_petition($token, $document);
+        $response = $this->make_post_petition($token, $document);
 
-    //     $response
-    //         ->assertStatus(401)
-    //         ->assertExactJson(['message' => 'Unauthenticated.']);
-    // }
+        $response
+            ->assertStatus(401)
+            ->assertExactJson(['message' => 'Unauthenticated.']);
+    }
 
-    // public function test_return_error_message_when_user_not_have_role_to_delete_document()
-    // {
-    //     [$users_group, $document, $user, $token] = get_user_group_document_edit_user_and_token_after_login($this);
+    public function test_return_error_message_when_user_not_have_permissions_to_create_document()
+    {
+        $document = [];
+        [$user, $token] = get_user_and_token_after_login($this);
 
-    //     $response = $this->make_delete_petition($token, $document->id);
+        $response = $this->make_post_petition($token, $document);
         
-    //     $response
-    //         ->assertStatus(423)
-    //         ->assertJson(['message' => 'Not have permissions to update document.']);
-    // }
+        $response
+            ->assertStatus(423)
+            ->assertJson(['message' => 'Not have permissions.']);
+    }
 
-    // public function test_return_error_message_when_user_delete_document_that_not_have()
-    // {
-    //     $users_group = create_users_group();
-    //     $document = create_document($users_group->id);
-    //     [$user, $token] = get_admin_user_and_token_after_login($this);
+    public function test_create_document_when_user_have_permissions()
+    {
+        $document = get_random_document();
+        [$user, $token] = get_edit_user_and_token_after_login($this);
 
-    //     $response = $this->make_delete_petition($token, $document->id);
+        $response = $this->make_post_petition($token, $document);
         
-    //     $response
-    //         ->assertStatus(404)
-    //         ->assertExactJson(['message' => 'Document not exist.']);
-    // }
+        $response
+            ->assertStatus(200)
+            ->assertJson(['document' => $document]);
+    }
 
-    // public function test_delete_document_when_user_have_permissions_and_have_this_document()
-    // {
-    //     [$users_group, $document, $user, $token] = get_user_group_document_admin_user_and_token_after_login($this);
+    public function test_return_document_structure_after_create_document()
+    {
+        $document = get_random_document();
+        [$user, $token] = get_edit_user_and_token_after_login($this);
 
-    //     $response = $this->make_delete_petition($token, $document->id);
+        $response = $this->make_post_petition($token, $document);
         
-    //     $response
-    //         ->assertStatus(200)
-    //         ->assertJson(['message' => 'Document deleted successfully.']);
-    // }
+        $response
+            ->assertStatus(200)
+            ->assertJson(['document' => ['name' => $document['name']]])
+            ->assertJsonStructure(['document' => getFieldsDocument()]);
+    }
 
-    // private function make_post_petition($token = '', $document_id = 1)
-    // {
-    //     $endpoint = '/api/documents/' . $document_id;
-    //     return $this->withHeaders(['Authorization' => 'Bearer ' . $token])
-    //         ->json('DELETE', $endpoint);
-    // }
+    private function make_post_petition($token = '', $document = [])
+    {
+        $endpoint = '/api/documents/';
+        return $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->json('POST', $endpoint, $document);
+    }
 }

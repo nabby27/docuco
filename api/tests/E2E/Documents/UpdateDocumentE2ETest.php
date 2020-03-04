@@ -4,7 +4,6 @@ namespace Tests\E2E;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Faker;
 
 class UpdateDocumentE2ETest extends TestCase
 {
@@ -26,13 +25,13 @@ class UpdateDocumentE2ETest extends TestCase
     public function test_return_error_message_when_user_not_have_role_to_update_document()
     {
         [$users_group, $document, $user, $token] = get_user_group_document_user_and_token_after_login($this);
-        $document_to_update = $this->get_random_document_for_id($document->id);
+        $document_to_update = get_random_document($document->id);
 
         $response = $this->make_put_petition($token, $document->id, $document_to_update);
         
         $response
             ->assertStatus(423)
-            ->assertJson(['message' => 'Not have permissions to update document.']);
+            ->assertJson(['message' => 'Not have permissions.']);
     }
 
     public function test_return_error_message_when_user_update_document_that_not_have()
@@ -51,7 +50,7 @@ class UpdateDocumentE2ETest extends TestCase
     public function test_return_error_message_when_user_update_document_with_diferent_id()
     {
         [$users_group, $document, $user, $token] = get_user_group_document_edit_user_and_token_after_login($this);
-        $document_to_update = $this->get_random_document_for_id($document->id);
+        $document_to_update = get_random_document($document->id);
 
         $response = $this->make_put_petition($token, $document->id + 1, $document_to_update);
         
@@ -63,7 +62,7 @@ class UpdateDocumentE2ETest extends TestCase
     public function test_update_document_when_user_have_permissions_and_have_this_document()
     {
         [$users_group, $document, $user, $token] = get_user_group_document_edit_user_and_token_after_login($this);
-        $document_to_update = $this->get_random_document_for_id($document->id);
+        $document_to_update = get_random_document($document->id);
 
         $response = $this->make_put_petition($token, $document->id, $document_to_update);
         
@@ -77,19 +76,5 @@ class UpdateDocumentE2ETest extends TestCase
         $endpoint = '/api/documents/' . $document_id;
         return $this->withHeaders(['Authorization' => 'Bearer ' . $token])
             ->json('PUT', $endpoint, (array) $data_to_update);
-    }
-
-    private function get_random_document_for_id(int $document_id)
-    {
-        $faker = Faker\Factory::create();
-
-        return [
-            'id' => $document_id,
-            'name' => $faker->word,
-            'description' => $faker->text(200),
-            'price' => $faker->randomFloat,
-            'url' => $faker->imageUrl,
-            'date_of_issue' => $faker->date()
-        ];
     }
 }

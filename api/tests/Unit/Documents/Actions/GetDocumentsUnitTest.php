@@ -4,7 +4,7 @@ namespace Tests\Unit\Documents\Actions;
 
 use Tests\TestCase;
 use Tests\Unit\Domain\Documents\Repositories\DocumentsRepositoryMock;
-use Docuco\Domain\Documents\Entities\Document;
+use Docuco\Domain\Documents\Entities\DocumentBase;
 use Docuco\Domain\Documents\Actions\GetDocumentsAction;
 
 class GetDocumentUnitTest extends TestCase

@@ -8,9 +8,10 @@ use Docuco\Infrastructure\Repositories\Documents\DocumentsRepositoryORM;
 use Docuco\Infrastructure\Services\GetUsersGroupIdFromRequestService;
 use Docuco\Domain\Documents\Actions\GetAllDocumentsAction;
 use Docuco\Domain\Documents\Actions\GetOneDocumentAction;
+use Docuco\Domain\Documents\Actions\CreateDocumentAction;
 use Docuco\Domain\Documents\Actions\UpdateDocumentAction;
 use Docuco\Domain\Documents\Actions\DeleteDocumentAction;
-use Docuco\Domain\Documents\Entities\Document;
+use Docuco\Domain\Documents\Entities\DocumentBase;
 
 class DocumentController extends Controller
 {
@@ -42,6 +43,17 @@ class DocumentController extends Controller
         return response()->json(['message' => 'Document not exist.'], 404);
     }
 
+    public function create_document(Request $request)
+    {
+        $new_document = json_decode($request->getContent());
+        $users_group_id = $this->get_users_group_id_from_request_service->execute($request);
+
+        $create_document_action = new CreateDocumentAction($this->document_repository);
+        $document_created = $create_document_action->execute($users_group_id, $new_document);
+
+        return response()->json(['document' => $document_created], 200);
+    }
+
     public function update_document(Request $request, int $document_id)
     {
         $document_to_update = json_decode($request->getContent());
@@ -52,10 +64,10 @@ class DocumentController extends Controller
         $users_group_id = $this->get_users_group_id_from_request_service->execute($request);
 
         $update_document_action = new UpdateDocumentAction($this->document_repository);
-        $document = $update_document_action->execute($users_group_id, $document_to_update);
+        $document_updated = $update_document_action->execute($users_group_id, $document_to_update);
 
-        if (isset($document)) {
-            return response()->json(['document' => $document], 200);
+        if (isset($document_updated)) {
+            return response()->json(['document' => $document_updated], 200);
         }
 
         return response()->json(['message' => 'Document not exist.'], 404);
@@ -66,9 +78,9 @@ class DocumentController extends Controller
         $users_group_id = $this->get_users_group_id_from_request_service->execute($request);
 
         $delete_document_action = new DeleteDocumentAction($this->document_repository);
-        $isDeleted = $delete_document_action->execute($users_group_id, $document_id);
+        $is_deleted = $delete_document_action->execute($users_group_id, $document_id);
 
-        if ($isDeleted) {
+        if ($is_deleted) {
             return response()->json(['message' => 'Document deleted successfully.'], 200);
         }
 

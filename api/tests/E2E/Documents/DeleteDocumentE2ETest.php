@@ -29,7 +29,7 @@ class DeleteDocumentE2ETest extends TestCase
         
         $response
             ->assertStatus(423)
-            ->assertJson(['message' => 'Not have permissions to update document.']);
+            ->assertJson(['message' => 'Not have permissions.']);
     }
 
     public function test_return_error_message_when_user_delete_document_that_not_have()

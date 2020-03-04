@@ -2,6 +2,7 @@
 
 namespace Tests\E2E;
 
+use Faker;
 use Docuco\Models\UserModel;
 use Docuco\Models\UsersGroupModel;
 use Docuco\Models\RoleModel;
@@ -9,7 +10,7 @@ use Docuco\Models\DocumentModel;
 use Docuco\Domain\Users\Entities\UsersGroup;
 use Docuco\Domain\Users\Entities\Role;
 use Docuco\Domain\Users\Entities\User;
-use Docuco\Domain\Documents\Entities\Document;
+use Docuco\Domain\Documents\Entities\DocumentBase;
 
 function create_role(string $name = ''): Role
 {
@@ -43,13 +44,13 @@ function do_login_and_get_token($that, $email, $password): string
     return $response->getData()->token;
 }
 
-function create_document(int $users_group_id): Document
+function create_document(int $users_group_id): DocumentBase
 {
     $document_model = factory('Docuco\Models\DocumentModel'::class)->create([
         'users_group_id' => $users_group_id,
     ]);
 
-    return new Document($document_model->toArray());
+    return new DocumentBase($document_model->toArray());
 }
 
 function get_user_and_token_after_login($that, string $role = '')
@@ -108,4 +109,29 @@ function get_user_group_document_edit_user_and_token_after_login($that)
 function get_user_group_document_admin_user_and_token_after_login($that)
 {
     return get_user_group_document_user_and_token_after_login($that, 'ADMIN');
+}
+
+function get_random_document(?int $document_id = null)
+{
+        $faker = Faker\Factory::create();
+
+        $document = [
+            'name' => $faker->word,
+            'description' => $faker->text(200),
+            'price' => $faker->randomFloat,
+            'url' => $faker->imageUrl,
+            'date_of_issue' => $faker->date()
+        ];
+
+        if ($document_id) {
+            $document['id'] = $document_id;
+        }
+
+        return $document;
+}
+
+function getFieldsDocument()
+{
+    return ['id', 'name', 'description', 'price', 'url', 'date_of_issue', 'users_group_id',
+    'updated_at', 'created_at'];
 }

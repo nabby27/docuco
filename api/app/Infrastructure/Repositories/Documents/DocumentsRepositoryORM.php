@@ -2,10 +2,12 @@
 
 namespace Docuco\Infrastructure\Repositories\Documents;
 
-use Docuco\Domain\Documents\Repositories\DocumentsRepository;
 use Docuco\Models\DocumentModel;
-use Docuco\Domain\Documents\Collections\DocumentCollection;
+use Docuco\Domain\Documents\Repositories\DocumentsRepository;
+use Docuco\Domain\Documents\Collections\DocumentBaseCollection;
+use Docuco\Domain\Documents\Entities\DocumentBase;
 use Docuco\Domain\Documents\Entities\Document;
+use Docuco\Domain\Documents\Services\GetDocumentService;
 
 class DocumentsRepositoryORM implements DocumentsRepository
 {
@@ -17,22 +19,6 @@ class DocumentsRepositoryORM implements DocumentsRepository
         $this->document_model = new DocumentModel();
     }
 
-    public function get_all_documents_by_users_group_id(int $users_group_id): DocumentCollection
-    {
-        $document_model_collection = $this->document_model
-            ->whereHas('users_group', function ($query) use ($users_group_id) {
-                $query->where('users_group_id', $users_group_id);
-            })
-            ->get();
-
-        $document_collection = new DocumentCollection();
-        foreach ($document_model_collection as $document_model) {
-            $document_collection->add(new Document($document_model->toArray()));
-        }
-
-        return $document_collection;
-    }
-    
     public function get_one_document_by_users_group_id(int $users_group_id, int $document_id): ?Document
     {
         $document_model = $this->document_model
@@ -42,13 +28,44 @@ class DocumentsRepositoryORM implements DocumentsRepository
             ->find($document_id);
         
         if (isset($document_model)) {
-            return new Document($document_model->toArray());
+            return GetDocumentService::from_model_to_document($document_model);
         }
 
         return null;
     }
 
-    public function update_document_by_users_group_id(int $users_group_id, $document): ?Document
+    public function get_all_documents_by_users_group_id(int $users_group_id): DocumentBaseCollection
+    {
+        $document_model_collection = $this->document_model
+            ->whereHas('users_group', function ($query) use ($users_group_id) {
+                $query->where('users_group_id', $users_group_id);
+            })
+            ->get();
+
+        $document_collection = new DocumentBaseCollection();
+        foreach ($document_model_collection as $document_model) {
+            $document_collection->add(new DocumentBase($document_model->toArray()));
+        }
+
+        return $document_collection;
+    }
+
+    public function create_document_by_users_group_id(int $users_group_id, $document_to_create): ?DocumentBase
+    {
+        $this->document_model->users_group_id = $users_group_id;
+        foreach ($document_to_create as $property => $value) {
+            if ($property != 'id') {
+                $this->document_model->$property = $value;
+            }
+        }
+
+        $this->document_model->save();
+        $document_created = $this->document_model->latest()->first();
+
+        return new DocumentBase($document_created->toArray());
+    }
+
+    public function update_document_by_users_group_id(int $users_group_id, $document): ?DocumentBase
     {
         $document_model = $this->document_model
             ->whereHas('users_group', function ($query) use ($users_group_id, $document) {
@@ -62,8 +79,10 @@ class DocumentsRepositoryORM implements DocumentsRepository
                     $document_model->$property = $value;
                 }
             }
-            $document_model->save();
-            return new Document((array) $document);
+            $is_updated = $document_model->save();
+            if ($is_updated) {
+                return new DocumentBase((array) $document);
+            }
         }
 
         return null;
@@ -78,8 +97,8 @@ class DocumentsRepositoryORM implements DocumentsRepository
             ->find($document_id);
 
         if (isset($document_model)) {
-            $document_model->delete();
-            return true;
+            $is_deleted = $document_model->delete();
+            return $is_deleted;
         }
 
         return false;

@@ -3,9 +3,9 @@
 namespace Docuco\Domain\Documents\Actions;
 
 use Docuco\Domain\Documents\Repositories\DocumentsRepository;
-use Docuco\Domain\Documents\Collections\DocumentBaseCollection;
+use Docuco\Domain\Documents\Entities\DocumentBase;
 
-class GetAllDocumentsAction
+class CreateDocumentAction
 {
     private $documents_repository;
 
@@ -14,8 +14,8 @@ class GetAllDocumentsAction
         $this->documents_repository = $documents_repository;
     }
 
-    public function execute(int $users_group_id): DocumentBaseCollection
+    public function execute(int $users_group_id, $document_to_create): ?DocumentBase
     {
-        return $this->documents_repository->get_all_documents_by_users_group_id($users_group_id);
+        return $this->documents_repository->create_document_by_users_group_id($users_group_id, $document_to_create);
     }
 }

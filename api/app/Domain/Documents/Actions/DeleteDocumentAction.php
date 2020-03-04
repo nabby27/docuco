@@ -3,7 +3,6 @@
 namespace Docuco\Domain\Documents\Actions;
 
 use Docuco\Domain\Documents\Repositories\DocumentsRepository;
-use Docuco\Domain\Documents\Entities\Document;
 
 class DeleteDocumentAction
 {
