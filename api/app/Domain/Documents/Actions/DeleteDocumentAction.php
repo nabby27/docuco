@@ -13,8 +13,8 @@ class DeleteDocumentAction
         $this->documents_repository = $documents_repository;
     }
 
-    public function execute(int $users_group_id, int $document_id): bool
+    public function execute(int $user_group_id, int $document_id): bool
     {
-        return $this->documents_repository->delete_document_by_users_group_id($users_group_id, $document_id);
+        return $this->documents_repository->delete_document_by_user_group_id($user_group_id, $document_id);
     }
 }

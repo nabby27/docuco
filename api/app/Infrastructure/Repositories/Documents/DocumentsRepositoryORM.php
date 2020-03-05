@@ -4,10 +4,8 @@ namespace Docuco\Infrastructure\Repositories\Documents;
 
 use Docuco\Models\DocumentModel;
 use Docuco\Domain\Documents\Repositories\DocumentsRepository;
-use Docuco\Domain\Documents\Collections\DocumentBaseCollection;
-use Docuco\Domain\Documents\Entities\DocumentBase;
+use Docuco\Domain\Documents\Collections\DocumentCollection;
 use Docuco\Domain\Documents\Entities\Document;
-use Docuco\Domain\Documents\Services\GetDocumentService;
 
 class DocumentsRepositoryORM implements DocumentsRepository
 {
@@ -17,42 +15,41 @@ class DocumentsRepositoryORM implements DocumentsRepository
     public function __construct()
     {
         $this->document_model = new DocumentModel();
+        $this->types_model = new DocumentModel();
     }
 
-    public function get_one_document_by_users_group_id(int $users_group_id, int $document_id): ?Document
+    public function get_one_document_by_user_group_id(int $user_group_id, int $document_id): ?Document
     {
-        $document_model = $this->document_model
-            ->whereHas('users_group', function ($query) use ($users_group_id, $document_id) {
-                $query->where('users_group_id', $users_group_id);
-            })
-            ->find($document_id);
-        
+        $document_model = $this->get_one_document_model_by_user_group($user_group_id, $document_id);
+
         if (isset($document_model)) {
-            return GetDocumentService::from_model_to_document($document_model);
+            return Document::get_from_model($document_model);
         }
 
         return null;
     }
 
-    public function get_all_documents_by_users_group_id(int $users_group_id): DocumentBaseCollection
+    public function get_all_documents_by_user_group_id(int $user_group_id): DocumentCollection
     {
         $document_model_collection = $this->document_model
-            ->whereHas('users_group', function ($query) use ($users_group_id) {
-                $query->where('users_group_id', $users_group_id);
+            ->whereHas('user_group', function ($query) use ($user_group_id) {
+                $query->where('user_group_id', $user_group_id);
             })
             ->get();
 
-        $document_collection = new DocumentBaseCollection();
+        $document_collection = new DocumentCollection();
         foreach ($document_model_collection as $document_model) {
-            $document_collection->add(new DocumentBase($document_model->toArray()));
+            $document_collection->add(
+                Document::get_from_model($document_model)
+            );
         }
 
         return $document_collection;
     }
 
-    public function create_document_by_users_group_id(int $users_group_id, $document_to_create): ?DocumentBase
+    public function create_document_by_user_group_id(int $user_group_id, $document_to_create): ?Document
     {
-        $this->document_model->users_group_id = $users_group_id;
+        $this->document_model->user_group_id = $user_group_id;
         foreach ($document_to_create as $property => $value) {
             if ($property != 'id') {
                 $this->document_model->$property = $value;
@@ -60,18 +57,13 @@ class DocumentsRepositoryORM implements DocumentsRepository
         }
 
         $this->document_model->save();
-        $document_created = $this->document_model->latest()->first();
 
-        return new DocumentBase($document_created->toArray());
+        return Document::get_from_model($this->document_model);
     }
 
-    public function update_document_by_users_group_id(int $users_group_id, $document): ?DocumentBase
+    public function update_document_by_user_group_id(int $user_group_id, $document): ?Document
     {
-        $document_model = $this->document_model
-            ->whereHas('users_group', function ($query) use ($users_group_id, $document) {
-                $query->where('users_group_id', $users_group_id);
-            })
-            ->find($document->id);
+        $document_model = $this->get_one_document_model_by_user_group($user_group_id, $document->id);
 
         if (isset($document_model)) {
             foreach ($document as $property => $value) {
@@ -79,22 +71,20 @@ class DocumentsRepositoryORM implements DocumentsRepository
                     $document_model->$property = $value;
                 }
             }
+
             $is_updated = $document_model->save();
+
             if ($is_updated) {
-                return new DocumentBase((array) $document);
+                return Document::get_from_model($document_model);
             }
         }
 
         return null;
     }
 
-    public function delete_document_by_users_group_id(int $users_group_id, int $document_id): bool
+    public function delete_document_by_user_group_id(int $user_group_id, int $document_id): bool
     {
-        $document_model = $this->document_model
-            ->whereHas('users_group', function ($query) use ($users_group_id, $document_id) {
-                $query->where('users_group_id', $users_group_id);
-            })
-            ->find($document_id);
+        $document_model = $this->get_one_document_model_by_user_group($user_group_id, $document_id);
 
         if (isset($document_model)) {
             $is_deleted = $document_model->delete();
@@ -102,5 +92,14 @@ class DocumentsRepositoryORM implements DocumentsRepository
         }
 
         return false;
+    }
+
+    private function get_one_document_model_by_user_group(int $user_group_id, int $document_id): ?DocumentModel
+    {
+        return $this->document_model
+            ->whereHas('user_group', function ($query) use ($user_group_id, $document_id) {
+                $query->where('user_group_id', $user_group_id);
+            })
+            ->find($document_id);
     }
 }

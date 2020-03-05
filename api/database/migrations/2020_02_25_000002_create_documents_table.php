@@ -22,8 +22,8 @@ class CreateDocumentsTable extends Migration
             $table->date('date_of_issue')->default(date("Y-m-d H:i:s"));
             $table->timestamps();
 
-            $table->unsignedInteger('users_group_id');
-            $table->foreign('users_group_id')->references('id')->on('users_groups');
+            $table->unsignedInteger('user_group_id');
+            $table->foreign('user_group_id')->references('id')->on('user_groups');
         });
     }
 

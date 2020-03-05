@@ -4,10 +4,10 @@ namespace Docuco\Infrastructure\Services;
 
 use Illuminate\Http\Request;
 
-class GetUsersGroupIdFromRequestService
+class GetUserGroupIdFromRequestService
 {
     public function execute(Request $request): int
     {
-        return $request->user()->users_group_id;
+        return $request->user()->user_group_id;
     }
 }

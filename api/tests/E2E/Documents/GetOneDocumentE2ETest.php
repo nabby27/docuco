@@ -23,11 +23,11 @@ class GetOneDocumentE2ETest extends TestCase
 
     public function test_return_error_message_when_user_is_logged_but_document_not_exist()
     {
-        $users_group = create_users_group();
+        $user_group = create_user_group();
         $password = '123456';
         $document_id = 1;
         $role = create_role();
-        $user = create_user($users_group->id, $role->id, $password);
+        $user = create_user($user_group->id, $role->id, $password);
         $token = do_login_and_get_token($this, $user->email, $password);
 
         $response = $this->make_get_petition($token, $document_id);
@@ -39,12 +39,12 @@ class GetOneDocumentE2ETest extends TestCase
 
     public function test_return_error_message_when_user_not_have_this_document()
     {
-        $users_group_1 = create_users_group();
-        $document = create_document($users_group_1->id);
+        $user_group_1 = create_user_group();
+        $document = create_document($user_group_1->id);
         $role = create_role();
-        $users_group_2 = create_users_group();
+        $user_group_2 = create_user_group();
         $password = '123456';
-        $user = create_user($users_group_2->id, $role->id, $password);
+        $user = create_user($user_group_2->id, $role->id, $password);
         $token = do_login_and_get_token($this, $user->email, $password);
 
         $response = $this->make_get_petition($token, $document->id);
@@ -56,7 +56,7 @@ class GetOneDocumentE2ETest extends TestCase
 
     public function test_return_document_when_user_logged_and_have_this_document()
     {
-        [$users_group, $document, $user, $token, $password] = get_user_group_document_user_and_token_after_login($this);
+        [$user_group, $document, $user, $token, $password] = get_user_group_document_user_and_token_after_login($this);
 
         $token = do_login_and_get_token($this, $user->email, $password);
 
@@ -64,7 +64,8 @@ class GetOneDocumentE2ETest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJson(['document' =>
+            ->assertJson([
+                'document' =>
                 get_document_structure_to_assert($document)
             ]);
     }

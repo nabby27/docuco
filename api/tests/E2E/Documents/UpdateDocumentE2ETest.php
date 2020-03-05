@@ -24,11 +24,11 @@ class UpdateDocumentE2ETest extends TestCase
 
     public function test_return_error_message_when_user_not_have_role_to_update_document()
     {
-        [$users_group, $document, $user, $token] = get_user_group_document_user_and_token_after_login($this);
+        [$user_group, $document, $user, $token] = get_user_group_document_user_and_token_after_login($this);
         $document_to_update = get_random_document($document->id);
 
         $response = $this->make_put_petition($token, $document->id, $document_to_update);
-        
+
         $response
             ->assertStatus(423)
             ->assertJson(['message' => 'Not have permissions.']);
@@ -36,12 +36,12 @@ class UpdateDocumentE2ETest extends TestCase
 
     public function test_return_error_message_when_user_update_document_that_not_have()
     {
-        $users_group = create_users_group();
-        $document = create_document($users_group->id);
-        [$user, $token] = get_edit_user_and_token_after_login($this);
+        $user_group = create_user_group();
+        $document = create_document($user_group->id);
+        [$user_group, $user, $token] = get_user_group_edit_user_and_token_after_login($this);
 
         $response = $this->make_put_petition($token, $document->id, $document);
-        
+
         $response
             ->assertStatus(404)
             ->assertExactJson(['message' => 'Document not exist.']);
@@ -49,11 +49,11 @@ class UpdateDocumentE2ETest extends TestCase
 
     public function test_return_error_message_when_user_update_document_with_diferent_id()
     {
-        [$users_group, $document, $user, $token] = get_user_group_document_edit_user_and_token_after_login($this);
+        [$user_group, $document, $user, $token] = get_user_group_document_edit_user_and_token_after_login($this);
         $document_to_update = get_random_document($document->id);
 
         $response = $this->make_put_petition($token, $document->id + 1, $document_to_update);
-        
+
         $response
             ->assertStatus(400)
             ->assertExactJson(['message' => 'Document id on object not match with id in url.']);
@@ -61,11 +61,11 @@ class UpdateDocumentE2ETest extends TestCase
 
     public function test_update_document_when_user_have_permissions_and_have_this_document()
     {
-        [$users_group, $document, $user, $token] = get_user_group_document_edit_user_and_token_after_login($this);
+        [$user_group, $document, $user, $token] = get_user_group_document_edit_user_and_token_after_login($this);
         $document_to_update = get_random_document($document->id);
 
         $response = $this->make_put_petition($token, $document->id, $document_to_update);
-        
+
         $response
             ->assertStatus(200)
             ->assertJson(['document' => $document_to_update]);

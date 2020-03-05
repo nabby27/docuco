@@ -9,6 +9,6 @@ $factory->define(Docuco\Models\DocumentModel::class, function (Faker $faker) {
         'price' => $faker->randomFloat(3),
         'url' => $faker->imageUrl,
         'date_of_issue' => $faker->date(),
-        'users_group_id' => $faker->randomDigitNotNull,
+        'user_group_id' => $faker->randomDigitNotNull,
     ];
 });

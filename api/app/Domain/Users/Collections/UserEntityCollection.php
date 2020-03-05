@@ -2,8 +2,6 @@
 
 namespace Docuco\Domain\Users\Collections;
 
-use Docuco\Domain\Users\Entities\UserEntity;
-
 class UserEntityCollection
 {
     private $user_entity_collection = [];

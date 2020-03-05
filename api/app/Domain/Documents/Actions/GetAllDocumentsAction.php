@@ -3,7 +3,7 @@
 namespace Docuco\Domain\Documents\Actions;
 
 use Docuco\Domain\Documents\Repositories\DocumentsRepository;
-use Docuco\Domain\Documents\Collections\DocumentBaseCollection;
+use Docuco\Domain\Documents\Collections\DocumentCollection;
 
 class GetAllDocumentsAction
 {
@@ -14,8 +14,8 @@ class GetAllDocumentsAction
         $this->documents_repository = $documents_repository;
     }
 
-    public function execute(int $users_group_id): DocumentBaseCollection
+    public function execute(int $user_group_id): DocumentCollection
     {
-        return $this->documents_repository->get_all_documents_by_users_group_id($users_group_id);
+        return $this->documents_repository->get_all_documents_by_user_group_id($user_group_id);
     }
 }

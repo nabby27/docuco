@@ -13,14 +13,14 @@ class UserModel extends User
 
     // public function group()
     // {
-    //     return $this->belongsTo('Docuco\Models\UsersGroupModel');
+    //     return $this->belongsTo('Docuco\Models\UserGroupModel');
     // }
 
     public function role()
     {
         return $this->belongsTo('Docuco\Models\RoleModel');
     }
-    
+
     // public function blocked_documents()
     // {
     //     return $this->hasMany('Docuco\Models\UserBlockedDocumentModel', 'user_id');

@@ -2,13 +2,13 @@
 
 namespace Docuco\Domain\Documents\Collections;
 
-use Docuco\Domain\Documents\Entities\DocumentBase;
+use Docuco\Domain\Documents\Entities\Document;
 
-class DocumentBaseCollection
+class DocumentCollection
 {
     private $documents = [];
 
-    public function add(DocumentBase $document)
+    public function add(Document $document)
     {
         array_push($this->documents, $document);
     }

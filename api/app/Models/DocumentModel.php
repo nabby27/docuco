@@ -8,14 +8,14 @@ class DocumentModel extends Model
 {
     protected $table = 'documents';
 
-    public function types()
+    public function documents_types()
     {
         return $this->hasMany('Docuco\Models\DocumentTypeModel', 'document_id');
     }
 
-    public function users_group()
+    public function user_group()
     {
-        return $this->belongsTo('Docuco\Models\UsersGroupModel', 'users_group_id');
+        return $this->belongsTo('Docuco\Models\UserGroupModel', 'user_group_id');
     }
 
     protected $casts = [

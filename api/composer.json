@@ -67,11 +67,12 @@
     "prefer-stable": true,
     "scripts": {
         "test": [
-            "vendor/bin/phpunit"
+            "composer test:unit",
+            "composer test:e2e"
         ],
         "coverage": [
-            "composer coverage:e2e",
-            "composer coverage:unit"
+            "composer coverage:unit",
+            "composer coverage:e2e"
         ],
         "test:unit": [
             "vendor/bin/phpunit --testsuite unit"
@@ -85,15 +86,18 @@
         "coverage:e2e": [
             "vendor/phpunit/phpunit/phpunit --coverage-html html-coverage-e2e --testsuite e2e"
         ],
+        "code:standard": [
+            "vendor/bin/phpcs app tests"
+        ],
         "code:fix": [
             "vendor/bin/phpcbf --ignore=*/vendor/*,*/docker/*,*/public/*,*/storage/*,*/resources/*,*/config/*,*/bootstrap/*"
         ],
         "code:duplicate": [
-            "vendor/bin/phpcpd --min-lines 3 --min-tokens 25 app tests"
+            "vendor/bin/phpcpd --min-lines 3 --min-tokens 20 app tests"
         ],
         "code:quality": [
-            "vendor/bin/phpcs app tests",
-            "vendor/bin/phpunit",
+            "composer test",
+            "composer code:standard",
             "composer code:duplicate"
         ]
     }

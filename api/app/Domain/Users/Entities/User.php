@@ -2,20 +2,28 @@
 
 namespace Docuco\Domain\Users\Entities;
 
-use Docuco\Domain\Users\Entities\Base;
+use Docuco\Domain\Users\ValueObjects\UserGroupVO;
+use Docuco\Domain\Users\ValueObjects\RoleVO;
 
-class User extends Base
+class User
 {
+    public $id;
     public $name;
     public $email;
-    public $password;
-    public $role_id;
-    public $users_group_id;
-    public $created_at;
-    public $updated_at;
+    public $role;
+    public $user_group;
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
+    public function __construct(
+        int $id,
+        string $name,
+        string $email,
+        UserGroupVO $user_group,
+        RoleVO $role
+    ) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->email = $email;
+        $this->role = $role;
+        $this->user_group = $user_group;
     }
 }

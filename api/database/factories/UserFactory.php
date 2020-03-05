@@ -8,6 +8,6 @@ $factory->define(Docuco\Models\UserModel::class, function (Faker $faker) {
         'email' => $faker->email,
         'password' => $faker->password,
         'role_id' => $faker->randomDigitNotNull,
-        'users_group_id' => $faker->randomDigitNotNull
+        'user_group_id' => $faker->randomDigitNotNull
     ];
 });

@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class UsersGroupsTableSeeder extends Seeder
+class UserGroupsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +12,8 @@ class UsersGroupsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users_groups')->truncate();
-        DB::table('users_groups')->insert([
+        DB::table('user_groups')->truncate();
+        DB::table('user_groups')->insert([
             [
                 'name' => 'Green Urban Data',
                 'created_at' => date('2019/02/27'),

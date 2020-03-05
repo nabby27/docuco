@@ -24,10 +24,10 @@ class CreateDocumentE2ETest extends TestCase
     public function test_return_error_message_when_user_not_have_permissions_to_create_document()
     {
         $document = [];
-        [$user, $token] = get_user_and_token_after_login($this);
+        [$user_group, $user, $token] = get_user_group_user_and_token_after_login($this);
 
         $response = $this->make_post_petition($token, $document);
-        
+
         $response
             ->assertStatus(423)
             ->assertJson(['message' => 'Not have permissions.']);
@@ -36,25 +36,13 @@ class CreateDocumentE2ETest extends TestCase
     public function test_create_document_when_user_have_permissions()
     {
         $document = get_random_document();
-        [$user, $token] = get_edit_user_and_token_after_login($this);
+        [$user_group, $user, $token] = get_user_group_edit_user_and_token_after_login($this);
 
         $response = $this->make_post_petition($token, $document);
-        
+
         $response
             ->assertStatus(200)
-            ->assertJson(['document' => $document]);
-    }
-
-    public function test_return_document_structure_after_create_document()
-    {
-        $document = get_random_document();
-        [$user, $token] = get_edit_user_and_token_after_login($this);
-
-        $response = $this->make_post_petition($token, $document);
-        
-        $response
-            ->assertStatus(200)
-            ->assertJson(['document' => ['name' => $document['name']]])
+            ->assertJson(['document' => $document])
             ->assertJsonStructure(['document' => getFieldsDocument()]);
     }
 

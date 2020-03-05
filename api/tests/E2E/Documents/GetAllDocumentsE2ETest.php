@@ -22,9 +22,9 @@ class GetAllDocumentsE2ETest extends TestCase
 
     public function test_return_empty_array_when_user_not_have_documents_but_are_other_documents()
     {
-        $users_group = create_users_group();
-        $document = create_document($users_group->id);
-        [$user, $token] = get_user_and_token_after_login($this);
+        $user_group = create_user_group();
+        $document = create_document($user_group->id);
+        [$user_group_2, $user, $token] = get_user_group_user_and_token_after_login($this);
 
         $response = $this->make_get_petition($token);
 
@@ -35,7 +35,7 @@ class GetAllDocumentsE2ETest extends TestCase
 
     public function test_return_documents_when_user_logged()
     {
-        [$users_group, $document, $user, $token] = get_user_group_document_user_and_token_after_login($this);
+        [$user_group, $document, $user, $token] = get_user_group_document_user_and_token_after_login($this);
 
         $response = $this->make_get_petition($token);
 
@@ -46,10 +46,10 @@ class GetAllDocumentsE2ETest extends TestCase
             ]]);
     }
 
-    public function test_return_documents_for_users_group_when_user_logged_and_are_more_users_group_with_documents()
+    public function test_return_documents_for_user_group_when_user_logged_and_are_more_user_group_with_documents()
     {
-        [$users_group_1, $document_1, $user_1, $token_1] = get_user_group_document_user_and_token_after_login($this);
-        [$users_group_2, $document_2, $user_2, $token_2] = get_user_group_document_user_and_token_after_login($this);
+        [$user_group_1, $document_1, $user_1, $token_1] = get_user_group_document_user_and_token_after_login($this);
+        [$user_group_2, $document_2, $user_2, $token_2] = get_user_group_document_user_and_token_after_login($this);
 
         $response = $this->make_get_petition($token_1);
 
@@ -63,9 +63,9 @@ class GetAllDocumentsE2ETest extends TestCase
 
     public function test_return_two_documents_when_user_logged_and_have_two_documents()
     {
-        [$users_group, $document_1, $user, $token] = get_user_group_document_user_and_token_after_login($this);
-        $document_2 = create_document($users_group->id);
-        
+        [$user_group, $document_1, $user, $token] = get_user_group_document_user_and_token_after_login($this);
+        $document_2 = create_document($user_group->id);
+
         $response = $this->make_get_petition($token);
 
         $response

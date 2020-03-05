@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
 
             $table->unsignedInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->unsignedInteger('users_group_id');
-            $table->foreign('users_group_id')->references('id')->on('users_groups');
+            $table->unsignedInteger('user_group_id');
+            $table->foreign('user_group_id')->references('id')->on('user_groups');
         });
     }
 
