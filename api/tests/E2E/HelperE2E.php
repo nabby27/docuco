@@ -4,49 +4,51 @@ namespace Tests\E2E;
 
 use Faker;
 use Docuco\Domain\Documents\Entities\Document;
-use Docuco\Domain\Documents\Collections\TypeCollection;
+// use Docuco\Domain\Documents\Collections\TypeCollection;
+use Docuco\Domain\Documents\Entities\Type;
+use Docuco\Domain\Users\Constants\RoleConstants;
 use Docuco\Domain\Users\Entities\User;
-use Docuco\Domain\Users\ValueObjects\UserGroupVO;
+use Docuco\Domain\Users\Entities\UserGroup;
 use Docuco\Domain\Users\ValueObjects\RoleVO;
+use Docuco\Models\RoleModel;
 
-function create_role(string $name = ''): RoleVO
+function create_role(string $name = ''): RoleModel
 {
-    $role_model = factory('Docuco\Models\RoleModel'::class)->create([
+    $faker = Faker\Factory::create();
+
+    return factory('Docuco\Models\RoleModel'::class)->create([
+        'id' => RoleModel::all()->count() + 1,
         'name' => $name
     ]);
-    return new RoleVO($role_model->id, $role_model->name);
 }
 
-function create_user_group(): UserGroupVO
+function create_user_group(string $name = ''): UserGroup
 {
-    $user_group_model = factory('Docuco\Models\UserGroupModel'::class)->create();
-    return new UserGroupVO($user_group_model->id, $user_group_model->name);
+    $user_group_model = factory('Docuco\Models\UserGroupModel'::class)->create([
+        'name' => $name
+    ]);
+    return new UserGroup($user_group_model->id, $user_group_model->name);
 }
 
-function create_user(int $user_group_id, int $role_id, string $password): User
+function create_user(UserGroup $user_group, string $role_name = RoleConstants::VIEW, string $password = '123456'): User
 {
+    $role = create_role($role_name);
     $user_model = factory('Docuco\Models\UserModel'::class)->create([
-        'user_group_id' => $user_group_id,
-        'role_id' => $role_id,
+        'user_group_id' => $user_group->id,
+        'role_id' => $role->id,
         'password' => bcrypt($password)
     ]);
 
-    $user_group = new UserGroupVO($user_model->user_group_id, '');
-    $role = new RoleVO($user_model->role_id, '');
+    $user_group = new UserGroup($user_group->id, $user_group->name);
+    $role = new RoleVO($role_name);
 
     return new User(
         $user_model->id,
         $user_model->name,
         $user_model->email,
-        $user_group,
-        $role
+        $user_group->name,
+        $role->name
     );
-
-    // public $id;
-    // public $name;
-    // public $email;
-    // public $role;
-    // public $user_group;
 }
 
 function do_login_and_get_token($that, $email, $password): string
@@ -65,23 +67,51 @@ function create_document(int $user_group_id): Document
     return Document::get_from_model($document_model);
 }
 
-function get_user_group_user_and_token_after_login($that, string $role = '')
+function get_user_group_user_and_token_after_login($that, string $role_name = '')
 {
-    $user_group = create_user_group();
+    $user_group = create_user_group('example_group');
+    [$user, $token, $password] = get_user_and_token_after_login($that, $user_group, $role_name);
+
+    return [$user_group, $user, $token, $password, $role_name];
+}
+
+function get_user_and_token_after_login($that, UserGroup $user_group, string $role_name = '')
+{
     $password = '123456';
-    $role = create_role($role);
-    $user = create_user($user_group->id, $role->id, $password);
+    $role = create_role($role_name);
+    $user = create_user($user_group, $role->name, $password);
     $token = do_login_and_get_token($that, $user->email, $password);
 
-    return [$user_group, $user, $token, $password];
+    return [$user, $token, $password];
 }
 
 function get_user_group_document_user_and_token_after_login($that, string $role = '')
 {
-    [$user_group, $user, $token, $password] = get_user_group_user_and_token_after_login($that, $role);
+    [$user_group, $user, $token, $password, $role] = get_user_group_user_and_token_after_login($that, $role);
     $document = create_document($user_group->id);
+    $types = [];
+    $type = create_type('water');
+    array_push($types, $type);
+    realtion_document_type($document, $type);
 
-    return [$user_group, $document, $user, $token, $password];
+    return [$user_group, $document, $user, $token, $password, $types, $role];
+}
+
+function create_type(string $name = 'example_type'): Type
+{
+    $type_model = factory('Docuco\Models\TypeModel'::class)->create([
+        'name' => $name,
+    ]);
+
+    return Type::get_from_model($type_model);
+}
+
+function realtion_document_type(Document $document, Type $type)
+{
+    factory('Docuco\Models\DocumentTypeModel'::class)->create([
+        'document_id' => $document->id,
+        'type_id' => $type->id,
+    ]);
 }
 
 function get_document_structure_to_assert($document)
@@ -93,28 +123,39 @@ function get_document_structure_to_assert($document)
         'price' => $document->price,
         'url' => $document->url,
         'date_of_issue' => $document->date_of_issue,
-        'types' => $document->types->all()
+        'types' => $document->types
+    ];
+}
+
+function get_user_structure_to_assert($user)
+{
+    return [
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'user_group' => $user->user_group,
+        'role' => $user->role
     ];
 }
 
 function get_user_group_edit_user_and_token_after_login($that)
 {
-    return get_user_group_user_and_token_after_login($that, 'EDIT');
+    return get_user_group_user_and_token_after_login($that, RoleConstants::EDIT);
 }
 
 function get_user_group_admin_user_and_token_after_login($that)
 {
-    return get_user_group_user_and_token_after_login($that, 'ADMIN');
+    return get_user_group_user_and_token_after_login($that, RoleConstants::ADMIN);
 }
 
 function get_user_group_document_edit_user_and_token_after_login($that)
 {
-    return get_user_group_document_user_and_token_after_login($that, 'EDIT');
+    return get_user_group_document_user_and_token_after_login($that, RoleConstants::EDIT);
 }
 
 function get_user_group_document_admin_user_and_token_after_login($that)
 {
-    return get_user_group_document_user_and_token_after_login($that, 'ADMIN');
+    return get_user_group_document_user_and_token_after_login($that, RoleConstants::ADMIN);
 }
 
 function get_random_document(?int $document_id = null)
@@ -136,9 +177,27 @@ function get_random_document(?int $document_id = null)
     return $document;
 }
 
-function getFieldsDocument()
+function get_fields_document()
 {
     return [
         'id', 'types', 'name', 'description', 'price', 'url', 'date_of_issue'
     ];
+}
+
+function get_fields_user()
+{
+    return [
+        'id', 'email', 'name', 'user_group', 'role'
+    ];
+}
+
+function assert_unauthenticated($that, string $url = '')
+{
+    $token = '';
+    $response = $that->withHeaders(['Authorization' => 'Bearer ' . $token])
+        ->json('GET', $url);
+
+    $response
+        ->assertStatus(401)
+        ->assertExactJson(['message' => 'Unauthenticated.']);
 }

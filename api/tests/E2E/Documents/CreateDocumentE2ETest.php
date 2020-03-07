@@ -43,7 +43,7 @@ class CreateDocumentE2ETest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson(['document' => $document])
-            ->assertJsonStructure(['document' => getFieldsDocument()]);
+            ->assertJsonStructure(['document' => get_fields_document()]);
     }
 
     private function make_post_petition($token = '', $document = [])

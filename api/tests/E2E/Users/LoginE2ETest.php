@@ -2,6 +2,7 @@
 
 namespace Tests\E2E;
 
+use Docuco\Domain\Users\Constants\RoleConstants;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -34,8 +35,8 @@ class UserE2ETest extends TestCase
     {
         $user_group = create_user_group();
         $password = '123456';
-        $role = create_role();
-        $user = create_user($user_group->id, $role->id, $password);
+        $role_name = RoleConstants::EDIT;
+        $user = create_user($user_group, $role_name, $password);
 
         $response = $this->json('POST', '/api/login', [
             'email' => $user->email,

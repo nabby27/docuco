@@ -3,7 +3,8 @@
 namespace Docuco\Http\Middleware;
 
 use Closure;
-use Docuco\Domain\Users\Actions\CheckUserHaveAdminRoleAction;
+use Docuco\Domain\Users\Actions\CheckUserIsAdminAction;
+use Docuco\Infrastructure\Services\GetRoleFromRequestService;
 
 class AdminRole
 {
@@ -16,9 +17,11 @@ class AdminRole
      */
     public function handle($request, Closure $next)
     {
-        $role = $request->user()->role->name;
-        $check_user_have_admin_role_action = new CheckUserHaveAdminRoleAction();
-        if (false === $check_user_have_admin_role_action->execute($role)) {
+        $get_role_from_request_service = new GetRoleFromRequestService();
+        $role = $get_role_from_request_service->execute($request);
+
+        $check_user_is_admin_action = new CheckUserIsAdminAction();
+        if (false === $check_user_is_admin_action->execute($role)) {
             return response(['message' => 'Not have permissions.'], 423);
         };
 

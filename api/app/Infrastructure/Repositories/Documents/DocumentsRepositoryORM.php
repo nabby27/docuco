@@ -3,6 +3,7 @@
 namespace Docuco\Infrastructure\Repositories\Documents;
 
 use Docuco\Models\DocumentModel;
+use Docuco\Models\DocumentTypeModel;
 use Docuco\Domain\Documents\Repositories\DocumentsRepository;
 use Docuco\Domain\Documents\Collections\DocumentCollection;
 use Docuco\Domain\Documents\Entities\Document;
@@ -15,7 +16,7 @@ class DocumentsRepositoryORM implements DocumentsRepository
     public function __construct()
     {
         $this->document_model = new DocumentModel();
-        $this->types_model = new DocumentModel();
+        $this->document_type_model = new DocumentTypeModel();
     }
 
     public function get_one_document_by_user_group_id(int $user_group_id, int $document_id): ?Document
@@ -32,9 +33,7 @@ class DocumentsRepositoryORM implements DocumentsRepository
     public function get_all_documents_by_user_group_id(int $user_group_id): DocumentCollection
     {
         $document_model_collection = $this->document_model
-            ->whereHas('user_group', function ($query) use ($user_group_id) {
-                $query->where('user_group_id', $user_group_id);
-            })
+            ->where('user_group_id', $user_group_id)
             ->get();
 
         $document_collection = new DocumentCollection();
@@ -86,7 +85,9 @@ class DocumentsRepositoryORM implements DocumentsRepository
     {
         $document_model = $this->get_one_document_model_by_user_group($user_group_id, $document_id);
 
+
         if (isset($document_model)) {
+            $this->delete_relation_with_types_by_document_model($document_model->id);
             $is_deleted = $document_model->delete();
             return $is_deleted;
         }
@@ -97,9 +98,12 @@ class DocumentsRepositoryORM implements DocumentsRepository
     private function get_one_document_model_by_user_group(int $user_group_id, int $document_id): ?DocumentModel
     {
         return $this->document_model
-            ->whereHas('user_group', function ($query) use ($user_group_id, $document_id) {
-                $query->where('user_group_id', $user_group_id);
-            })
+            ->where('user_group_id', $user_group_id)
             ->find($document_id);
+    }
+
+    private function delete_relation_with_types_by_document_model(int $document_id)
+    {
+        $this->document_type_model->where('document_id', $document_id)->delete();
     }
 }

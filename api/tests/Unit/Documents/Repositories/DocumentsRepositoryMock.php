@@ -34,7 +34,7 @@ class DocumentsRepositoryMock implements DocumentsRepository
                     $document->id,
                     $document->name,
                     $document->description,
-                    new TypeCollection(),
+                    [],
                     $document->price,
                     $document->url,
                     $document->date_of_issue

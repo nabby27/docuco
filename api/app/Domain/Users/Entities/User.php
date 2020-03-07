@@ -2,28 +2,52 @@
 
 namespace Docuco\Domain\Users\Entities;
 
-use Docuco\Domain\Users\ValueObjects\UserGroupVO;
+use Docuco\Domain\Shared\Entities\Base;
+use Docuco\Domain\Users\Entities\UserGroup;
 use Docuco\Domain\Users\ValueObjects\RoleVO;
+use Docuco\Models\UserModel;
 
-class User
+class User extends Base
 {
-    public $id;
-    public $name;
     public $email;
-    public $role;
     public $user_group;
+    public $role;
 
     public function __construct(
         int $id,
         string $name,
         string $email,
-        UserGroupVO $user_group,
-        RoleVO $role
+        string $user_group,
+        string $role
     ) {
-        $this->id = $id;
-        $this->name = $name;
+        parent::__construct($id, $name);
         $this->email = $email;
-        $this->role = $role;
         $this->user_group = $user_group;
+        $this->role = $role;
+    }
+
+    // public function get()
+    // {
+    //     return [
+    //         'id' => $this->id,
+    //         'name' => $this->name,
+    //         'email' => $this->email,
+    //         'user_group' => $this->user_group->name,
+    //         'role' => $this->role->name
+    //     ];
+    // }
+
+    public static function get_from_model(UserModel $user_model): User
+    {
+        $user_group = UserGroup::get_from_model($user_model->user_group);
+        $role = RoleVO::get_from_model($user_model->role);
+
+        return new User(
+            $user_model->id,
+            $user_model->name,
+            $user_model->email,
+            $user_group->name,
+            $role->name
+        );
     }
 }

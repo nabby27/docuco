@@ -22,14 +22,6 @@ class DocumentController extends Controller
         $this->get_user_group_id_from_request_service = new GetUserGroupIdFromRequestService();
     }
 
-    public function get_all_documents(Request $request)
-    {
-        $user_group_id = $this->get_user_group_id_from_request_service->execute($request);
-        $get_all_documents_action = new GetAllDocumentsAction($this->document_repository);
-        $document_collection = $get_all_documents_action->execute($user_group_id);
-        return response()->json(['documents' => $document_collection->all()], 200);
-    }
-
     public function get_one_document(Request $request, int $document_id)
     {
         $user_group_id = $this->get_user_group_id_from_request_service->execute($request);
@@ -40,6 +32,15 @@ class DocumentController extends Controller
             return response()->json(['document' => $document], 200);
         }
         return response()->json(['message' => 'Document not exist.'], 404);
+    }
+
+    public function get_all_documents(Request $request)
+    {
+        $user_group_id = $this->get_user_group_id_from_request_service->execute($request);
+        $get_all_documents_action = new GetAllDocumentsAction($this->document_repository);
+        $document_collection = $get_all_documents_action->execute($user_group_id);
+
+        return response()->json(['documents' => $document_collection->all()], 200);
     }
 
     public function create_document(Request $request)

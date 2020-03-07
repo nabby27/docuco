@@ -11,10 +11,10 @@ class UserModel extends User
 
     protected $table = 'users';
 
-    // public function group()
-    // {
-    //     return $this->belongsTo('Docuco\Models\UserGroupModel');
-    // }
+    public function user_group()
+    {
+        return $this->belongsTo('Docuco\Models\UserGroupModel');
+    }
 
     public function role()
     {

@@ -9,15 +9,11 @@ class GetAllDocumentsE2ETest extends TestCase
 {
     use DatabaseTransactions;
 
+    private $endpoint = '/api/documents';
+
     public function test_return_error_message_when_user_not_logged()
     {
-        $token = 'token_example';
-
-        $response = $this->make_get_petition($token);
-
-        $response
-            ->assertStatus(401)
-            ->assertExactJson(['message' => 'Unauthenticated.']);
+        assert_unauthenticated($this, $this->endpoint);
     }
 
     public function test_return_empty_array_when_user_not_have_documents_but_are_other_documents()
@@ -81,8 +77,7 @@ class GetAllDocumentsE2ETest extends TestCase
 
     private function make_get_petition($token = '')
     {
-        $endpoint = '/api/documents';
         return $this->withHeaders(['Authorization' => 'Bearer ' . $token])
-            ->json('GET', $endpoint);
+            ->json('GET', $this->endpoint);
     }
 }

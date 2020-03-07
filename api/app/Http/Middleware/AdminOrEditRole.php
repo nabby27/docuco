@@ -3,7 +3,8 @@
 namespace Docuco\Http\Middleware;
 
 use Closure;
-use Docuco\Domain\Users\Actions\CheckUserHaveAdminOrEditRoleAction;
+use Docuco\Domain\Users\Actions\CheckUserCanEditAction;
+use Docuco\Infrastructure\Services\GetRoleFromRequestService;
 
 class AdminOrEditRole
 {
@@ -16,9 +17,11 @@ class AdminOrEditRole
      */
     public function handle($request, Closure $next)
     {
-        $role = $request->user()->role->name;
-        $check_user_have_admin_or_edit_role_action = new CheckUserHaveAdminOrEditRoleAction();
-        if (false === $check_user_have_admin_or_edit_role_action->execute($role)) {
+        $get_role_from_request_service = new GetRoleFromRequestService();
+        $role = $get_role_from_request_service->execute($request);
+
+        $check_user_can_edit_action = new CheckUserCanEditAction();
+        if (false === $check_user_can_edit_action->execute($role)) {
             return response(['message' => 'Not have permissions.'], 423);
         };
 

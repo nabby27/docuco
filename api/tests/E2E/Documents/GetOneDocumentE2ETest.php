@@ -2,6 +2,8 @@
 
 namespace Tests\E2E;
 
+use Docuco\Domain\Users\Constants\RoleConstants;
+use Docuco\Models\TypeModel;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -26,8 +28,8 @@ class GetOneDocumentE2ETest extends TestCase
         $user_group = create_user_group();
         $password = '123456';
         $document_id = 1;
-        $role = create_role();
-        $user = create_user($user_group->id, $role->id, $password);
+        $role_name = RoleConstants::ADMIN;
+        $user = create_user($user_group, $role_name, $password);
         $token = do_login_and_get_token($this, $user->email, $password);
 
         $response = $this->make_get_petition($token, $document_id);
@@ -41,10 +43,11 @@ class GetOneDocumentE2ETest extends TestCase
     {
         $user_group_1 = create_user_group();
         $document = create_document($user_group_1->id);
-        $role = create_role();
-        $user_group_2 = create_user_group();
+
         $password = '123456';
-        $user = create_user($user_group_2->id, $role->id, $password);
+        $user_group_2 = create_user_group();
+        $role_name = RoleConstants::EDIT;
+        $user = create_user($user_group_2, $role_name, $password);
         $token = do_login_and_get_token($this, $user->email, $password);
 
         $response = $this->make_get_petition($token, $document->id);
@@ -56,7 +59,7 @@ class GetOneDocumentE2ETest extends TestCase
 
     public function test_return_document_when_user_logged_and_have_this_document()
     {
-        [$user_group, $document, $user, $token, $password] = get_user_group_document_user_and_token_after_login($this);
+        [$user_group, $document, $user, $token, $password, $types] = get_user_group_document_user_and_token_after_login($this);
 
         $token = do_login_and_get_token($this, $user->email, $password);
 
@@ -64,10 +67,15 @@ class GetOneDocumentE2ETest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJson([
-                'document' =>
-                get_document_structure_to_assert($document)
-            ]);
+            ->assertJson(['document' => get_document_structure_to_assert($document)])
+            ->assertJson(['document' => [
+                'types' => [
+                    [
+                        'id' => $types[0]->id,
+                        'name' => $types[0]->name,
+                    ]
+                ]
+            ]]);
     }
 
     private function make_get_petition($token = '', $document_id = 1)

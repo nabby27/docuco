@@ -2,14 +2,19 @@
 
 namespace Docuco\Domain\Documents\Entities;
 
-class Type
-{
-    public $id;
-    public $name;
+use Docuco\Domain\Shared\Entities\Base;
+use Docuco\Models\TypeModel;
 
-    // public function __construct(int $id, string $name)
-    // {
-    //     $this->id = $id;
-    //     $this->name = $name;
-    // }
+class Type extends Base
+{
+
+    public function __construct(int $id, string $name)
+    {
+        parent::__construct($id, $name);
+    }
+
+    public static function get_from_model(TypeModel $type_model): Type
+    {
+        return new Type($type_model->id, $type_model->name);
+    }
 }

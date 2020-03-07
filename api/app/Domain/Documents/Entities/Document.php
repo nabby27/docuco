@@ -5,6 +5,7 @@ namespace Docuco\Domain\Documents\Entities;
 use Docuco\Domain\Documents\Collections\TypeCollection;
 use Docuco\Domain\Documents\Entities\Type;
 use Docuco\Models\DocumentModel;
+use Docuco\Models\TypeModel;
 
 class Document
 {
@@ -20,7 +21,7 @@ class Document
         int $id,
         string $name,
         string $description,
-        TypeCollection $types,
+        array $types,
         float $price,
         string $url,
         string $date_of_issue
@@ -36,26 +37,24 @@ class Document
 
     public static function get_from_model(DocumentModel $document_model): Document
     {
-        $types = Document::getTypesFromDocumentModel($document_model);
+        $types = Document::getTypeCollectionFromDocumentModel($document_model);
         return new Document(
             $document_model->id,
             $document_model->name,
             $document_model->description,
-            $types,
+            $types->all(),
             $document_model->price,
             $document_model->url,
             $document_model->date_of_issue
         );
     }
 
-    private static function getTypesFromDocumentModel(DocumentModel $document_model): TypeCollection
+    private static function getTypeCollectionFromDocumentModel(DocumentModel $document_model): TypeCollection
     {
         $type_collection = new TypeCollection();
-        foreach ($document_model->documents_types() as $documents_types_model) {
-            // $type_collection->add(new Type(
-            //     $documents_types_model->type()->id,
-            //     $documents_types_model->type()->name
-            // ));
+        foreach ($document_model->documents_types()->get() as $documents_types_model) {
+            $type_model = TypeModel::find($documents_types_model->type_id);
+            $type_collection->add(Type::get_from_model($type_model));
         }
 
         return $type_collection;
