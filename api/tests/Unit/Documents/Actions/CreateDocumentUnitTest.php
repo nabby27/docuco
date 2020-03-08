@@ -19,7 +19,7 @@ class CreateDocumentUnitTest extends TestCase
     public function test_return_document_after_create()
     {
         [$user_group, $document] = DocumentHelper::get_user_group_and_his_document($this->documents_repository);
-        $this->documents_repository->add_document($document->id, $document, $user_group->id);
+        $this->documents_repository->add_document($document, $user_group->id);
         $create_document_action = new CreateDocumentAction($this->documents_repository);
 
         $response = $create_document_action->execute($user_group->id, $document);

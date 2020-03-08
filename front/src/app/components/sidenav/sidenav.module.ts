@@ -7,16 +7,16 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 
 
 @NgModule({
-  declarations: [
-    SidenavComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MaterialModule
-  ],
-  exports: [
-    SidenavComponent
-  ]
+    declarations: [
+        SidenavComponent
+    ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MaterialModule
+    ],
+    exports: [
+        SidenavComponent
+    ]
 })
 export class SidenavModule { }

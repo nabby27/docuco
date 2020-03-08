@@ -26,17 +26,6 @@ class User extends Base
         $this->role = $role;
     }
 
-    // public function get()
-    // {
-    //     return [
-    //         'id' => $this->id,
-    //         'name' => $this->name,
-    //         'email' => $this->email,
-    //         'user_group' => $this->user_group->name,
-    //         'role' => $this->role->name
-    //     ];
-    // }
-
     public static function get_from_model(UserModel $user_model): User
     {
         $user_group = UserGroup::get_from_model($user_model->user_group);

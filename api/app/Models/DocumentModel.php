@@ -13,10 +13,10 @@ class DocumentModel extends Model
         return $this->hasMany('Docuco\Models\DocumentTypeModel', 'document_id');
     }
 
-    public function user_group()
-    {
-        return $this->belongsTo('Docuco\Models\UserGroupModel', 'user_group_id');
-    }
+    // public function user_group()
+    // {
+    //     return $this->belongsTo('Docuco\Models\UserGroupModel', 'user_group_id');
+    // }
 
     protected $casts = [
         'price' => 'float',

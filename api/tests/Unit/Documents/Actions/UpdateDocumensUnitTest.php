@@ -21,7 +21,7 @@ class UpdateDocumentUnitTest extends TestCase
     {
         $user_group_id = 1;
         $document = DocumentHelper::get_random_document();
-        $this->documents_repository->add_document($document->id, $document);
+        $this->documents_repository->add_document($document);
         $update_document_action = new UpdateDocumentAction($this->documents_repository);
 
         $updated_document = $update_document_action->execute($user_group_id, $document);

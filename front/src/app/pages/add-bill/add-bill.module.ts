@@ -6,21 +6,21 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 import { MatFileUploadModule } from 'angular-material-fileupload';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AddBillComponent
-  }
+    {
+        path: '',
+        component: AddBillComponent
+    }
 ];
 
 @NgModule({
-  declarations: [
-    AddBillComponent
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    MatFileUploadModule,
-    RouterModule.forChild(routes)
-  ]
+    declarations: [
+        AddBillComponent
+    ],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        MatFileUploadModule,
+        RouterModule.forChild(routes)
+    ]
 })
 export class AddBillModule { }

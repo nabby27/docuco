@@ -7,16 +7,16 @@ import { UserAccountModule } from '../user-account/user-account.module';
 
 
 @NgModule({
-  declarations: [
-    HeaderComponent
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    UserAccountModule
-  ],
-  exports: [
-    HeaderComponent
-  ]
+    declarations: [
+        HeaderComponent
+    ],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        UserAccountModule
+    ],
+    exports: [
+        HeaderComponent
+    ]
 })
 export class HeaderModule { }

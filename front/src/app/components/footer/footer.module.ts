@@ -6,15 +6,15 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 
 
 @NgModule({
-  declarations: [
-    FooterComponent
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule
-  ],
-  exports: [
-    FooterComponent
-  ]
+    declarations: [
+        FooterComponent
+    ],
+    imports: [
+        CommonModule,
+        MaterialModule
+    ],
+    exports: [
+        FooterComponent
+    ]
 })
 export class FooterModule { }

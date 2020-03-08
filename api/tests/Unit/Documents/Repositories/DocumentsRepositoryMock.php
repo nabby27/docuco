@@ -4,16 +4,15 @@ namespace Tests\Unit\Domain\Documents\Repositories;
 
 use Docuco\Domain\Documents\Repositories\DocumentsRepository;
 use Docuco\Domain\Documents\Collections\DocumentCollection;
-use Docuco\Domain\Documents\Collections\TypeCollection;
 use Docuco\Domain\Documents\Entities\Document;
 
 class DocumentsRepositoryMock implements DocumentsRepository
 {
     private $documents = [];
 
-    public function add_document(int $document_id, Document $document, int $user_group_id = -1)
+    public function add_document(Document $document, int $user_group_id = -1)
     {
-        $this->documents[$user_group_id][$document_id] = $document;
+        $this->documents[$user_group_id][$document->id] = $document;
     }
 
     public function get_one_document_by_user_group_id(int $user_group_id, int $document_id): ?Document
@@ -27,10 +26,10 @@ class DocumentsRepositoryMock implements DocumentsRepository
 
     public function get_all_documents_by_user_group_id(int $user_group_id): DocumentCollection
     {
-        $document_base_collection = new DocumentCollection();
+        $document_collection = new DocumentCollection();
         if (isset($this->documents[$user_group_id])) {
             foreach ($this->documents[$user_group_id] as $document_id => $document) {
-                $document_base_collection->add(new Document(
+                $document_collection->add(new Document(
                     $document->id,
                     $document->name,
                     $document->description,
@@ -41,7 +40,7 @@ class DocumentsRepositoryMock implements DocumentsRepository
                 ));
             }
         }
-        return $document_base_collection;
+        return $document_collection;
     }
 
     public function create_document_by_user_group_id(int $user_group_id, $document_to_create): ?Document

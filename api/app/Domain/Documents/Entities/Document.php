@@ -37,7 +37,7 @@ class Document
 
     public static function get_from_model(DocumentModel $document_model): Document
     {
-        $types = Document::getTypeCollectionFromDocumentModel($document_model);
+        $types = Document::get_type_collection_from_document_model($document_model);
         return new Document(
             $document_model->id,
             $document_model->name,
@@ -49,7 +49,7 @@ class Document
         );
     }
 
-    private static function getTypeCollectionFromDocumentModel(DocumentModel $document_model): TypeCollection
+    private static function get_type_collection_from_document_model(DocumentModel $document_model): TypeCollection
     {
         $type_collection = new TypeCollection();
         foreach ($document_model->documents_types()->get() as $documents_types_model) {

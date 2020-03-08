@@ -6,21 +6,21 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SpinnerModule } from 'src/app/components/spinner/spinner.module';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  }
+    {
+        path: '',
+        component: HomeComponent
+    }
 ];
 
 @NgModule({
-  declarations: [
-    HomeComponent
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    SpinnerModule,
-    RouterModule.forChild(routes)
-  ]
+    declarations: [
+        HomeComponent
+    ],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        SpinnerModule,
+        RouterModule.forChild(routes)
+    ]
 })
 export class HomeModule { }

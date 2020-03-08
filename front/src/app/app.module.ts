@@ -8,19 +8,19 @@ import { CoreModule } from './core/core.module';
 import { MaterialModule } from './shared/material/material.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    CoreModule,
-    MaterialModule
-  ],
-  providers: [],
-  bootstrap: [
-    AppComponent
-  ]
+    declarations: [
+        AppComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        CoreModule,
+        MaterialModule
+    ],
+    providers: [],
+    bootstrap: [
+        AppComponent
+    ]
 })
 export class AppModule { }

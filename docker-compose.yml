@@ -1,0 +1,78 @@
+version: '3'
+services:
+
+  #Front Service
+  docuco_front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: docuco_front
+    restart: unless-stopped
+    volumes:
+      - ./front:/app
+    tty: true
+    ports:
+      - '4200:4200'
+    command: > 
+      bash -c "npm install && npm start"
+    environment:
+      SERVICE_NAME: front
+      SERVICE_TAGS: dev
+    
+  #Api Service
+  docuco_api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: digitalocean.com/php
+    container_name: docuco_api
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: api
+      SERVICE_TAGS: dev
+      XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9000 remote_enable=1
+    working_dir: /var/www
+    volumes:
+      - ./api:/var/www
+      - ./api/docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - api-network
+
+  #Nginx Service
+  docuco_webserver:
+    image: nginx:alpine
+    container_name: docuco_webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:80"
+      - "443:443"
+    volumes:
+      - ./api:/var/www
+      - ./api/docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - api-network
+
+  #PostgresSQL Service
+  docuco_db:
+    image: postgres:11.1-alpine
+    container_name: docuco_db
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - '${DB_PORT}:${DB_PORT}'
+    volumes:
+      - ./api/docker/postgres/:/docker-entrypoint-initdb.d/
+    networks:
+      - api-network
+
+#Docker Networks
+networks:
+  api-network:
+    driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local
