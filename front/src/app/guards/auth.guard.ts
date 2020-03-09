@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { CheckIfUserIsLoggedAction } from 'src/domain/users/actions/CheckIfUserIsLogged.action';
 @Injectable({
     providedIn: 'root'
 })
@@ -15,10 +16,10 @@ export class AuthGuard implements CanActivate {
 
     canActivate() {
         const isUserLogged = this.checkIfUserIsLoggedAction.execute();
-        if (isUserLogged) {
-            return true;
+        if (false === isUserLogged) {
+            this.router.navigate(['/login'])
         }
-        this.router.navigate(['/login'])
-        return false;
+
+        return isUserLogged;
     }
 }

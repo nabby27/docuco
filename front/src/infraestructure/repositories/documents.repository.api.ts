@@ -11,7 +11,7 @@ import { DocumentsRepository } from '../../domain/documents/repositories/documen
 })
 export class DocumentsRepositoryAPI implements DocumentsRepository {
 
-    url = `${environment.baseUrl}/endpoint`;
+    url = `${environment.baseUrl}/documents`;
 
     constructor(
         private http: HttpClient
