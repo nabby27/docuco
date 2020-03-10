@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
-import { SpinnerModule } from 'src/app/components/spinner/spinner.module';
+import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 
 const routes: Routes = [
     {

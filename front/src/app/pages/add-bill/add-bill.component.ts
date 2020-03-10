@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FileHandle } from 'src/app/interfaces/file-handle';
+// import { FileHandle } from 'src/app/interfaces/file-handle';
 
 @Component({
     selector: 'app-add-bill',
@@ -8,17 +8,17 @@ import { FileHandle } from 'src/app/interfaces/file-handle';
 })
 export class AddBillComponent implements OnInit {
 
-    files: FileHandle[] = [];
+    files: any;
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    filesDropped(files: FileHandle[]): void {
-        debugger
-        this.files = files;
-    }
+    // filesDropped(files: FileHandle[]): void {
+    //     debugger
+    //     this.files = files;
+    // }
 
     upload(): void {
         //get image upload file obj;

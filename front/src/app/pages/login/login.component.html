@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div>
+    <div>
+        <div>
+            <h3>Docuco Login</h3>
+        </div>
+        <form [formGroup]="loginForm">
+            <div>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email" placeholder="Ex. icordobadonet@gmail.com">
+                    <mat-error *ngIf="loginForm.get('email').invalid && loginForm.get('email').errors.required">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.get('email').invalid && loginForm.get('email').errors.email">
+                        Email is <strong>not valid</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password" placeholder="Ex. 123456">
+                    <mat-error *ngIf="loginForm.get('password').invalid && loginForm.get('password').errors.required">
+                        Passowrd is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+        <div fxLayout="column" fxLayoutAlign="center center" class="card-action">
+            <button mat-stroked-button color="primary" *ngIf="!isLogin" (click)="login()">
+                Login
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </div>
+        <p>or you can&nbsp;<a [routerLink]="['/signup']">sign up</a>&nbsp;here</p>
+    </div>
+</div>

@@ -10,7 +10,7 @@ import { GetAllDocumentsAction } from 'src/domain/documents/actions/getAllDocume
 })
 export class HomeComponent implements OnInit {
 
-    documents: Document[] = []
+    documents: Document[] = [];
 
     constructor(
         private documents_repository_api: DocumentsRepositoryAPI
@@ -19,8 +19,6 @@ export class HomeComponent implements OnInit {
     async ngOnInit() {
         const get_all_documents_action = new GetAllDocumentsAction(this.documents_repository_api);
         this.documents = await get_all_documents_action.execute();
-
-        debugger
     }
 
 }

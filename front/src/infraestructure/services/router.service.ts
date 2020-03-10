@@ -19,4 +19,8 @@ export class RouterService implements RouterServiceInterface {
         }
     }
 
+    getCurrentUrl(): string {
+        return this.router.url;
+    }
+
 }

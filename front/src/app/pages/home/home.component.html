@@ -9,5 +9,10 @@
 </div>
 
 <mat-card class="large-card">
-    <app-spinner></app-spinner>
+    <app-spinner *ngIf="documents.length < 1"></app-spinner>
+    <div *ngIf="documents.length > 0">
+        <div *ngFor="let document of documents">
+            {{ document.id }} - {{ document.name }} - {{ document.description }}
+        </div>
+    </div>
 </mat-card>

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AddBillComponent } from './add-bill.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
-import { MatFileUploadModule } from 'angular-material-fileupload';
 
 const routes: Routes = [
     {
@@ -19,7 +18,6 @@ const routes: Routes = [
     imports: [
         CommonModule,
         MaterialModule,
-        MatFileUploadModule,
         RouterModule.forChild(routes)
     ]
 })

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterService } from 'src/infraestructure/services/router.service';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'document-manager-front';
+
+    constructor(
+        public routerService: RouterService
+    ) { }
+
 }

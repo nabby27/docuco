@@ -1,0 +1,28 @@
+html, body {
+    overflow-y: hidden;
+}
+
+.omLoginPage {
+    height: 100%;
+    width: 100%;
+    background-image: radial-gradient(#fff, #f7f7f7);
+}
+
+.omCheckBox {
+    margin-left: 3rem;
+}
+
+.omBtnLogin {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.omSpinerLogin {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

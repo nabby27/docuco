@@ -19,7 +19,7 @@ export class DocumentsRepositoryAPI implements DocumentsRepository {
 
     get_all_documents(): Observable<Document[]> {
         return this.http.get<Document[]>(this.url)
-            .pipe(map((response: any) => response.client));
+            .pipe(map((response: any) => response.documents));
     }
 
 }

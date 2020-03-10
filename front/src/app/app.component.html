@@ -1,8 +1,9 @@
 <div>
-    <app-header [sidenavElement]="sidenav"></app-header>
+    <app-header [showMenu]="routerService.getCurrentUrl() !== '/login'"></app-header>
 
     <mat-sidenav-container class="container">
-        <mat-sidenav #sidenav class="sidenav" mode="side" [opened]="true" fixedInViewport="true">
+        <mat-sidenav *ngIf="routerService.getCurrentUrl() !== '/login'" class="sidenav" mode="side" [opened]="true"
+            fixedInViewport="true">
             <app-sidenav></app-sidenav>
         </mat-sidenav>
 
