@@ -12,4 +12,7 @@ export class AppComponent {
         public routerService: RouterService
     ) { }
 
+    isLoginRoute() {
+        return this.routerService.getCurrentUrl() === '/login' || this.routerService.getCurrentUrl() === '/';
+    }
 }

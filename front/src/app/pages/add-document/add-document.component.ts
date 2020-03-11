@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 // import { FileHandle } from 'src/app/interfaces/file-handle';
 
 @Component({
-    selector: 'app-add-bill',
-    templateUrl: './add-bill.component.html',
-    styleUrls: ['./add-bill.component.scss']
+    selector: 'app-add-document',
+    templateUrl: './add-document.component.html',
+    styleUrls: ['./add-document.component.scss']
 })
-export class AddBillComponent implements OnInit {
+export class AddDocumentComponent implements OnInit {
 
     files: any;
 

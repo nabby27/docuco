@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddBillComponent } from './add-bill.component';
+import { AddDocumentComponent } from './add-document.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 
 const routes: Routes = [
     {
         path: '',
-        component: AddBillComponent
+        component: AddDocumentComponent
     }
 ];
 
 @NgModule({
     declarations: [
-        AddBillComponent
+        AddDocumentComponent
     ],
     imports: [
         CommonModule,
@@ -21,4 +21,4 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ]
 })
-export class AddBillModule { }
+export class AddDocumentModule { }

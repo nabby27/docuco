@@ -1,28 +1,28 @@
-html, body {
-    overflow-y: hidden;
-}
-
-.omLoginPage {
-    height: 100%;
+mat-form-field {
     width: 100%;
-    background-image: radial-gradient(#fff, #f7f7f7);
 }
 
-.omCheckBox {
-    margin-left: 3rem;
-}
-
-.omBtnLogin {
-    margin-top: 10px;
-    margin-bottom: 10px;
+.login-container {
     width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: radial-gradient(rgb(121, 194, 207), rgb(5, 22, 117));
 }
 
-.omSpinerLogin {
-    margin-top: 12px;
-    margin-bottom: 12px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+.login-card {
+    width: 30%;
+    margin-top: 100px;
+}
+
+.input-container {
+    margin-top: 40px !important;
+    width: 80%;
+    margin: auto;
+}
+
+.button {
+    width: 100%;
+    margin-bottom: 40px !important;
 }

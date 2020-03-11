@@ -9,7 +9,7 @@ export class SidenavComponent implements OnInit {
 
     links = [
         { text: 'INICIO', url: '/home', icon: 'dashboard' },
-        { text: 'AÑADIR FACTURA', url: '/add-bill', icon: 'add_circle_outline' },
+        { text: 'AÑADIR DOCUMENTO', url: '/add-document', icon: 'add_circle_outline' },
     ];
 
     constructor() {
