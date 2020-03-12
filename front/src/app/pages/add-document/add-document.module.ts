@@ -5,20 +5,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: AddDocumentComponent
-    }
+  {
+    path: '',
+    component: AddDocumentComponent
+  }
 ];
 
 @NgModule({
-    declarations: [
-        AddDocumentComponent
-    ],
-    imports: [
-        CommonModule,
-        MaterialModule,
-        RouterModule.forChild(routes)
-    ]
+  declarations: [
+    AddDocumentComponent
+  ],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterModule.forChild(routes)
+  ]
 })
 export class AddDocumentModule { }

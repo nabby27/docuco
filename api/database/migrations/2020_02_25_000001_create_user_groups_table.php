@@ -6,27 +6,27 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUserGroupsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('user_groups', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name')->nullable(true);
-            $table->timestamps();
-        });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('user_groups', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->string('name')->nullable(true);
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('user_groups');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('user_groups');
+  }
 }

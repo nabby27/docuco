@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
-import { Token } from '../entities/token';
+import { Token } from '../../shared/entities/token';
 
-export interface UsersRepository {
+export interface UsersRepositoryInterface {
 
-    login(email: string, password: string): Observable<Token>;
+  login(email: string, password: string): Observable<Token>;
 
 }

@@ -12,7 +12,7 @@
 */
 
 $app = new Illuminate\Foundation\Application(
-    $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
+  $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
 /*
@@ -27,18 +27,18 @@ $app = new Illuminate\Foundation\Application(
 */
 
 $app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    Docuco\Http\Kernel::class
+  Illuminate\Contracts\Http\Kernel::class,
+  Docuco\Http\Kernel::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    Docuco\Console\Kernel::class
+  Illuminate\Contracts\Console\Kernel::class,
+  Docuco\Console\Kernel::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    Docuco\Exceptions\Handler::class
+  Illuminate\Contracts\Debug\ExceptionHandler::class,
+  Docuco\Exceptions\Handler::class
 );
 
 /*

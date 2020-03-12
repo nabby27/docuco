@@ -6,21 +6,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: LoginComponent
-    }
+  {
+    path: '',
+    component: LoginComponent
+  }
 ];
 
 @NgModule({
-    declarations: [
-        LoginComponent
-    ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MaterialModule,
-        RouterModule.forChild(routes)
-    ]
+  declarations: [
+    LoginComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    RouterModule.forChild(routes)
+  ],
+  exports: [
+    LoginComponent
+  ]
 })
 export class LoginModule { }

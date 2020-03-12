@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class DocumentModel extends Model
 {
-    protected $table = 'documents';
+  protected $table = 'documents';
 
-    public function documents_types()
-    {
-        return $this->hasMany('Docuco\Models\DocumentTypeModel', 'document_id');
-    }
+  public function documents_tags()
+  {
+    return $this->hasMany('Docuco\Models\DocumentTagModel', 'document_id');
+  }
 
-    // public function user_group()
-    // {
-    //     return $this->belongsTo('Docuco\Models\UserGroupModel', 'user_group_id');
-    // }
+  // public function user_group()
+  // {
+  //     return $this->belongsTo('Docuco\Models\UserGroupModel', 'user_group_id');
+  // }
 
-    protected $casts = [
-        'price' => 'float',
-    ];
+  protected $casts = [
+    'price' => 'float',
+  ];
 }

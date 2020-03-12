@@ -6,15 +6,15 @@ use Docuco\Domain\Documents\Entities\Document;
 
 class DocumentCollection
 {
-    private $documents = [];
+  private $documents = [];
 
-    public function add(Document $document)
-    {
-        array_push($this->documents, $document);
-    }
+  public function add(Document $document)
+  {
+    array_push($this->documents, $document);
+  }
 
-    public function all()
-    {
-        return $this->documents;
-    }
+  public function all()
+  {
+    return $this->documents;
+  }
 }

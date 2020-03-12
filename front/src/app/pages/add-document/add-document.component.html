@@ -1,19 +1,19 @@
 <div class="cards-container">
-    <mat-card class="card">add-bill works! 2</mat-card>
+  <mat-card class="card">add-bill works! 2</mat-card>
 
-    <mat-card class="card card__pdf">
+  <mat-card class="card card__pdf">
 
-        <!-- <div *ngIf="!files.length" class="col-12 rmpm dropzone" appDragAndDrop (files)="filesDropped($event)">
+    <!-- <div *ngIf="!files.length" class="col-12 rmpm dropzone" appDragAndDrop (files)="filesDropped($event)">
             <div class="text-wrapper">
                 <div class="centered">Drop your file here!</div>
             </div>
         </div> -->
-        <!--droped image preview-->
+    <!--droped image preview-->
 
-        <!-- <button type="button" (click)="upload()">Upload Image</button> -->
+    <!-- <button type="button" (click)="upload()">Upload Image</button> -->
 
-    </mat-card>
+  </mat-card>
 </div>
 <div *ngFor="let file of files">
-    <img *ngIf="file" [src]="file.url" width="100px" height="100px">
+  <img *ngIf="file" [src]="file.url" width="100px" height="100px">
 </div>

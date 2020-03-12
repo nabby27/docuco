@@ -4,21 +4,21 @@ import { Document } from 'src/domain/documents/entities/document';
 import { GetAllDocumentsAction } from 'src/domain/documents/actions/getAllDocuments.action';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
-    documents: Document[] = [];
+  documents: Document[] = [];
 
-    constructor(
-        private documents_repository_api: DocumentsRepositoryAPI
-    ) { }
+  constructor(
+    private documentsRepositoryApi: DocumentsRepositoryAPI
+  ) { }
 
-    async ngOnInit() {
-        const get_all_documents_action = new GetAllDocumentsAction(this.documents_repository_api);
-        this.documents = await get_all_documents_action.execute();
-    }
+  async ngOnInit() {
+    const getAllDocumentsAction = new GetAllDocumentsAction(this.documentsRepositoryApi);
+    this.documents = await getAllDocumentsAction.execute();
+  }
 
 }

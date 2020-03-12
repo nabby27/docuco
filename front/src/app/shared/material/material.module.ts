@@ -13,17 +13,17 @@ import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
-    exports: [
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        MatSidenavModule,
-        MatCardModule,
-        MatMenuModule,
-        MatInputModule,
-        MatProgressSpinnerModule,
-        MatTableModule
-    ]
+  exports: [
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatMenuModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatTableModule
+  ]
 })
 export class MaterialModule { }

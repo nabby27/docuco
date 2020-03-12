@@ -2,61 +2,61 @@
 
 namespace Docuco\Domain\Documents\Entities;
 
-use Docuco\Domain\Documents\Collections\TypeCollection;
-use Docuco\Domain\Documents\Entities\Type;
+use Docuco\Domain\Documents\Collections\TagCollection;
+use Docuco\Domain\Documents\Entities\Tag;
 use Docuco\Models\DocumentModel;
-use Docuco\Models\TypeModel;
+use Docuco\Models\TagModel;
 
 class Document
 {
-    public $id;
-    public $name;
-    public $description;
-    public $types;
-    public $price;
-    public $url;
-    public $date_of_issue;
+  public $id;
+  public $name;
+  public $description;
+  public $tags;
+  public $price;
+  public $url;
+  public $date_of_issue;
 
-    public function __construct(
-        int $id,
-        string $name,
-        string $description,
-        array $types,
-        float $price,
-        string $url,
-        string $date_of_issue
-    ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->types = $types;
-        $this->price = $price;
-        $this->url = $url;
-        $this->date_of_issue = $date_of_issue;
+  public function __construct(
+    int $id,
+    string $name,
+    string $description,
+    array $tags,
+    float $price,
+    string $url,
+    string $date_of_issue
+  ) {
+    $this->id = $id;
+    $this->name = $name;
+    $this->description = $description;
+    $this->tags = $tags;
+    $this->price = $price;
+    $this->url = $url;
+    $this->date_of_issue = $date_of_issue;
+  }
+
+  public static function get_from_model(DocumentModel $document_model): Document
+  {
+    $tags = Document::get_tag_collection_from_document_model($document_model);
+    return new Document(
+      $document_model->id,
+      $document_model->name,
+      $document_model->description,
+      $tags->all(),
+      $document_model->price,
+      $document_model->url,
+      $document_model->date_of_issue
+    );
+  }
+
+  private static function get_tag_collection_from_document_model(DocumentModel $document_model): TagCollection
+  {
+    $tag_collection = new TagCollection();
+    foreach ($document_model->documents_tags()->get() as $documents_tags_model) {
+      $tag_model = TagModel::find($documents_tags_model->tag_id);
+      $tag_collection->add(Tag::get_from_model($tag_model));
     }
 
-    public static function get_from_model(DocumentModel $document_model): Document
-    {
-        $types = Document::get_type_collection_from_document_model($document_model);
-        return new Document(
-            $document_model->id,
-            $document_model->name,
-            $document_model->description,
-            $types->all(),
-            $document_model->price,
-            $document_model->url,
-            $document_model->date_of_issue
-        );
-    }
-
-    private static function get_type_collection_from_document_model(DocumentModel $document_model): TypeCollection
-    {
-        $type_collection = new TypeCollection();
-        foreach ($document_model->documents_types()->get() as $documents_types_model) {
-            $type_model = TypeModel::find($documents_types_model->type_id);
-            $type_collection->add(Type::get_from_model($type_model));
-        }
-
-        return $type_collection;
-    }
+    return $tag_collection;
+  }
 }

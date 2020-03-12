@@ -3,17 +3,17 @@ import { Document } from '../entities/document';
 
 export class GetAllDocumentsAction {
 
-    constructor(
-        private documents_repository: DocumentsRepository,
-    ) { }
+  constructor(
+    private documentsRepository: DocumentsRepository,
+  ) { }
 
-    execute(): Promise<Document[]> {
-        return new Promise((resolve, reject) => {
-            this.documents_repository.get_all_documents().subscribe(
-                (documents: Document[]) => resolve(documents),
-                () => reject()
-            );
-        });
-    }
+  execute(): Promise<Document[]> {
+    return new Promise((resolve, reject) => {
+      this.documentsRepository.getAllDocuments().subscribe(
+        (documents: Document[]) => resolve(documents),
+        () => reject()
+      );
+    });
+  }
 
 }

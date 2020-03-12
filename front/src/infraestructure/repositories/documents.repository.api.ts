@@ -7,19 +7,19 @@ import { Document } from '../../domain/documents/entities/document';
 import { DocumentsRepository } from '../../domain/documents/repositories/documents.repository.interface';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class DocumentsRepositoryAPI implements DocumentsRepository {
 
-    url = `${environment.baseUrl}/documents`;
+  url = `${environment.baseUrl}/documents`;
 
-    constructor(
-        private http: HttpClient
-    ) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-    get_all_documents(): Observable<Document[]> {
-        return this.http.get<Document[]>(this.url)
-            .pipe(map((response: any) => response.documents));
-    }
+  getAllDocuments(): Observable<Document[]> {
+    return this.http.get<Document[]>(this.url)
+      .pipe(map((response: any) => response.documents));
+  }
 
 }

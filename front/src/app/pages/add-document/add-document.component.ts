@@ -2,26 +2,25 @@ import { Component, OnInit } from '@angular/core';
 // import { FileHandle } from 'src/app/interfaces/file-handle';
 
 @Component({
-    selector: 'app-add-document',
-    templateUrl: './add-document.component.html',
-    styleUrls: ['./add-document.component.scss']
+  selector: 'app-add-document',
+  templateUrl: './add-document.component.html',
+  styleUrls: ['./add-document.component.scss']
 })
 export class AddDocumentComponent implements OnInit {
 
-    files: any;
+  files: any;
 
-    constructor() { }
+  constructor() { }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
-    // filesDropped(files: FileHandle[]): void {
-    //     debugger
-    //     this.files = files;
-    // }
+  // filesDropped(files: FileHandle[]): void {
+  //     this.files = files;
+  // }
 
-    upload(): void {
-        //get image upload file obj;
-    }
+  upload(): void {
+    //get image upload file obj;
+  }
 
 }

@@ -1,9 +1,13 @@
+import { StorageServiceInterface } from 'src/domain/shared/services/storage.service.interface';
+
 export class CheckIfUserIsLoggedAction {
 
-    constructor() { }
+  constructor(
+    private storageService: StorageServiceInterface
+  ) { }
 
-    execute(): boolean {
-        return localStorage.getItem('token') != null;
-    }
+  execute(): boolean {
+    return this.storageService.getToken() != null;
+  }
 
 }

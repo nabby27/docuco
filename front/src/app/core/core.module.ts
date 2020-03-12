@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderModule } from '../shared/header/header.module';
-import { SidenavModule } from '../shared/sidenav/sidenav.module';
-import { FooterModule } from '../shared/footer/footer.module';
+import { LoginModule } from '../pages/login/login.module';
+import { LayoutModule } from '../layout/layout.module';
 
 
 
 @NgModule({
-    declarations: [],
-    exports: [
-        HttpClientModule,
-        HeaderModule,
-        SidenavModule,
-        FooterModule
-    ]
+  declarations: [],
+  exports: [
+    HttpClientModule,
+    LoginModule,
+    LayoutModule
+  ]
 })
 export class CoreModule { }

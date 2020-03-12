@@ -6,15 +6,15 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 
 
 @NgModule({
-    declarations: [
-        SpinnerComponent
-    ],
-    imports: [
-        CommonModule,
-        MaterialModule
-    ],
-    exports: [
-        SpinnerComponent
-    ]
+  declarations: [
+    SpinnerComponent
+  ],
+  imports: [
+    CommonModule,
+    MaterialModule
+  ],
+  exports: [
+    SpinnerComponent
+  ]
 })
 export class SpinnerModule { }
