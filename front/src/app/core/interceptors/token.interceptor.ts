@@ -2,16 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { LogoutAction } from 'src/domain/users/actions/logout.action';
-import { RouterService } from 'src/infraestructure/services/router.service';
-import { StorageService } from 'src/infraestructure/services/storage.service';
+import { UsersService } from 'src/app/services/users.service';
+import { StorageService } from 'src/app/services/storage.service';
 @Injectable({
   providedIn: 'root'
 })
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(
-    private routerService: RouterService,
+    private usersService: UsersService,
     private storageService: StorageService
   ) { }
 
@@ -28,8 +27,7 @@ export class TokenInterceptor implements HttpInterceptor {
       }),
       catchError((error: any) => {
         if (error.status === 401) {
-          const logoutAction = new LogoutAction(this.routerService, this.storageService);
-          logoutAction.execute();
+          this.usersService.doLogout();
         }
         return throwError(error);
       })

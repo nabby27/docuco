@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DocumentsRepositoryAPI } from 'src/infraestructure/repositories/documents.repository.api';
-import { Document } from 'src/domain/documents/entities/document';
-import { GetAllDocumentsAction } from 'src/domain/documents/actions/getAllDocuments.action';
+import { DocumentsService } from 'src/app/services/documents.service';
+import { Document } from 'src/app/entities/document';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +12,11 @@ export class HomeComponent implements OnInit {
   documents: Document[] = [];
 
   constructor(
-    private documentsRepositoryApi: DocumentsRepositoryAPI
+    private documentsService: DocumentsService
   ) { }
 
   async ngOnInit() {
-    const getAllDocumentsAction = new GetAllDocumentsAction(this.documentsRepositoryApi);
-    this.documents = await getAllDocumentsAction.execute();
+    this.documents = await this.documentsService.getAllDocuments();
   }
 
 }

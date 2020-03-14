@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 // import { FileHandle } from 'src/app/interfaces/file-handle';
 
 @Component({
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddDocumentComponent implements OnInit {
 
-  files: any;
+  documentFileForm: FormGroup;
+  documentFile: File;
 
   constructor() { }
 

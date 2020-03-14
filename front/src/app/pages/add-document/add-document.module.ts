@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AddDocumentComponent } from './add-document.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DragDropDirective } from './directives/drag-drop.directive';
 
 const routes: Routes = [
   {
@@ -13,11 +15,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AddDocumentComponent
+    AddDocumentComponent,
+    DragDropDirective
   ],
   imports: [
     CommonModule,
     MaterialModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]
 })

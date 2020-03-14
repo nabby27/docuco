@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 import { ListDocumentComponent } from './components/list-document/list-document.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 const routes: Routes = [
   {
@@ -16,7 +18,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     HomeComponent,
-    ListDocumentComponent
+    ListDocumentComponent,
+    BarChartComponent,
+    PieChartComponent
   ],
   imports: [
     CommonModule,

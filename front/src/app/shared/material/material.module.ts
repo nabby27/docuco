@@ -9,6 +9,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 
@@ -23,7 +25,9 @@ import { MatTableModule } from '@angular/material/table';
     MatMenuModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule,
+    MatChipsModule
   ]
 })
 export class MaterialModule { }

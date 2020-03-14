@@ -8,7 +8,8 @@
         <div class="input-container">
           <mat-form-field>
             <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email" placeholder="Ex. icordobadonet@gmail.com">
+            <input data-cy="email" matInput type="email" formControlName="email"
+              placeholder="Ej. icordobadonet@gmail.com">
             <mat-error *ngIf="loginForm.get('email').invalid && loginForm.get('email').errors.required">
               Email is <strong>required</strong>
             </mat-error>
@@ -20,7 +21,7 @@
         <div class="input-container">
           <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password" placeholder="Ex. 123456">
+            <input data-cy="password" matInput type="password" formControlName="password" placeholder="Ej. 123456">
             <mat-error *ngIf="loginForm.get('password').invalid && loginForm.get('password').errors.required">
               Passowrd is <strong>required</strong>
             </mat-error>
@@ -29,10 +30,15 @@
       </form>
     </mat-card-content>
     <mat-card-actions class="input-container">
-      <button class="button" [disabled]="!loginForm.valid" mat-stroked-button color="primary" *ngIf="!isLogin"
+      <button data-cy="submit" class="button" [disabled]="!loginForm.valid" mat-stroked-button color="primary"
         (click)="login()">
-        Login
-        <mat-icon>keyboard_arrow_right</mat-icon>
+        <div *ngIf="!isLogin">
+          Login
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+        <div *ngIf="isLogin">
+          <app-spinner></app-spinner>
+        </div>
       </button>
     </mat-card-actions>
   </mat-card>

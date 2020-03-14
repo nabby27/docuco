@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { LoginAction } from 'src/domain/users/actions/login.action';
-import { RouterService } from 'src/infraestructure/services/router.service';
-import { UsersRepositoryAPI } from 'src/infraestructure/repositories/users.repository.api';
-import { StorageService } from 'src/infraestructure/services/storage.service';
+import { UsersService } from 'src/app/services/users.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private routerService: RouterService,
-    private usersRepository: UsersRepositoryAPI,
-    private storageService: StorageService
+    private usersService: UsersService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -38,12 +35,23 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
-    const loginAction = new LoginAction(this.usersRepository, this.routerService, this.storageService);
-    loginAction.execute(this.loginForm.value.email, this.loginForm.value.password);
+    this.isLogin = true;
+    const logginSuccess = await this.usersService.doLogin(this.loginForm.value.email, this.loginForm.value.password);
+    if (!logginSuccess) {
+      this.showMessage('Email o contraseña incorrectos');
+      this.isLogin = false;
+    }
   }
 
   ngOnDestroy() {
     this.isLogin = false;
+  }
+
+  private showMessage(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 5000,
+      verticalPosition: 'top'
+    });
   }
 
 }

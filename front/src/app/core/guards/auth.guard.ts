@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CheckIfUserIsLoggedAction } from 'src/domain/users/actions/checkIfUserIsLogged.action';
-import { StorageService } from 'src/infraestructure/services/storage.service';
-import { RouterService } from 'src/infraestructure/services/router.service';
+import { RouterService } from 'src/app/services/router.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   constructor(
     private routerService: RouterService,
-    private storageService: StorageService
+    private usersService: UsersService
   ) { }
 
   canActivate(
@@ -34,8 +33,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   private redirectDependingIfIsLogged(state: RouterStateSnapshot) {
-    const checkIfUserIsLogged = new CheckIfUserIsLoggedAction(this.storageService);
-    const isLogged = checkIfUserIsLogged.execute();
+    const isLogged = this.usersService.isLogged();
 
     this.goToLoginIfUserNotLogged(isLogged, state);
     this.goToHomeIfUserIsLogged(isLogged, state);

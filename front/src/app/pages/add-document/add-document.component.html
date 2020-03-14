@@ -12,6 +12,34 @@
 
     <!-- <button type="button" (click)="upload()">Upload Image</button> -->
 
+    <div>
+      <form [formGroup]="documentFileForm">
+        <div class="row">
+          <!-- Progress Bar -->
+          <div *ngIf="progress">
+            <div>
+              <div role="progressbar" [style.width.%]="progress"></div>
+            </div>
+          </div>
+
+          <div>
+            <div appDragDrop (click)="fileField.click()" (fileDropped)="upload($event)">
+              <span>Choose a file or drag here</span>
+              <input type="file" name="documentFile" #fileField (change)="upload($event.target.files)" hidden>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <img [src]="documentFile.url" alt="">
+            </div>
+            <p>{{file.item.name}}</p>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
   </mat-card>
 </div>
 <div *ngFor="let file of files">

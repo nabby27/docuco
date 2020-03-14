@@ -1,3 +1,18 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+
+.container-table {
+  height: 300px;
+  overflow: auto;
+}
+
 .table {
   width: 100%;
+}
+
+.download-icon {
+  color: rgb(8, 4, 42);
 }

@@ -1,10 +1,14 @@
 <div class="first-row-cards">
   <mat-card class="small-card">
-    <app-spinner></app-spinner>
+    <h4>Ingresos y gastos este año</h4>
+    <!-- <app-spinner></app-spinner> -->
+    <app-bar-chart [documents]="documents"></app-bar-chart>
   </mat-card>
 
   <mat-card class="small-card">
-    <app-spinner></app-spinner>
+    <h4>Gastos por tags este año</h4>
+    <!-- <app-spinner></app-spinner> -->
+    <app-pie-chart [documents]="documents"></app-pie-chart>
   </mat-card>
 </div>
 

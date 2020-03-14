@@ -8,8 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class SidenavComponent implements OnInit {
 
   links = [
-    { text: 'INICIO', url: '/home', icon: 'dashboard' },
-    { text: 'AÑADIR DOCUMENTO', url: '/add-document', icon: 'add_circle_outline' },
+    {
+      text: 'Inicio',
+      url: '/home',
+      icon: 'dashboard'
+    },
+    {
+      text: 'Añadir documento',
+      url: '/add-document',
+      icon: 'add_circle_outline'
+    },
   ];
 
   constructor() { }

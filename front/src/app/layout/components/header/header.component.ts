@@ -1,7 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { RouterService } from 'src/infraestructure/services/router.service';
-import { StorageService } from 'src/infraestructure/services/storage.service';
-import { LogoutAction } from 'src/domain/users/actions/logout.action';
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-header',
@@ -11,15 +9,13 @@ import { LogoutAction } from 'src/domain/users/actions/logout.action';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private routerService: RouterService,
-    private storageService: StorageService
+    private usersService: UsersService
   ) { }
 
   ngOnInit() {
   }
 
   logout() {
-    const logoutAction = new LogoutAction(this.routerService, this.storageService);
-    logoutAction.execute();
+    this.usersService.doLogout();
   }
 }
