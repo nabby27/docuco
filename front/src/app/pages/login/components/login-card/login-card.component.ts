@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouterService } from 'src/app/services/router.service';
 
 @Component({
   selector: 'app-login-card',
@@ -19,7 +20,8 @@ export class LoginCardComponent {
   constructor(
     private fb: FormBuilder,
     private usersService: UsersService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private routerService: RouterService
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,9 @@ export class LoginCardComponent {
     if (!logginSuccess) {
       this.showMessage('Email o contraseña incorrectos');
       this.isLogin = false;
+    } else {
+      await this.usersService.getCurrentUser();
+      this.routerService.goTo('/home');
     }
   }
 

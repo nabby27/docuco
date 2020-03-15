@@ -73,12 +73,12 @@ class DocumentsRepositoryORM implements DocumentsRepository
 
     if (isset($document_model)) {
       foreach ($document as $property => $value) {
-        if ($property != 'id' && $property != 'type' && $property != 'tags') {
+        if ($property != 'tags' && $property != 'type' && $property != 'url') {
           $document_model->$property = $value;
         }
       }
 
-      $is_updated = $document_model->save();
+      $is_updated = $document_model->update();
 
       if ($is_updated) {
         return Document::get_from_model($document_model);

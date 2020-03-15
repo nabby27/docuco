@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { RouterService } from 'src/app/services/router.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -7,7 +7,7 @@ import { UsersService } from 'src/app/services/users.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanActivateChild {
+export class AuthGuard implements CanActivate {
 
   constructor(
     private routerService: RouterService,
@@ -23,14 +23,14 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return true;
   }
 
-  canActivateChild(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this.redirectDependingIfIsLogged(state);
+  // canActivateChild(
+  //   next: ActivatedRouteSnapshot,
+  //   state: RouterStateSnapshot
+  // ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  //   this.redirectDependingIfIsLogged(state);
 
-    return true;
-  }
+  //   return true;
+  // }
 
   private redirectDependingIfIsLogged(state: RouterStateSnapshot) {
     const isLogged = this.usersService.isLogged();

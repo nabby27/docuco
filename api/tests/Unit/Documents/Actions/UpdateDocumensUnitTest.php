@@ -10,32 +10,32 @@ use Docuco\Domain\Documents\Entities\Document;
 
 class UpdateDocumentUnitTest extends TestCase
 {
-    private $documents_repository;
+  private $documents_repository;
 
-    protected function setUp(): void
-    {
-        $this->documents_repository = new DocumentsRepositoryMock();
-    }
+  protected function setUp(): void
+  {
+    $this->documents_repository = new DocumentsRepositoryMock();
+  }
 
-    public function test_return_null_when_not_have_this_document()
-    {
-        $user_group_id = 1;
-        $document = DocumentHelper::get_random_document();
-        $this->documents_repository->add_document($document);
-        $update_document_action = new UpdateDocumentAction($this->documents_repository);
+  public function test_return_null_when_not_have_this_document()
+  {
+    $user_group_id = 1;
+    $document = DocumentHelper::get_random_document();
+    $this->documents_repository->add_document($document);
+    $update_document_action = new UpdateDocumentAction($this->documents_repository);
 
-        $updated_document = $update_document_action->execute($user_group_id, $document);
+    $updated_document = $update_document_action->execute($user_group_id, $document);
 
-        $this->assertEquals(null, $updated_document);
-    }
+    $this->assertEquals(null, $updated_document);
+  }
 
-    public function test_return_document_when_user_update_this_document()
-    {
-        [$user_group, $document] = DocumentHelper::get_user_group_and_his_document($this->documents_repository);
-        $update_document_action = new UpdateDocumentAction($this->documents_repository);
+  public function test_return_document_when_user_update_this_document()
+  {
+    [$user_group, $document] = DocumentHelper::get_user_group_and_his_document($this->documents_repository);
+    $update_document_action = new UpdateDocumentAction($this->documents_repository);
 
-        $updated_document = $update_document_action->execute($user_group->id, $document);
+    $updated_document = $update_document_action->execute($user_group->id, $document);
 
-        $this->assertEquals($document, $updated_document);
-    }
+    $this->assertEquals($document, $updated_document);
+  }
 }

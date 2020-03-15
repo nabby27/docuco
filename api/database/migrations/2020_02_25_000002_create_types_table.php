@@ -11,22 +11,22 @@ class CreateTypesTable extends Migration
    *
    * @return void
    */
-    public function up()
-    {
-        Schema::create('types', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->timestamps();
-        });
-    }
+  public function up()
+  {
+    Schema::create('types', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->string('name')->unique();
+      $table->timestamps();
+    });
+  }
 
   /**
    * Reverse the migrations.
    *
    * @return void
    */
-    public function down()
-    {
-        Schema::dropIfExists('types');
-    }
+  public function down()
+  {
+    Schema::dropIfExists('types');
+  }
 }

@@ -7,6 +7,6 @@ export interface Document {
   price: number;
   url: string;
   date_of_issue: string;
-  type: 'income' | 'expense';
+  type: 'INCOME' | 'EXPENSE' | string;
 
 } 

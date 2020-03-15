@@ -11,10 +11,28 @@
   <div class="container-table">
     <table class="table" mat-table [dataSource]="dataSource">
 
-      <ng-container matColumnDef="id">
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+        <td mat-cell *matCellDef="let document">
+          <button mat-button (click)="removeDocument(document)">
+            <i class="material-icons">delete</i>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> Editar </th>
+        <td mat-cell *matCellDef="let document">
+          <button mat-button (click)="goToUpdate(document)">
+            <i class="material-icons">edit</i>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let document"> {{document.id}} </td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- <ng-container matColumnDef="tags">
         <th mat-header-cell *matHeaderCellDef> Tags </th>
@@ -47,10 +65,17 @@
         <td mat-cell *matCellDef="let document"> {{ document.price | currency:'EUR':'symbol':'1.2-2':'es' }} </td>
       </ng-container>
 
-      <ng-container matColumnDef="download">
-        <th mat-header-cell *matHeaderCellDef> Descarga </th>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let document"> {{ document.type }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="file">
+        <th mat-header-cell *matHeaderCellDef> Documento </th>
         <td mat-cell *matCellDef="let document">
-          <a class="download-icon" [href]="document.url"><i class="material-icons">cloud_download</i></a>
+          <a class="download-icon" target="_blank" href="http://localhost:8000/{{document.url}}">
+            <i class="material-icons">description</i>
+          </a>
         </td>
       </ng-container>
 

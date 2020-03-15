@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private usersService: UsersService
+  ) {
   }
 
   ngOnInit() {
 
+  }
+
+  userIsViewer() {
+    return this.usersService.userIsViewer();
   }
 }

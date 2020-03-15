@@ -17,5 +17,5 @@
 </div>
 
 <mat-card class="large-card">
-  <app-list-document [documents]="documents"></app-list-document>
+  <app-list-document [documents]="documents" (documentDeleted)="refreshDocuments()"></app-list-document>
 </mat-card>

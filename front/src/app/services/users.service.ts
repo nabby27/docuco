@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
 import { RouterService } from './router.service';
 import { Token } from '../entities/token';
+import { User } from '../entities/user';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,6 @@ export class UsersService {
         .subscribe(
           (token: Token) => {
             this.storageService.saveToken(token);
-            this.routerService.goTo('/home');
             resolve(true);
           },
           () => {
@@ -33,8 +33,27 @@ export class UsersService {
     });
   }
 
+  getCurrentUser(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get<User>(`${environment.baseUrl}/users/current`).subscribe(
+        (user: any) => {
+          this.storageService.saveUser(user.user);
+          resolve();
+        }
+      );
+    })
+  }
+
+  getUser() {
+    return this.storageService.getUser();
+  }
+
+  userIsViewer() {
+    return this.storageService.getUser().role === 'VIEW';
+  }
+
   isLogged(): boolean {
-    return this.storageService.getToken() != null;
+    return this.storageService.getToken() != null && this.storageService.getUser() != null;
   }
 
   doLogout() {

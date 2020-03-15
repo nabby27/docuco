@@ -40,7 +40,7 @@ export class BarChartComponent implements AfterViewInit {
         ]
       },
       options: {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: true,
         scales: {
           yAxes: [{

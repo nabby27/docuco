@@ -59,7 +59,7 @@ class DocumentController extends Controller
     $new_document['price'] = $request->price;
     $new_document['date_of_issue'] = $request->date_of_issue;
     $new_document['type'] = $request->type;
-    $new_document['url'] = $destination_path . '/' . $name;
+    $new_document['url'] = '/assets/documents/' . $name;
 
     $create_document_action = new CreateDocumentAction($this->document_repository);
     $document_created = $create_document_action->execute($user_group_id, $new_document);

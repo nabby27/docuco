@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { DocumentsService } from 'src/app/services/documents.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-document-form',
@@ -11,11 +12,12 @@ import { DocumentsService } from 'src/app/services/documents.service';
 export class DocumentFormComponent implements OnInit {
 
   @Input() file: File;
+  @Output() documentSaved = new EventEmitter();
 
   documentForm: FormGroup;
   name: string;
   description: string;
-  date_of_issue: Date;
+  date_of_issue: Date = new Date();
   price: number;
   type: string;
 
@@ -24,7 +26,8 @@ export class DocumentFormComponent implements OnInit {
   constructor(
     private adapter: DateAdapter<any>,
     private fb: FormBuilder,
-    private documentsService: DocumentsService
+    private documentsService: DocumentsService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -44,6 +47,17 @@ export class DocumentFormComponent implements OnInit {
 
   save() {
     this.documentsService.saveDocument(this.documentForm.value);
+    this.documentSaved.emit();
+    this.showMessage('Documento guardado');
+    this.documentForm.reset();
+  }
+
+
+  private showMessage(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 5000,
+      verticalPosition: 'top'
+    });
   }
 
 }

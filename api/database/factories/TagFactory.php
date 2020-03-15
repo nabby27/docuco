@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 
 $factory->define(Docuco\Models\TagModel::class, function (Faker $faker) {
-    return [
+  return [
     'name' => $faker->word,
-    ];
+  ];
 });

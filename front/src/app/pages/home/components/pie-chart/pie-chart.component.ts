@@ -34,7 +34,7 @@ export class PieChartComponent implements AfterViewInit {
         ],
       },
       options: {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: true,
         legend: {
           position: 'bottom'

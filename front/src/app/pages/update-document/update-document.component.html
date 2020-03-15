@@ -1,0 +1,19 @@
+<div class="cards-container">
+  <div class="card" *ngIf="document">
+    <button class="btn-container" (click)="goToHome()" mat-stroked-button color="accent">
+      <div class="btn-remove-document">
+        Cancelar edición
+        <mat-icon>close</mat-icon>
+      </div>
+    </button>
+    <mat-card>
+      <app-document-form [document]="document"></app-document-form>
+    </mat-card>
+  </div>
+
+  <mat-card class="card card__pdf">
+    <div *ngIf="document">
+      <app-pdf-viewer file="http://localhost:8000/{{document.url}}"></app-pdf-viewer>
+    </div>
+  </mat-card>
+</div>

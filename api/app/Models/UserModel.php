@@ -7,19 +7,19 @@ use Laravel\Passport\HasApiTokens;
 
 class UserModel extends User
 {
-    use HasApiTokens;
+  use HasApiTokens;
 
-    protected $table = 'users';
+  protected $table = 'users';
 
-    public function user_group()
-    {
-        return $this->belongsTo('Docuco\Models\UserGroupModel');
-    }
+  public function user_group()
+  {
+    return $this->belongsTo('Docuco\Models\UserGroupModel');
+  }
 
-    public function role()
-    {
-        return $this->belongsTo('Docuco\Models\RoleModel');
-    }
+  public function role()
+  {
+    return $this->belongsTo('Docuco\Models\RoleModel');
+  }
 
   // public function blocked_documents()
   // {

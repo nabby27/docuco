@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { NotViewGuard } from './core/guards/not-view.guard';
 
 
 
@@ -14,7 +15,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivateChild: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'home',
@@ -23,6 +24,12 @@ const routes: Routes = [
       {
         path: 'add-document',
         loadChildren: () => import('./pages/add-document/add-document.module').then(m => m.AddDocumentModule),
+        canActivate: [NotViewGuard],
+      },
+      {
+        path: 'update-document/:documentId',
+        loadChildren: () => import('./pages/update-document/update-document.module').then(m => m.UpdateDocumentModule),
+        canActivate: [NotViewGuard],
       },
       {
         path: '',

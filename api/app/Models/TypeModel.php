@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TypeModel extends Model
 {
-    protected $table = 'types';
+  protected $table = 'types';
 
   // public function documents()
   // {

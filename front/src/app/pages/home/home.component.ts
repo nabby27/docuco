@@ -15,8 +15,12 @@ export class HomeComponent implements OnInit {
     private documentsService: DocumentsService
   ) { }
 
-  async ngOnInit() {
-    this.documents = await this.documentsService.getAllDocuments();
+  ngOnInit() {
+    this.refreshDocuments();
   }
 
+  async refreshDocuments() {
+    this.documents = null;
+    this.documents = await this.documentsService.getAllDocuments();
+  }
 }

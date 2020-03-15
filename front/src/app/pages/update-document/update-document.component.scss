@@ -1,0 +1,25 @@
+.cards-container {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  grid-gap: 40px;
+}
+
+.card {
+  height: 74.7vh;
+}
+
+.btn-container {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.btn-remove-document {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card__pdf {
+  background-color: #e0e0e0;
+  overflow: auto;
+}
