@@ -1,13 +1,12 @@
-import { Tag } from './tag';
-
 export interface Document {
 
   id: string;
   name: string;
   description: string;
-  tags: Tag[];
+  tags: string[];
   price: number;
   url: string;
   date_of_issue: string;
+  type: 'income' | 'expense';
 
 } 

@@ -45,8 +45,21 @@ class DocumentController extends Controller
 
   public function create_document(Request $request)
   {
-    $new_document = json_decode($request->getContent());
     $user_group_id = $this->get_user_group_id_from_request_service->execute($request);
+
+    if ($request->hasFile('file')) {
+      $document_file = $request->file('file');
+      $name = time() . '.' . $document_file->getClientOriginalExtension();
+      $destination_path = public_path('/assets/documents');
+      $document_file->move($destination_path, $name);
+    }
+
+    $new_document['name'] = $request->name;
+    $new_document['description'] = $request->description;
+    $new_document['price'] = $request->price;
+    $new_document['date_of_issue'] = $request->date_of_issue;
+    $new_document['type'] = $request->type;
+    $new_document['url'] = $destination_path . '/' . $name;
 
     $create_document_action = new CreateDocumentAction($this->document_repository);
     $document_created = $create_document_action->execute($user_group_id, $new_document);

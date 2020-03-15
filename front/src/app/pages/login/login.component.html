@@ -1,45 +1,13 @@
-<div class="login-container">
-  <mat-card class="login-card">
-    <mat-card-header>
-      <mat-card-title>Docuco Login</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="input-container">
-          <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input data-cy="email" matInput type="email" formControlName="email"
-              placeholder="Ej. icordobadonet@gmail.com">
-            <mat-error *ngIf="loginForm.get('email').invalid && loginForm.get('email').errors.required">
-              Email is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="loginForm.get('email').invalid && loginForm.get('email').errors.email">
-              Email is <strong>not valid</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="input-container">
-          <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input data-cy="password" matInput type="password" formControlName="password" placeholder="Ej. 123456">
-            <mat-error *ngIf="loginForm.get('password').invalid && loginForm.get('password').errors.required">
-              Passowrd is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </form>
-    </mat-card-content>
-    <mat-card-actions class="input-container">
-      <button data-cy="submit" class="button" [disabled]="!loginForm.valid" mat-stroked-button color="primary"
-        (click)="login()">
-        <div *ngIf="!isLogin">
-          Login
-          <mat-icon>keyboard_arrow_right</mat-icon>
-        </div>
-        <div *ngIf="isLogin">
-          <app-spinner></app-spinner>
-        </div>
-      </button>
-    </mat-card-actions>
-  </mat-card>
+<div class="container">
+  <div class="card card-info">
+    <div>
+      <h1 class="title-info">Organiza tus gastos y tus ingresos</h1>
+      <p class="text-info">Con docuco podras administrar tus documentos de facturación para tener de forma simple, fácil
+        e intuitiva analisis necesarios respecto a tu dinero</p>
+    </div>
+    <img src="/assets/login-image.png" alt="" width="400">
+  </div>
+  <div class="card card-login">
+    <app-login-card></app-login-card>
+  </div>
 </div>

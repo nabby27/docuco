@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserGroupModel extends Model
 {
-  protected $table = 'user_groups';
+    protected $table = 'user_groups';
 
   // public function users()
   // {

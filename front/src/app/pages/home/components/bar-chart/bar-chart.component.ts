@@ -34,7 +34,7 @@ export class BarChartComponent implements AfterViewInit {
           },
           {
             label: 'Gastos',
-            backgroundColor: 'rgba(232, 125, 200, 0.8)',
+            backgroundColor: 'rgba(255, 46, 23, 0.6)',
             data: [15, 12, 20, 10, 15, 12, 20, 10, 15, 12, 20, 10]
           }
         ]

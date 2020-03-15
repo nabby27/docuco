@@ -1,0 +1,55 @@
+<div>
+  <form class="form-container" [formGroup]="documentForm">
+    <label id="incomeOrExpenses">Elige que tipo de documento es:</label>
+    <mat-radio-group class="input-container radio-button-group" aria-labelledby="incomeOrExpenses"
+      formControlName="type" required ngDefaultControl [required]="true">
+      <mat-radio-button value="INCOME">Ingreso</mat-radio-button>
+      <mat-radio-button value="EXPENSE">Gasto</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field class="input-container">
+      <mat-label>Nombre del documento</mat-label>
+      <input type="text" matInput placeholder="Ej. Factura de luz" formControlName="name" required autocomplete="off">
+      <mat-error *ngIf="documentForm.get('name').invalid && documentForm.get('name').errors.required">
+        El nombre es <strong>obligatorio</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-container">
+      <mat-label>Fecha del documento</mat-label>
+      <input matInput [matDatepicker]="picker" placeholder="Ej. 1/12/2020" formControlName="date_of_issue" required
+        autocomplete="off">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="documentForm.get('date_of_issue').invalid && documentForm.get('date_of_issue').errors.required">
+        La fecha del documento es <strong>obligatoria</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-container">
+      <mat-label>Precio</mat-label>
+      <input type="number" matInput placeholder="Ej. 23.12" formControlName="price" step="0.01" required
+        autocomplete="off">
+      <mat-error *ngIf="documentForm.get('price').invalid && documentForm.get('price').errors.required">
+        El precio es <strong>obligatorio</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-container">
+      <mat-label>Descripción del documento</mat-label>
+      <textarea matInput [matTextareaAutosize]="true" rows="2" formControlName="description"
+        placeholder="Ej. Factura de luz con la empresa Iberdrola" autocomplete="off"></textarea>
+    </mat-form-field>
+
+    <button class="input-container" [disabled]="!documentForm.valid" mat-stroked-button color="primary"
+      (click)="save()">
+      <div class="button" *ngIf="!isSaving">
+        Guardar documento
+        <mat-icon>save</mat-icon>
+      </div>
+      <div *ngIf="isSaving">
+        <app-spinner></app-spinner>
+      </div>
+    </button>
+  </form>
+</div>

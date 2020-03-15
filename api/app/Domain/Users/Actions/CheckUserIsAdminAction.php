@@ -8,8 +8,8 @@ use Docuco\Domain\Users\ValueObjects\RoleVO;
 class CheckUserIsAdminAction
 {
 
-  public function execute(RoleVO $role): bool
-  {
-    return RoleConstants::ADMIN === $role->name;
-  }
+    public function execute(RoleVO $role): bool
+    {
+        return RoleConstants::ADMIN === $role->name;
+    }
 }

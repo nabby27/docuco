@@ -11,22 +11,22 @@ class CreateUserGroupsTable extends Migration
    *
    * @return void
    */
-  public function up()
-  {
-    Schema::create('user_groups', function (Blueprint $table) {
-      $table->bigIncrements('id');
-      $table->string('name')->nullable(true);
-      $table->timestamps();
-    });
-  }
+    public function up()
+    {
+        Schema::create('user_groups', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name')->nullable(true);
+            $table->timestamps();
+        });
+    }
 
   /**
    * Reverse the migrations.
    *
    * @return void
    */
-  public function down()
-  {
-    Schema::dropIfExists('user_groups');
-  }
+    public function down()
+    {
+        Schema::dropIfExists('user_groups');
+    }
 }

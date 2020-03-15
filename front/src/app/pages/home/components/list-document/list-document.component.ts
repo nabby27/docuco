@@ -11,7 +11,7 @@ export class ListDocumentComponent implements OnChanges {
 
   @Input() documents: Document[];
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['id', 'tags', 'name', 'description', 'date_of_issue', 'price', 'download'];
+  displayedColumns: string[] = ['id', 'name', 'description', 'date_of_issue', 'price', 'download'];
 
   constructor() {
   }

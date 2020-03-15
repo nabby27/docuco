@@ -1,3 +1,7 @@
-<div>
+<div *ngIf="documents">
   <canvas class="chart" id="pie-chart"></canvas>
+</div>
+
+<div *ngIf="!documents">
+  <app-spinner></app-spinner>
 </div>

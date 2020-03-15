@@ -7,6 +7,8 @@ use Docuco\Models\DocumentTagModel;
 use Docuco\Domain\Documents\Repositories\DocumentsRepository;
 use Docuco\Domain\Documents\Collections\DocumentCollection;
 use Docuco\Domain\Documents\Entities\Document;
+use Docuco\Models\TagModel;
+use Docuco\Models\TypeModel;
 
 class DocumentsRepositoryORM implements DocumentsRepository
 {
@@ -17,6 +19,8 @@ class DocumentsRepositoryORM implements DocumentsRepository
   {
     $this->document_model = new DocumentModel();
     $this->document_tag_model = new DocumentTagModel();
+    $this->tag_model = new TagModel();
+    $this->type_model = new TypeModel();
   }
 
   public function get_one_document_by_user_group_id(int $user_group_id, int $document_id): ?Document
@@ -49,8 +53,10 @@ class DocumentsRepositoryORM implements DocumentsRepository
   public function create_document_by_user_group_id(int $user_group_id, $document_to_create): ?Document
   {
     $this->document_model->user_group_id = $user_group_id;
+    $this->document_model->type_id = $this->type_model->where('name', $document_to_create['type'])->first()->id;
+
     foreach ($document_to_create as $property => $value) {
-      if ($property != 'id') {
+      if ($property != 'id' && $property != 'type' && $property != 'tags') {
         $this->document_model->$property = $value;
       }
     }
@@ -63,10 +69,11 @@ class DocumentsRepositoryORM implements DocumentsRepository
   public function update_document_by_user_group_id(int $user_group_id, $document): ?Document
   {
     $document_model = $this->get_one_document_model_by_user_group($user_group_id, $document->id);
+    $this->document_model->type_id = $this->type_model->where('name', $document->type)->first()->id;
 
     if (isset($document_model)) {
       foreach ($document as $property => $value) {
-        if ($property != 'id') {
+        if ($property != 'id' && $property != 'type' && $property != 'tags') {
           $document_model->$property = $value;
         }
       }

@@ -10,11 +10,11 @@ class DocumentsTableSeeder extends Seeder
    *
    * @return void
    */
-  public function run()
-  {
-    DB::table('documents')->truncate();
-    DB::table('documents')->insert([
-      [
+    public function run()
+    {
+        DB::table('documents')->truncate();
+        DB::table('documents')->insert([
+        [
         'name' => 'Factura de luz',
         'description' => 'Factura de luz de junio 2019',
         'price' => 24.20,
@@ -22,9 +22,10 @@ class DocumentsTableSeeder extends Seeder
         'date_of_issue' => '2019/06/10',
         'user_group_id' => 1,
         'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
-      ],
-      [
+        'updated_at' => date('2019/02/27'),
+        'type_id' => 2
+        ],
+        [
         'name' => 'Factura de agua',
         'description' => 'factura de agua de junio 2019',
         'price' => 15.10,
@@ -32,9 +33,10 @@ class DocumentsTableSeeder extends Seeder
         'date_of_issue' => '2019/06/5',
         'user_group_id' => 1,
         'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
-      ],
-      [
+        'updated_at' => date('2019/02/27'),
+        'type_id' => 2
+        ],
+        [
         'name' => 'Factura de internet',
         'description' => 'factura de internet de junio 2019',
         'price' => 62.83,
@@ -42,9 +44,10 @@ class DocumentsTableSeeder extends Seeder
         'date_of_issue' => '2019/06/2',
         'user_group_id' => 1,
         'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
-      ],
-      [
+        'updated_at' => date('2019/02/27'),
+        'type_id' => 2
+        ],
+        [
         'name' => 'Factura de luz',
         'description' => 'factura de luz de junio 2019',
         'price' => 52.32,
@@ -52,9 +55,10 @@ class DocumentsTableSeeder extends Seeder
         'date_of_issue' => '2019/06/11',
         'user_group_id' => 2,
         'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
-      ],
-      [
+        'updated_at' => date('2019/02/27'),
+        'type_id' => 2
+        ],
+        [
         'name' => 'Factura de agua',
         'description' => 'factura de agua de junio 2019',
         'price' => 9.74,
@@ -62,9 +66,10 @@ class DocumentsTableSeeder extends Seeder
         'date_of_issue' => '2019/06/8',
         'user_group_id' => 2,
         'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
-      ],
-      [
+        'updated_at' => date('2019/02/27'),
+        'type_id' => 2
+        ],
+        [
         'name' => 'Factura de internet',
         'description' => 'factura de internet de junio 2019',
         'price' => 73.21,
@@ -72,8 +77,9 @@ class DocumentsTableSeeder extends Seeder
         'date_of_issue' => '2019/06/2',
         'user_group_id' => 2,
         'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
-      ],
-    ]);
-  }
+        'updated_at' => date('2019/02/27'),
+        'type_id' => 2
+        ],
+        ]);
+    }
 }

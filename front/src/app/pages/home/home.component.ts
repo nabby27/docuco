@@ -9,7 +9,7 @@ import { Document } from 'src/app/entities/document';
 })
 export class HomeComponent implements OnInit {
 
-  documents: Document[] = [];
+  documents: Document[];
 
   constructor(
     private documentsService: DocumentsService

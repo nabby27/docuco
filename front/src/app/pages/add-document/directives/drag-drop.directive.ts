@@ -7,7 +7,7 @@ export class DragDropDirective {
 
   @Output() fileDropped = new EventEmitter<any>();
 
-  @HostBinding('style.background-color') private background = '#ffffff'
+  @HostBinding('style.background-color') private background = '#e0e0e0'
 
   constructor() { }
 
@@ -15,24 +15,24 @@ export class DragDropDirective {
   @HostListener('dragover', ['$event']) dragOver(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.background = '#e2eefd';
+    this.background = '#d0d0d0';
   }
 
   // Dragleave Event
   @HostListener('dragleave', ['$event']) public dragLeave(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.background = '#ffffff'
+    this.background = '#e0e0e0'
   }
 
   // Drop Event
   @HostListener('drop', ['$event']) public drop(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.background = '#ffffff';
-    const files = event.dataTransfer.files;
-    if (files.length > 0) {
-      this.fileDropped.emit(files)
+    this.background = '#e0e0e0';
+    const file = event.dataTransfer.files[0];
+    if (file) {
+      this.fileDropped.emit(file)
     }
   }
 

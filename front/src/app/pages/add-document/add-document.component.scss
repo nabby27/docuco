@@ -1,13 +1,57 @@
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 0.3fr;
+  grid-gap: 40px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr;
   grid-gap: 40px;
 }
 
 .card {
-  min-height: 74.7vh;
+  height: 74.7vh;
+}
+
+.btn-container {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.btn-remove-document {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .card__pdf {
   background-color: #e0e0e0;
+  overflow: auto;
+}
+
+.form-file {
+  height: 100%;
+}
+
+.drag-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  min-height: 100%;
+}
+
+.drag-drop-text {
+  text-align: center;
+}
+
+.error-message {
+  color: rgb(201, 17, 17);
+}
+
+.preview-document {
+  width: 100%;
+  height: auto;
 }

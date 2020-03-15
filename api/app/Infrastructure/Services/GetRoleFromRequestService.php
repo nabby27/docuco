@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class GetRoleFromRequestService
 {
-  public function execute(Request $request): RoleVO
-  {
-    $request_role = $request->user()->role;
+    public function execute(Request $request): RoleVO
+    {
+        $request_role = $request->user()->role;
 
-    return new RoleVO($request_role->name);
-  }
+        return new RoleVO($request_role->name);
+    }
 }

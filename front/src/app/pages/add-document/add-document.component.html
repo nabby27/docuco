@@ -1,47 +1,27 @@
-<div class="cards-container">
-  <mat-card class="card">add-bill works! 2</mat-card>
-
+<div [ngClass]="{'cards-container': file, 'card-container': !file}">
   <mat-card class="card card__pdf">
-
-    <!-- <div *ngIf="!files.length" class="col-12 rmpm dropzone" appDragAndDrop (files)="filesDropped($event)">
-            <div class="text-wrapper">
-                <div class="centered">Drop your file here!</div>
-            </div>
-        </div> -->
-    <!--droped image preview-->
-
-    <!-- <button type="button" (click)="upload()">Upload Image</button> -->
-
-    <div>
-      <form [formGroup]="documentFileForm">
-        <div class="row">
-          <!-- Progress Bar -->
-          <div *ngIf="progress">
-            <div>
-              <div role="progressbar" [style.width.%]="progress"></div>
-            </div>
-          </div>
-
-          <div>
-            <div appDragDrop (click)="fileField.click()" (fileDropped)="upload($event)">
-              <span>Choose a file or drag here</span>
-              <input type="file" name="documentFile" #fileField (change)="upload($event.target.files)" hidden>
-            </div>
-          </div>
-
-          <div>
-            <div>
-              <img [src]="documentFile.url" alt="">
-            </div>
-            <p>{{file.item.name}}</p>
-          </div>
-        </div>
-      </form>
+    <div *ngIf="file">
+      <app-pdf-viewer [file]="file"></app-pdf-viewer>
     </div>
 
-
+    <form *ngIf="!file" class="form-file" [formGroup]="documentFileForm">
+      <div class="drag-container" appDragDrop (click)="fileField.click()" (fileDropped)="renderView($event)">
+        <span class="drag-drop-text">Clica y elige un documento <br>o<br> arrastralo aquí</span>
+        <div *ngIf="errorType" class="drag-drop-text error-message">El documento tiene que ser pdf</div>
+        <input type="file" name="file" #fileField (change)="renderView($event.target.files[0])" accept=".pdf" hidden>
+      </div>
+    </form>
   </mat-card>
-</div>
-<div *ngFor="let file of files">
-  <img *ngIf="file" [src]="file.url" width="100px" height="100px">
+
+  <div class="card" *ngIf="file">
+    <button class="btn-container" (click)="removeImage()" mat-stroked-button color="accent">
+      <div class="btn-remove-document">
+        Quitar este documento
+        <mat-icon>close</mat-icon>
+      </div>
+    </button>
+    <mat-card>
+      <app-document-form></app-document-form>
+    </mat-card>
+  </div>
 </div>

@@ -25,11 +25,11 @@ export class PieChartComponent implements AfterViewInit {
     this.chart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ['Luz', 'Agua', 'Internet'],
+        labels: ['Ingresos', 'Gastos'],
         datasets: [
           {
-            data: [10, 20, 15],
-            backgroundColor: ['rgba(245, 220, 32, 0.8)', 'rgba(8, 99, 209, 0.8)', 'rgba(178, 79, 227, 0.8)'],
+            data: [10, 15],
+            backgroundColor: ['rgba(0, 174, 255, 0.8)', 'rgba(255, 46, 23, 0.6)'],
           }
         ],
       },
@@ -37,7 +37,7 @@ export class PieChartComponent implements AfterViewInit {
         responsive: false,
         maintainAspectRatio: true,
         legend: {
-          position: 'right'
+          position: 'bottom'
         }
       }
     });

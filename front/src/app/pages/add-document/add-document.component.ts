@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-// import { FileHandle } from 'src/app/interfaces/file-handle';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DocumentsService } from 'src/app/services/documents.service';
 
 @Component({
   selector: 'app-add-document',
@@ -9,20 +9,36 @@ import { FormGroup } from '@angular/forms';
 })
 export class AddDocumentComponent implements OnInit {
 
+  errorType: boolean = false;
   documentFileForm: FormGroup;
-  documentFile: File;
+  file: File;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private documentsService: DocumentsService
+  ) { }
 
   ngOnInit() {
+    this.file = this.documentsService.getDocumentFileToPreview();
+
+    this.documentFileForm = this.fb.group({
+      file: [{ value: this.file, disabled: false }, [Validators.required]]
+    });
   }
 
-  // filesDropped(files: FileHandle[]): void {
-  //     this.files = files;
-  // }
+  renderView(file: File): void {
+    if (file.type === 'application/pdf') {
+      this.errorType = false;
+      this.file = file;
+      this.documentsService.setDocumentFileToPreview(this.file);
+    } else {
+      this.errorType = true;
+    }
+  }
 
-  upload(): void {
-    //get image upload file obj;
+  removeImage() {
+    this.file = null;
+    this.documentsService.removeDocumentFileToPreview();
   }
 
 }

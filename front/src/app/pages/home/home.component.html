@@ -1,14 +1,18 @@
 <div class="first-row-cards">
   <mat-card class="small-card">
     <h4>Ingresos y gastos este año</h4>
-    <!-- <app-spinner></app-spinner> -->
-    <app-bar-chart [documents]="documents"></app-bar-chart>
+    <app-bar-chart *ngIf="documents" [documents]="documents"></app-bar-chart>
+    <div *ngIf="!documents">
+      <app-spinner></app-spinner>
+    </div>
   </mat-card>
 
   <mat-card class="small-card">
-    <h4>Gastos por tags este año</h4>
-    <!-- <app-spinner></app-spinner> -->
-    <app-pie-chart [documents]="documents"></app-pie-chart>
+    <h4>Ingresos y gastos este año</h4>
+    <app-pie-chart *ngIf="documents" [documents]="documents"></app-pie-chart>
+    <div *ngIf="!documents">
+      <app-spinner></app-spinner>
+    </div>
   </mat-card>
 </div>
 
