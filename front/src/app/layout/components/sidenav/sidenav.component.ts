@@ -22,12 +22,12 @@ export class SidenavComponent implements OnInit {
       icon: 'add_circle_outline',
       role: ['ADMIN', 'EDIT']
     },
-    {
-      text: 'Administrar usuarios',
-      url: '/admin-users',
-      icon: 'supervised_user_circle',
-      role: ['ADMIN']
-    }
+    // {
+    //   text: 'Administrar usuarios',
+    //   url: '/admin-users',
+    //   icon: 'supervised_user_circle',
+    //   role: ['ADMIN']
+    // }
   ];
 
   constructor(

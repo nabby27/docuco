@@ -1,5 +1,6 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 import Chart from 'node_modules/chart.js';
+import { DocumentsService } from 'src/app/services/documents.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -10,10 +11,14 @@ export class PieChartComponent implements AfterViewInit {
 
   @Input() documents: Document[] = [];
   chart: Chart;
+  data;
 
-  constructor() { }
+  constructor(
+    private documentsService: DocumentsService
+  ) { }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
+    this.data = await this.documentsService.getDocumentsToPieChart();
     this.createChart();
   }
 
@@ -25,10 +30,10 @@ export class PieChartComponent implements AfterViewInit {
     this.chart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ['Ingresos', 'Gastos'],
+        labels: this.data.labels,
         datasets: [
           {
-            data: [10, 15],
+            data: this.data.data,
             backgroundColor: ['rgba(0, 174, 255, 0.8)', 'rgba(255, 46, 23, 0.6)'],
           }
         ],

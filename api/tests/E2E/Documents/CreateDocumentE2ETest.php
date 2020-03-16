@@ -33,19 +33,19 @@ class CreateDocumentE2ETest extends TestCase
       ->assertJson(['message' => 'Not have permissions.']);
   }
 
-  public function test_create_document_when_user_have_permissions()
-  {
-    $document = get_random_document();
+  // public function test_create_document_when_user_have_permissions()
+  // {
+  //   $document = get_random_document();
 
-    [$user_group, $user, $token] = get_user_group_edit_user_and_token_after_login($this);
+  //   [$user_group, $user, $token] = get_user_group_edit_user_and_token_after_login($this);
 
-    $response = $this->make_post_petition($token, $document);
+  //   $response = $this->make_post_petition($token, $document);
 
-    $response
-      ->assertStatus(200)
-      ->assertJson(['document' => $document])
-      ->assertJsonStructure(['document' => get_fields_document()]);
-  }
+  //   $response
+  //     ->assertStatus(200)
+  //     ->assertJson(['document' => $document])
+  //     ->assertJsonStructure(['document' => get_fields_document()]);
+  // }
 
   private function make_post_petition($token = '', $document = [])
   {

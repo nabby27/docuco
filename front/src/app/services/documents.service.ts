@@ -48,19 +48,19 @@ export class DocumentsService {
     this.http.delete(`${this.url}/${document.id}`).subscribe();
   }
 
-  // getDataChartToIncomeExpenseThisYear(): Promise<any> {
-  //   return new Promise((resolve, reject) => {
-  //     this.http.get<any>(`${this.url}/data-charts/income-expense-this-year`).pipe(map((response: any) => response.data))
-  //       .subscribe((data: any) => resolve(data));
-  //   })
-  // }
+  getDocumentsToBarChart(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.url}/bar-chart`)
+        .subscribe((data: any) => resolve(data.data_chart));
+    })
+  }
 
-  // getDataChartToExpenseByTagsThisYear() {
-  //   return new Promise((resolve, reject) => {
-  //     this.http.get<any>(`${this.url}/data-charts/expense-by-tags-this-year`).pipe(map((response: any) => response.data))
-  //       .subscribe((data: any) => resolve(data));
-  //   })
-  // }
+  getDocumentsToPieChart(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.url}/pie-chart`)
+        .subscribe((data: any) => resolve(data.data_chart));
+    })
+  }
 
   setDocumentFileToPreview(documentToPreview: File) {
     this.documentFile = documentToPreview;

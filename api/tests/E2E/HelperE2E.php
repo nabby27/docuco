@@ -97,8 +97,8 @@ function get_user_and_token_after_login($that, UserGroup $user_group, string $ro
 function get_user_group_document_user_and_token_after_login($that, string $role = '')
 {
   [$user_group, $user, $token, $password, $role] = get_user_group_user_and_token_after_login($that, $role);
-  $type = create_type();
-  $document = create_document($user_group->id, $type->id);
+  // $type = create_type();
+  $document = create_document($user_group->id, 1);
   $tags = [];
   $tag = create_tag('water');
   array_push($tags, $tag);

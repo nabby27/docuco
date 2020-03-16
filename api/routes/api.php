@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Artisan::call('cache:clear');
+
 Route::get('/unauthenticated', function () {
   return response()->json(['message' => 'Unauthenticated.']);
 })->name('unauthenticated');
@@ -29,6 +31,8 @@ Route::group(['middleware' => ['auth:api']], function () {
   Artisan::call('cache:clear');
 
   Route::get('/documents', 'DocumentController@get_all_documents')->name('all_documents.api');
+  Route::get('/documents/bar-chart', 'DocumentController@get_documents_data_bar_chart')->name('documents_data_bar_chart.api');
+  Route::get('/documents/pie-chart', 'DocumentController@get_documents_data_pie_chart')->name('documents_data_pie_chart.api');
   Route::get('/documents/{document_id}', 'DocumentController@get_one_document')->name('one_document.api');
 
   Route::get('/users', 'UserController@get_all_users')->name('all_user.api');
