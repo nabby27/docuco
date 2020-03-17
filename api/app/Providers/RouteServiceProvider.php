@@ -14,33 +14,33 @@ class RouteServiceProvider extends ServiceProvider
    *
    * @var string
    */
-  protected $namespace = 'Docuco\Http\Controllers';
+    protected $namespace = 'Docuco\Http\Controllers';
 
   /**
    * Define your route model bindings, pattern filters, etc.
    *
    * @return void
    */
-  public function boot()
-  {
-    //
+    public function boot()
+    {
+      //
 
-    parent::boot();
-  }
+        parent::boot();
+    }
 
   /**
    * Define the routes for the application.
    *
    * @return void
    */
-  public function map()
-  {
-    $this->mapApiRoutes();
+    public function map()
+    {
+        $this->mapApiRoutes();
 
-    // $this->mapWebRoutes();
+      // $this->mapWebRoutes();
 
-    //
-  }
+      //
+    }
 
   /**
    * Define the "web" routes for the application.
@@ -63,11 +63,11 @@ class RouteServiceProvider extends ServiceProvider
    *
    * @return void
    */
-  protected function mapApiRoutes()
-  {
-    Route::prefix('api')
-      ->middleware('api')
-      ->namespace($this->namespace)
-      ->group(base_path('routes/api.php'));
-  }
+    protected function mapApiRoutes()
+    {
+        Route::prefix('api')
+        ->middleware('api')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/api.php'));
+    }
 }

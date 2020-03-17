@@ -47,8 +47,9 @@ export class ListDocumentComponent implements OnInit, OnChanges {
   }
 
   removeDocument(document: Document) {
-    this.documentsService.deleteDocument(document);
-    this.documentDeleted.emit();
+    this.documentsService.deleteDocument(document).subscribe(
+      () => this.documentDeleted.emit()
+    );
   }
 
 }

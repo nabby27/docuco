@@ -57,7 +57,7 @@ class DocumentController extends Controller
     }
 
     $new_document['name'] = $request->name;
-    $new_document['description'] = $request->description;
+    $new_document['description'] = $request->description ? $request->description : '';
     $new_document['price'] = $request->price;
     $new_document['date_of_issue'] = $request->date_of_issue;
     $new_document['type'] = $request->type;

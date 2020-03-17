@@ -22,12 +22,15 @@ class GetDocumentsDataBarChartAction
     $expenses_data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     foreach ($documents->all() as $document) {
+      $year = date("Y", strtotime($document->date_of_issue));
       $month = date("n", strtotime($document->date_of_issue));
-      if ($document->type === 'INCOME') {
-        $income_data[$month - 1] += $document->price;
-      }
-      if ($document->type === 'EXPENSE') {
-        $expenses_data[$month - 1] += $document->price;
+      if (date("Y") === $year) {
+        if ($document->type === 'INCOME') {
+          $income_data[$month - 1] += $document->price;
+        }
+        if ($document->type === 'EXPENSE') {
+          $expenses_data[$month - 1] += $document->price;
+        }
       }
     }
 

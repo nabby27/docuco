@@ -69,7 +69,7 @@ class DocumentsRepositoryORM implements DocumentsRepository
   public function update_document_by_user_group_id(int $user_group_id, $document): ?Document
   {
     $document_model = $this->get_one_document_model_by_user_group($user_group_id, $document->id);
-    $this->document_model->type_id = $this->type_model->where('name', $document->type)->first()->id;
+    $document_model->type_id = $this->type_model->where('name', $document->type)->first()->id;
 
     if (isset($document_model)) {
       foreach ($document as $property => $value) {

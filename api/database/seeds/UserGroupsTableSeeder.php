@@ -16,13 +16,13 @@ class UserGroupsTableSeeder extends Seeder
     DB::table('user_groups')->insert([
       [
         'name' => 'Green Urban Data',
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ],
       [
         'name' => 'Belike Software',
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ]
     ]);
   }

@@ -18,20 +18,20 @@ class RolesTableSeeder extends Seeder
       [
         'name' => RoleConstants::ADMIN,
         'description' => 'can view, edit and manage documents, data and other users',
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ],
       [
         'name' => RoleConstants::EDIT,
         'description' => 'can only view and edit documents and data, cannot manage other users',
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ],
       [
         'name' => RoleConstants::VIEW,
         'description' => 'can only view documents and data',
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ]
     ]);
   }

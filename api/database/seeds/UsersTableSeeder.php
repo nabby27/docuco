@@ -20,8 +20,8 @@ class UsersTableSeeder extends Seeder
         'password' => bcrypt('123456'),
         'role_id' => 1,
         'user_group_id' => 1,
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ],
       [
         'name' => 'Tony',
@@ -29,8 +29,8 @@ class UsersTableSeeder extends Seeder
         'password' => bcrypt('123456'),
         'role_id' => 2,
         'user_group_id' => 1,
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ],
       [
         'name' => 'Alejandro',
@@ -38,8 +38,8 @@ class UsersTableSeeder extends Seeder
         'password' => bcrypt('123456'),
         'role_id' => 3,
         'user_group_id' => 1,
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ],
       [
         'name' => 'Victor',
@@ -47,8 +47,8 @@ class UsersTableSeeder extends Seeder
         'password' => bcrypt('123456'),
         'role_id' => 1,
         'user_group_id' => 2,
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ],
       [
         'name' => 'Sergio',
@@ -56,8 +56,8 @@ class UsersTableSeeder extends Seeder
         'password' => bcrypt('123456'),
         'role_id' => 2,
         'user_group_id' => 2,
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ],
       [
         'name' => 'Miguel',
@@ -65,8 +65,8 @@ class UsersTableSeeder extends Seeder
         'password' => bcrypt('123456'),
         'role_id' => 3,
         'user_group_id' => 2,
-        'created_at' => date('2019/02/27'),
-        'updated_at' => date('2019/02/27')
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
       ]
     ]);
   }

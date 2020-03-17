@@ -11,12 +11,12 @@ class WelcomeE2ETest extends TestCase
    *
    * @return void
    */
-  public function testWelcomeToDocucoApi()
-  {
-    $response = $this->json('GET', '/api/');
+    public function testWelcomeToDocucoApi()
+    {
+        $response = $this->json('GET', '/api/');
 
-    $response
-      ->assertStatus(200)
-      ->assertExactJson(['message' => 'Wellcome to Docuco API!']);
-  }
+        $response
+        ->assertStatus(200)
+        ->assertExactJson(['message' => 'Wellcome to Docuco API!']);
+    }
 }

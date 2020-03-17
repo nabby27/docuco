@@ -10,41 +10,41 @@ use Docuco\Domain\Users\Collections\UserCollection;
 class UsersRepositoryORM implements UsersRepository
 {
 
-  private $user_model;
+    private $user_model;
 
-  public function __construct()
-  {
-    $this->user_model = new UserModel();
-  }
-
-  public function get_one_user_by_user_group_id(int $user_group_id, int $user_id): ?User
-  {
-    $user_model = $this->user_model
-      ->where('user_group_id', $user_group_id)
-      ->find($user_id);
-
-    if (isset($user_model)) {
-      return User::get_from_model($user_model);
+    public function __construct()
+    {
+        $this->user_model = new UserModel();
     }
 
-    return null;
-  }
+    public function get_one_user_by_user_group_id(int $user_group_id, int $user_id): ?User
+    {
+        $user_model = $this->user_model
+        ->where('user_group_id', $user_group_id)
+        ->find($user_id);
 
-  public function get_all_users_by_user_group_id(int $user_group_id): UserCollection
-  {
-    $user_model_collection = $this->user_model
-      ->where('user_group_id', $user_group_id)
-      ->get();
+        if (isset($user_model)) {
+            return User::get_from_model($user_model);
+        }
 
-    $uder_collection = new UserCollection();
-    foreach ($user_model_collection as $user_model) {
-      $uder_collection->add(
-        User::get_from_model($user_model)
-      );
+        return null;
     }
 
-    return $uder_collection;
-  }
+    public function get_all_users_by_user_group_id(int $user_group_id): UserCollection
+    {
+        $user_model_collection = $this->user_model
+        ->where('user_group_id', $user_group_id)
+        ->get();
+
+        $uder_collection = new UserCollection();
+        foreach ($user_model_collection as $user_model) {
+            $uder_collection->add(
+                User::get_from_model($user_model)
+            );
+        }
+
+        return $uder_collection;
+    }
 
   // public function create_document_by_user_group_id(int $user_group_id, $document_to_create): ?Document
   // {

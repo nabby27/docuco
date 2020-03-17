@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 
 $factory->define(Docuco\Models\RoleModel::class, function (Faker $faker) {
-  return [
+    return [
     'name' => $faker->word
-  ];
+    ];
 });

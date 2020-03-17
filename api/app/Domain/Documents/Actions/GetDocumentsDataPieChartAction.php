@@ -21,11 +21,14 @@ class GetDocumentsDataPieChartAction
     $data = [0, 0];
 
     foreach ($documents->all() as $document) {
-      if ($document->type === 'INCOME') {
-        $data[0] += $document->price;
-      }
-      if ($document->type === 'EXPENSE') {
-        $data[1] += $document->price;
+      $year = date("Y", strtotime($document->date_of_issue));
+      if (date("Y") === $year) {
+        if ($document->type === 'INCOME') {
+          $data[0] += $document->price;
+        }
+        if ($document->type === 'EXPENSE') {
+          $data[1] += $document->price;
+        }
       }
     }
 

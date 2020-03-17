@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class GetUserIdFromRequestService
 {
-  public function execute(Request $request): int
-  {
-    return $request->user()->id;
-  }
+    public function execute(Request $request): int
+    {
+        return $request->user()->id;
+    }
 }

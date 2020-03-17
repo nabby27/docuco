@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Document } from '../entities/document';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class DocumentsService {
   saveDocument(document: any): void {
     let data: FormData = new FormData();
     data.append('name', document.name);
-    data.append('description', document.description);
+    data.append('description', document.description ? document.description : '');
     data.append('type', document.type);
     data.append('date_of_issue', document.date_of_issue.toISOString().split('T')[0]);
     data.append('price', document.price);
@@ -44,8 +45,8 @@ export class DocumentsService {
     this.http.put<Document>(`${this.url}/${document.id}`, document).subscribe();
   }
 
-  deleteDocument(document: any): void {
-    this.http.delete(`${this.url}/${document.id}`).subscribe();
+  deleteDocument(document: any): Observable<any> {
+    return this.http.delete(`${this.url}/${document.id}`);
   }
 
   getDocumentsToBarChart(): Promise<any> {
