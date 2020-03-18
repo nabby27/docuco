@@ -1,0 +1,40 @@
+.card {
+  min-height: 74.7vh;
+}
+
+.title {
+  font-size: calc(20px + 0.5vw);
+  text-align: center;
+}
+
+.container-users {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+}
+
+.content-user {
+  text-align: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chip {
+  color: #202020;
+}
+
+.admin-chip {
+  background-color: #ffb3b3;
+}
+
+.edit-chip {
+  background-color: #b3b3ff;
+}
+
+.view-chip {
+  background-color: #b3ffb3;
+}

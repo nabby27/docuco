@@ -17,12 +17,20 @@ export class StorageService {
     return <Token>JSON.parse(localStorage.getItem('token'));
   }
 
-  saveUser(user: User): void {
-    localStorage.setItem('user', this.getStringfyObject(user));
+  saveCurrentUser(user: User): void {
+    localStorage.setItem('current_user', this.getStringfyObject(user));
   }
 
-  getUser(): User {
-    return <User>JSON.parse(localStorage.getItem('user'));
+  getCurrentUser(): User {
+    return <User>JSON.parse(localStorage.getItem('current_user'));
+  }
+
+  saveAllUser(user: User[]): void {
+    localStorage.setItem('all_users', this.getStringfyObject(user));
+  }
+
+  getAllUser(): User[] {
+    return <User[]>JSON.parse(localStorage.getItem('all_users'));
   }
 
   clear(): void {

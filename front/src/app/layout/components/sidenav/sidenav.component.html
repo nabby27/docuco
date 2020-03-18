@@ -1,12 +1,14 @@
-<div class="sidenav-container">
+<div class="sidenav-container" *ngIf="user">
   <section class="sidenav-content">
     <nav class="sidenav-content-nav">
       <mat-button-toggle-group class="menu-list" vertical="true">
-        <mat-button-toggle *ngFor="let link of links" class="menu-item" mat-button [routerLink]="link.url"
-          routerLinkActive="mat-button-toggle-checked">
-          <i class="sidenav-icon-item material-icons">{{ link.icon }}</i>
-          {{ link.text }}
-        </mat-button-toggle>
+        <div *ngFor="let link of links">
+          <mat-button-toggle *ngIf="userCanAccess(link)" class="menu-item" mat-button [routerLink]="link.url"
+            routerLinkActive="mat-button-toggle-checked">
+            <i class="sidenav-icon-item material-icons">{{ link.icon }}</i>
+            {{ link.text }}
+          </mat-button-toggle>
+        </div>
       </mat-button-toggle-group>
     </nav>
   </section>

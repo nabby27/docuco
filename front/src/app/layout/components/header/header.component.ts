@@ -15,8 +15,8 @@ export class HeaderComponent implements OnInit {
     private usersService: UsersService
   ) { }
 
-  ngOnInit() {
-    this.user = this.usersService.getUser();
+  async ngOnInit() {
+    this.user = await this.usersService.getCurrentUser();
   }
 
   logout() {

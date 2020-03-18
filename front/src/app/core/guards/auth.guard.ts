@@ -23,15 +23,6 @@ export class AuthGuard implements CanActivate {
     return true;
   }
 
-  // canActivateChild(
-  //   next: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot
-  // ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-  //   this.redirectDependingIfIsLogged(state);
-
-  //   return true;
-  // }
-
   private redirectDependingIfIsLogged(state: RouterStateSnapshot) {
     const isLogged = this.usersService.isLogged();
 

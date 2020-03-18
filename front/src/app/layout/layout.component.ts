@@ -17,7 +17,7 @@ export class LayoutComponent implements OnInit {
 
   }
 
-  userIsViewer() {
-    return this.usersService.userIsViewer();
+  userCanEdit() {
+    return this.usersService.hasPermissionToEdit();
   }
 }

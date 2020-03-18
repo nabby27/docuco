@@ -25,7 +25,7 @@ export class ListDocumentComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    if (!this.usersService.userIsViewer()) {
+    if (this.usersService.hasPermissionToEdit()) {
       this.displayedColumns.unshift('delete', 'edit');
     }
   }

@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/entities/user';
 
+export interface Link {
+  text: string;
+  url: string;
+  icon: string;
+  roles: string[];
+}
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -10,36 +17,37 @@ import { User } from 'src/app/entities/user';
 export class SidenavComponent implements OnInit {
 
   user: User;
-  links = [
+  links: Link[] = [
     {
       text: 'Inicio',
       url: '/home',
-      icon: 'dashboard'
+      icon: 'dashboard',
+      roles: ['VIEW', 'EDIT', 'ADMIN']
     },
     {
       text: 'Añadir documento',
       url: '/add-document',
       icon: 'add_circle_outline',
-      role: ['ADMIN', 'EDIT']
+      roles: ['EDIT', 'ADMIN']
     },
-    // {
-    //   text: 'Administrar usuarios',
-    //   url: '/admin-users',
-    //   icon: 'supervised_user_circle',
-    //   role: ['ADMIN']
-    // }
+    {
+      text: 'Administrar usuarios',
+      url: '/manage-users',
+      icon: 'supervised_user_circle',
+      roles: ['ADMIN']
+    }
   ];
 
   constructor(
     private usersService: UsersService
   ) { }
 
-  ngOnInit() {
-    this.user = this.usersService.getUser();
+  async ngOnInit() {
+    this.user = await this.usersService.getCurrentUser();
   }
 
-  userCanAccess(rolesToNeed: string[]) {
-    return rolesToNeed.filter(role => role === this.user.role) != [];
+  userCanAccess(link: Link) {
+    return link.roles.filter(role => role === this.user.role).length > 0;
   }
 
 }
