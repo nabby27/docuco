@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RouterService } from 'src/app/services/router.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-card',
@@ -21,7 +21,7 @@ export class LoginCardComponent {
     private fb: FormBuilder,
     private usersService: UsersService,
     private snackBar: MatSnackBar,
-    private routerService: RouterService
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class LoginCardComponent {
       this.isLogin = false;
     } else {
       await this.usersService.getCurrentUser();
-      this.routerService.goTo('/home');
+      this.router.navigate(['/home']);
     }
   }
 

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
-import { RouterService } from './router.service';
 import { Token } from '../entities/token';
 import { User } from '../entities/user';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class UsersService {
   constructor(
     private http: HttpClient,
     private storageService: StorageService,
-    private routerService: RouterService
+    private router: Router
   ) { }
 
   doLogin(email: string, password: string): Promise<boolean> {
@@ -94,7 +94,7 @@ export class UsersService {
 
   doLogout() {
     this.storageService.clear();
-    this.routerService.goTo('login');
+    this.router.navigate(['login']);
   }
 
 }

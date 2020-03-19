@@ -1,0 +1,24 @@
+.card-user {
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chip {
+  color: #202020;
+}
+
+.admin-chip {
+  background-color: #ffb3b3;
+}
+
+.edit-chip {
+  background-color: #b3b3ff;
+}
+
+.view-chip {
+  background-color: #b3ffb3;
+}

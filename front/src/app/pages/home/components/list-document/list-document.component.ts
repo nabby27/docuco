@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Document } from 'src/app/entities/document';
-import { RouterService } from 'src/app/services/router.service';
 import { DocumentsService } from 'src/app/services/documents.service';
 import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-document',
@@ -19,7 +19,7 @@ export class ListDocumentComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['name', 'description', 'date_of_issue', 'price', 'type', 'file'];
 
   constructor(
-    private routerService: RouterService,
+    private router: Router,
     private documentsService: DocumentsService,
     private usersService: UsersService
   ) { }
@@ -43,7 +43,7 @@ export class ListDocumentComponent implements OnInit, OnChanges {
   }
 
   goToUpdate(document: Document) {
-    this.routerService.goTo('update-document', document.id);
+    this.router.navigate(['update-document', document.id]);
   }
 
   removeDocument(document: Document) {

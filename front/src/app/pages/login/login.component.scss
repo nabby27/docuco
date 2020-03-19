@@ -1,18 +1,8 @@
 .container {
-  // width: 100%;
   min-height: 100vh;
-
-  // display: grid;
-  // grid-template-columns: repeat(2, 1fr);
-  // grid-gap: 10px;
-
   display: flex;
   justify-content: space-around;
   align-items: center;
-  // justify-content: space-around;
-  // align-items: center;
-  // background-image: linear-gradient(-45deg, #fefefe 0%, #fefefe 50%, #3f51b5 50%, #3f51b5 100%);
-  // background-image: linear-gradient(-45deg, #3f51b5 0%, #3f51b5 20%, #e05757 20%, #e05757 50%, #3f51b5 50%, #3f51b5 100%);
   background-image: linear-gradient(-45deg, #3f51b5 0%, #3f51b5 15%, #FFF 15%, #FFF 15.1%, #f0f0f0 15.1%, #f0f0f0 100%);
 }
 
@@ -25,17 +15,23 @@
   flex-direction: column;
 }
 
+
+.logo-name {
+  width: 15vw;
+  margin-bottom: 30px;
+}
+
 .title-info {
   font-size: calc(20px + 0.4vw);
   font-weight: 500;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .text-info {
   font-size: calc(18px + 0.1vw);
   line-height: 2em;
   font-weight: lighter;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .card-login {

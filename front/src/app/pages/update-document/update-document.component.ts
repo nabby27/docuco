@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DocumentsService } from 'src/app/services/documents.service';
-import { RouterService } from 'src/app/services/router.service';
 import { Document } from 'src/app/entities/document';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-document',
@@ -19,7 +18,7 @@ export class UpdateDocumentComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private routerService: RouterService,
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private documentsService: DocumentsService
   ) { }
@@ -34,7 +33,7 @@ export class UpdateDocumentComponent implements OnInit {
   }
 
   goToHome() {
-    this.routerService.goTo('/home');
+    this.router.navigate(['/home']);
   }
 
 }

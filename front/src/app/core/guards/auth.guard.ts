@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { RouterService } from 'src/app/services/router.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Injectable({
@@ -10,7 +9,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class AuthGuard implements CanActivate {
 
   constructor(
-    private routerService: RouterService,
+    private router: Router,
     private usersService: UsersService
   ) { }
 
@@ -32,13 +31,13 @@ export class AuthGuard implements CanActivate {
 
   private goToLoginIfUserNotLogged(isLogged: boolean, state: RouterStateSnapshot) {
     if (!isLogged && state.url !== '/login') {
-      this.routerService.goTo('/login');
+      this.router.navigate(['/login']);
     }
   }
 
   private goToHomeIfUserIsLogged(isLogged: boolean, state: RouterStateSnapshot) {
     if (isLogged && state.url === '/login') {
-      this.routerService.goTo('/home');
+      this.router.navigate(['/home']);
     }
   }
 }

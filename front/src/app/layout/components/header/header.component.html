@@ -1,16 +1,14 @@
 <mat-toolbar color="primary" class="header-toolbar">
-  <span>Docuco</span>
-  <span>Gestor Documental</span>
+  <span></span>
+  <div>
+    <img class="icon" src="/assets/docuco_name.svg" alt="">
+  </div>
   <div>
     <span *ngIf="user">{{ user.name }}</span>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>person</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <!-- <button mat-menu-item>
-        <mat-icon>account_box</mat-icon>
-        <span>Configuración</span>
-      </button> -->
       <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
         <span>Salir</span>

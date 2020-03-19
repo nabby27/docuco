@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 import { ListUsersComponent } from './list-users.component';
+import { UserCardModule } from '../components/user-card/user-card.module';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     MaterialModule,
     SpinnerModule,
+    UserCardModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -1,0 +1,15 @@
+<mat-card class="card-user" (click)="goToUpdateUser(user)">
+  <mat-card-title class="header">
+    <span>{{ user.name }}</span>
+    <span>
+      <mat-chip-list>
+        <mat-chip [ngClass]="{'admin-chip': user.role === 'ADMIN',
+                'edit-chip': user.role === 'EDIT',
+                'view-chip': user.role === 'VIEW'}" class="chip">
+          {{ user.role }}
+        </mat-chip>
+      </mat-chip-list>
+    </span>
+  </mat-card-title>
+  <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+</mat-card>

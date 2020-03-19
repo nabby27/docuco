@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/entities/user';
-import { RouterService } from 'src/app/services/router.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-users',
@@ -14,7 +14,7 @@ export class ListUsersComponent implements OnInit {
   userId: number;
 
   constructor(
-    private routerService: RouterService,
+    private router: Router,
     private usersService: UsersService
   ) { }
 
@@ -23,8 +23,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   goToUpdateUser(user) {
-    this.routerService.goTo('manage-users', user.id);
-
+    this.router.navigate(['manage-users', user.id]);
   }
 
 }
