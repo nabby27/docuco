@@ -9,9 +9,15 @@ mat-form-field {
 }
 
 .title {
-  margin-top: 40px !important;
+  margin-top: 20px !important;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.logo {
+  margin-right: 20px;
+  width: 2vw;
 }
 
 .button-container {

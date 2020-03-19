@@ -1,3 +1,9 @@
+// font-family: 'Major Mono Display', monospace;
+// font-family: 'Gothic A1', sans-serif;
+// font-family: 'Varela', sans-serif;
+// font-family: 'Anonymous Pro', monospace;
+// font-family: 'Magra', sans-serif;
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -15,10 +21,15 @@
   flex-direction: column;
 }
 
+.docuco-name {
+  font-size: calc(20px + 3vw);
+  font-weight: lighter;
+  font-family: 'Anonymous Pro', monospace;
+}
 
-.logo-name {
-  width: 15vw;
-  margin-bottom: 30px;
+.logo-container {
+  display: flex;
+  justify-content: center;
 }
 
 .title-info {

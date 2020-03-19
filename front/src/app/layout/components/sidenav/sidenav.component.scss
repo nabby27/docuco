@@ -44,11 +44,17 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 1em;
   border-top: 1px solid #e0e0e0;
+  padding: 10px;
 }
 
 .sidenav-footer-logo {
-  width: 80px;
-  padding: 20px;
+  width: 2vw;
+  margin-bottom: 10px;
+}
+
+.docuco-name {
+  font-size: calc(18px + 0.5vw);
+  font-weight: lighter;
+  font-family: 'Anonymous Pro', monospace;
 }

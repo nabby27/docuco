@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="158.4527mm"
-   height="31.467447mm"
-   viewBox="0 0 158.4527 31.467447"
+   width="57.705299mm"
+   height="79.376648mm"
+   viewBox="0 0 57.705299 79.376648"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (unknown)"
-   sodipodi:docname="docuco_logo_name.svg">
+   sodipodi:docname="logo.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.50381358"
-     inkscape:cx="70.304864"
-     inkscape:cy="552.76422"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="42.301564"
+     inkscape:cy="141.67804"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -39,19 +39,20 @@
      inkscape:snap-nodes="false"
      inkscape:snap-global="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1052"
-     inkscape:window-x="1920"
-     inkscape:window-y="1080"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="1107"
      inkscape:window-maximized="1"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0">
+     fit-margin-bottom="0"
+     inkscape:guide-bbox="true">
     <inkscape:grid
        type="xygrid"
        id="grid3713"
-       originx="-190.43563"
-       originy="-213.67763" />
+       originx="-1146.9678"
+       originy="-771.78988" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -69,18 +70,18 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-190.43563,-51.854972)">
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:46.40374756px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.16009367"
-       x="184.851"
-       y="84.006302"
-       id="text4616"
-       transform="scale(1.0152779,0.98495201)"><tspan
-         sodipodi:role="line"
-         id="tspan4614"
-         x="184.851"
-         y="84.006302"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.40358353px;font-family:Manjari;-inkscape-font-specification:'Manjari, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:1.16009367">Docuco</tspan></text>
+     transform="translate(-1146.9678,554.16648)">
+    <path
+       style="fill:#00a6cc;fill-opacity:1;stroke:none;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 1157.5521,-554.16648 h 10.3726 c 23.9348,0 36.7484,14.4958 36.7484,39.2747 v 0.038 c 0,25.5667 -13.393,40.0625 -36.9247,40.0625 h -10.1963 z"
+       id="rect3715-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csssscc" />
+    <path
+       style="fill:#007db3;fill-opacity:1;stroke:none;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 1146.9678,-498.56093 10.5833,-9.3018 v 33.0729 h -10.5833 z"
+       id="rect4533-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
   </g>
 </svg>
