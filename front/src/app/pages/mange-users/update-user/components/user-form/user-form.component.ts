@@ -12,7 +12,8 @@ export class UserFormComponent {
   @Input() user: User;
 
   userForm: FormGroup;
-  name: string;
+  role: string;
+
   description: string;
   date_of_issue: Date = new Date();
   price: number;
@@ -28,11 +29,9 @@ export class UserFormComponent {
 
   private setFormData() {
     this.userForm = this.fb.group({
-      name: [{ value: this.name, disabled: false }, [Validators.required]],
-      email: [{ value: this.description, disabled: false }],
-      type: [{ value: '', disabled: false }, [Validators.required]],
-      date_of_issue: [{ value: this.date_of_issue, disabled: false }, [Validators.required]],
-      price: [{ value: this.price, disabled: false }, [Validators.required]],
+      role: [{ value: this.user.role, disabled: false }, [Validators.required]],
+      email: [{ value: this.user.email, disabled: false }, [Validators.required, Validators.email]],
+      name: [{ value: this.user.name, disabled: false }, [Validators.required]]
     });
   }
 

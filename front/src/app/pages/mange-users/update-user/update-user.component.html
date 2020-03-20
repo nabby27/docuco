@@ -1,5 +1,6 @@
 <div class="container">
   <mat-card class="card card-users-container">
+    <h4>Usuarios</h4>
     <div *ngIf="!users">
       <app-spinner></app-spinner>
     </div>
@@ -9,6 +10,7 @@
   </mat-card>
 
   <mat-card class="card">
+    <h4>Editar usuario</h4>
     <div *ngIf="!userToEdit">
       <app-spinner></app-spinner>
     </div>

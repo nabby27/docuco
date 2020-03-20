@@ -1,0 +1,47 @@
+.container {
+  border-top: 10px solid;
+  display: flex;
+  justify-content: center;
+}
+
+.line-red {
+  border-top-color: #ffb3b3;
+}
+
+.line-green {
+  border-top-color: #b3ffb3;
+}
+
+.line-blue {
+  border-top-color: #b3b3ff;
+}
+
+.form-container {
+  padding-top: 30px;
+  box-sizing: border-box;
+  min-height: 633px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.input-container {
+  width: 100%;
+}
+
+.radio-button-group {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-icon {
+  margin-left: 10px;
+}
