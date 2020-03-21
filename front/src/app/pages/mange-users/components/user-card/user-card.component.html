@@ -1,15 +1,23 @@
 <mat-card class="card-user" (click)="goToUpdateUser(user)">
-  <mat-card-title class="header">
-    <span>{{ user.name }}</span>
-    <span>
+  <mat-card-title class="title">
+    <span class="title-name">
       <mat-chip-list>
         <mat-chip [ngClass]="{'admin-chip': user.role === 'ADMIN',
-                'edit-chip': user.role === 'EDIT',
-                'view-chip': user.role === 'VIEW'}" class="chip">
+          'edit-chip': user.role === 'EDIT',
+          'view-chip': user.role === 'VIEW'}" class="chip">
           {{ user.role }}
         </mat-chip>
       </mat-chip-list>
+      &nbsp;{{ user.name }}
     </span>
+    <button class="button" mat-stroked-button color="accent" (click)="removeUser($event, user)">
+      <div class="button">
+        <mat-icon class="button-icon">delete</mat-icon>
+      </div>
+    </button>
   </mat-card-title>
-  <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+  <mat-card-subtitle class="subtitle">
+    <span>{{ user.email }}</span>
+
+  </mat-card-subtitle>
 </mat-card>

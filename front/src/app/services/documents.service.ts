@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Document } from '../entities/document';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class DocumentsService {
     data.append('name', document.name);
     data.append('description', document.description ? document.description : '');
     data.append('type', document.type);
-    data.append('date_of_issue', document.date_of_issue.toISOString().split('T')[0]);
+    data.append('date_of_issue', moment(document.date_of_issue).format("YYYY-MM-DD"));
     data.append('price', document.price);
     data.append('file', this.documentFile);
 
@@ -42,6 +43,7 @@ export class DocumentsService {
   }
 
   updateDocument(document: any): void {
+    document.date_of_issue = moment(document.date_of_issue).format("YYYY-MM-DD");
     this.http.put<Document>(`${this.url}/${document.id}`, document).subscribe();
   }
 

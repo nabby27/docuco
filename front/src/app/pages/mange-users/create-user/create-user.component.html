@@ -2,12 +2,12 @@
   <mat-card class="card card-users-container">
     <h4 class="header">
       Usuarios
-      <button class="button" mat-stroked-button color="primary" (click)="createUser()">
+      <!-- <button class="button" mat-stroked-button color="primary" (click)="createUser()">
         <div class="button">
           Crear usuario
           <mat-icon class="button-icon">add_circle_outline</mat-icon>
         </div>
-      </button>
+      </button> -->
     </h4>
     <div *ngIf="!users">
       <app-spinner></app-spinner>
@@ -18,11 +18,8 @@
   </mat-card>
 
   <mat-card class="card">
-    <h4>Editar usuario</h4>
-    <div *ngIf="!userToEdit">
-      <app-spinner></app-spinner>
-    </div>
-    <app-user-form *ngIf="userToEdit" [user]="userToEdit" (userUpdated)="getAllUsers()"></app-user-form>
+    <h4>Crear usuario</h4>
+    <app-user-form (userCreated)="getAllUsers()"></app-user-form>
   </mat-card>
 
 </div>

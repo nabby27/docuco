@@ -32,7 +32,7 @@ export class SidenavComponent implements OnInit {
     },
     {
       text: 'Administrar usuarios',
-      url: '/manage-users',
+      url: '/list-users',
       icon: 'supervised_user_circle',
       roles: ['ADMIN']
     }

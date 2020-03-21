@@ -5,7 +5,7 @@ namespace Docuco\Domain\Users\Actions;
 use Docuco\Domain\Users\Repositories\UsersRepository;
 use Docuco\Domain\Users\Entities\User;
 
-class UpdateUserAction
+class CreateUserAction
 {
   private $users_repository;
 
@@ -16,6 +16,6 @@ class UpdateUserAction
 
   public function execute(int $user_group_id, $user): ?User
   {
-    return $this->users_repository->update_user_by_user_group_id($user_group_id, $user);
+    return $this->users_repository->create_user_by_user_group_id($user_group_id, $user);
   }
 }

@@ -18,12 +18,20 @@ export class ListUsersComponent implements OnInit {
     private usersService: UsersService
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getAllUsers();
+  }
+
+  async getAllUsers() {
     this.users = await this.usersService.getAllUsers();
   }
 
   goToUpdateUser(user) {
-    this.router.navigate(['manage-users', user.id]);
+    this.router.navigate(['update-users', user.id]);
+  }
+
+  createUser() {
+    this.router.navigate(['/create-user']);
   }
 
 }

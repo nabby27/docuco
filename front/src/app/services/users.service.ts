@@ -36,16 +36,10 @@ export class UsersService {
 
   getAllUsers(): Promise<User[]> {
     return new Promise((resolve, reject) => {
-      const users = this.storageService.getAllUser();
-      if (users) {
-        resolve(users);
-      } else {
-        this.http.get<User[]>(this.url).pipe(map((response: any) => response.users))
-          .subscribe((users: User[]) => {
-            this.storageService.saveAllUser(users);
-            resolve(users)
-          });
-      }
+      this.http.get<User[]>(this.url).pipe(map((response: any) => response.users))
+        .subscribe((users: User[]) => {
+          resolve(users)
+        });
     })
   }
 
@@ -71,6 +65,33 @@ export class UsersService {
         );
       }
     })
+  }
+
+  saveUser(user: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post<User>(this.url, user).subscribe(
+        () => resolve(),
+        () => reject()
+      );
+    });
+  }
+
+  updateUser(user: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put<Document>(`${this.url}/${user.id}`, user).subscribe(
+        () => resolve(),
+        () => reject()
+      );
+    });
+  }
+
+  deleteUser(user: User): Promise<any> {
+    return new Promise((resolve, reject) => {
+      return this.http.delete(`${this.url}/${user.id}`).subscribe(
+        () => resolve(),
+        () => reject()
+      )
+    });
   }
 
   hasPermissionToView() {

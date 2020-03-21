@@ -25,14 +25,6 @@ export class StorageService {
     return <User>JSON.parse(localStorage.getItem('current_user'));
   }
 
-  saveAllUser(user: User[]): void {
-    localStorage.setItem('all_users', this.getStringfyObject(user));
-  }
-
-  getAllUser(): User[] {
-    return <User[]>JSON.parse(localStorage.getItem('all_users'));
-  }
-
   clear(): void {
     localStorage.clear();
   }

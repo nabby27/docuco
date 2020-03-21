@@ -35,13 +35,18 @@ const routes: Routes = [
         canActivate: [HasPermissionToEdit],
       },
       {
-        path: 'manage-users',
+        path: 'list-users',
         loadChildren: () => import('./pages/mange-users/list-users/list-users.module').then(m => m.ListUsersModule),
         canActivate: [HasPermissionToAdmin],
       },
       {
-        path: 'manage-users/:userId',
+        path: 'update-users/:userId',
         loadChildren: () => import('./pages/mange-users/update-user/update-user.module').then(m => m.UpdateUserModule),
+        canActivate: [HasPermissionToAdmin],
+      },
+      {
+        path: 'create-user',
+        loadChildren: () => import('./pages/mange-users/create-user/create-user.module').then(m => m.CreateUserModule),
         canActivate: [HasPermissionToAdmin],
       },
       {

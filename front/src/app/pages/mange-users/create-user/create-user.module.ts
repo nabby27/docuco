@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
-import { UpdateUserComponent } from './update-user.component';
+import { CreateUserComponent } from './create-user.component';
 import { UserCardModule } from '../components/user-card/user-card.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserFormComponent } from './components/user-form/user-form.component';
@@ -11,13 +11,13 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 const routes: Routes = [
   {
     path: '',
-    component: UpdateUserComponent
+    component: CreateUserComponent
   },
 ];
 
 @NgModule({
   declarations: [
-    UpdateUserComponent,
+    CreateUserComponent,
     UserFormComponent
   ],
   imports: [
@@ -29,4 +29,4 @@ const routes: Routes = [
     UserCardModule
   ]
 })
-export class UpdateUserModule { }
+export class CreateUserModule { }

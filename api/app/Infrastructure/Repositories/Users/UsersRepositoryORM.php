@@ -46,28 +46,31 @@ class UsersRepositoryORM implements UsersRepository
     return $uder_collection;
   }
 
-  // public function create_document_by_user_group_id(int $user_group_id, $document_to_create): ?Document
-  // {
-  //     $this->document_model->user_group_id = $user_group_id;
-  //     foreach ($document_to_create as $property => $value) {
-  //         if ($property != 'id') {
-  //             $this->document_model->$property = $value;
-  //         }
-  //     }
+  public function create_user_by_user_group_id(int $user_group_id, $user_to_create): ?User
+  {
+    $this->user_model->user_group_id = $user_group_id;
+    $this->user_model->role_id = $this->role_model->where('name', $user_to_create->role)->first()->id;
 
-  //     $this->document_model->save();
+    foreach ($user_to_create as $property => $value) {
+      if ($property != 'id' && $property != 'role') {
+        $this->user_model->$property = $value;
+      }
+    }
 
-  //     return Document::get_from_model($this->document_model);
-  // }
+    $this->user_model->password = bcrypt('123456');
+
+    $this->user_model->save();
+
+    return User::get_from_model($this->user_model);
+  }
 
   public function update_user_by_user_group_id(int $user_group_id, $user): ?User
   {
     $user_model = $this->get_one_user_model_by_user_group($user_group_id, $user->id);
-    $user_model->role = $this->role_model->where('name', $user->role)->first()->id;
-
     if (isset($user_model)) {
+      $user_model->role_id = $this->role_model->where('name', $user->role)->first()->id;
       foreach ($user as $property => $value) {
-        if ($property != 'id' && $property != 'role') {
+        if ($property != 'id' && $property != 'role' && $property != 'user_group') {
           $user_model->$property = $value;
         }
       }
@@ -82,19 +85,17 @@ class UsersRepositoryORM implements UsersRepository
     return null;
   }
 
-  // public function delete_document_by_user_group_id(int $user_group_id, int $document_id): bool
-  // {
-  //     $document_model = $this->get_one_document_model_by_user_group($user_group_id, $document_id);
+  public function delete_user_by_user_group_id(int $user_group_id, int $user_id): bool
+  {
+    $user_model = $this->get_one_user_model_by_user_group($user_group_id, $user_id);
 
+    if (isset($user_model)) {
+      $is_deleted = $user_model->delete();
+      return $is_deleted;
+    }
 
-  //     if (isset($document_model)) {
-  //         $this->delete_relation_with_tags_by_document_model($document_model->id);
-  //         $is_deleted = $document_model->delete();
-  //         return $is_deleted;
-  //     }
-
-  //     return false;
-  // }
+    return false;
+  }
 
   private function get_one_user_model_by_user_group(int $user_group_id, int $user_id): ?UserModel
   {
@@ -102,9 +103,4 @@ class UsersRepositoryORM implements UsersRepository
       ->where('user_group_id', $user_group_id)
       ->find($user_id);
   }
-
-  // private function delete_relation_with_tags_by_document_model(int $document_id)
-  // {
-  //     $this->document_tag_model->where('document_id', $document_id)->delete();
-  // }
 }

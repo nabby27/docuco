@@ -12,16 +12,18 @@ import { Router } from '@angular/router';
 })
 export class UserFormComponent {
 
-  @Input() user: User;
-  @Output() userUpdated = new EventEmitter();
+  @Output() userCreated = new EventEmitter();
 
   userForm: FormGroup;
+  role: string;
+  email: string;
+  name: string;
 
   constructor(
     private fb: FormBuilder,
     private userService: UsersService,
     private snackBar: MatSnackBar,
-    private router: Router,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -30,19 +32,17 @@ export class UserFormComponent {
 
   private setFormData() {
     this.userForm = this.fb.group({
-      id: [{ value: this.user.id, disabled: false }],
-      role: [{ value: this.user.role, disabled: false }, [Validators.required]],
-      email: [{ value: this.user.email, disabled: false }, [Validators.required, Validators.email]],
-      name: [{ value: this.user.name, disabled: false }, [Validators.required]]
+      role: [{ value: '', disabled: false }, [Validators.required]],
+      email: [{ value: '', disabled: false }, [Validators.required, Validators.email]],
+      name: [{ value: '', disabled: false }, [Validators.required]]
     });
   }
 
-  async update() {
-    await this.userService.updateUser(this.userForm.value);
-    this.userUpdated.emit();
-    this.userForm.reset();
-    this.router.navigate(['list-users']);
-    this.showMessage('Usuario actualizado');
+  async save() {
+    await this.userService.saveUser(this.userForm.value);
+    this.router.navigate(['/list-users']);
+    this.userCreated.emit();
+    this.showMessage('Usuario guardado');
   }
 
   private showMessage(message: string) {

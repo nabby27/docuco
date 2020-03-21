@@ -2,9 +2,25 @@
   cursor: pointer;
 }
 
-.header {
+.title {
   display: flex;
   justify-content: space-between;
+}
+
+.title-name {
+  display: flex;
+  align-items: center;
+} 
+
+.subtitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .chip {
