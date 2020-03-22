@@ -93,7 +93,7 @@
       "vendor/bin/phpcbf --ignore=*/vendor/*,*/docker/*,*/public/*,*/storage/*,*/resources/*,*/config/*,*/bootstrap/*"
     ],
     "code:duplicate": [
-      "vendor/bin/phpcpd --min-lines 3 --min-tokens 20 app tests"
+      "vendor/bin/phpcpd --min-lines 3 --min-tokens 25 app tests"
     ],
     "code:quality": [
       "composer test",

@@ -7,15 +7,15 @@ use Docuco\Domain\Users\Repositories\UsersRepository;
 
 class GetAllUsersAction
 {
-    private $users_repository;
+    private $repository;
 
-    public function __construct(UsersRepository $users_repository)
+    public function __construct(UsersRepository $repository)
     {
-        $this->users_repository = $users_repository;
+        $this->repository = $repository;
     }
 
     public function execute(int $user_group_id): UserCollection
     {
-        return $this->users_repository->get_all_users_by_user_group_id($user_group_id);
+        return $this->repository->get_all_users_by_user_group_id($user_group_id);
     }
 }

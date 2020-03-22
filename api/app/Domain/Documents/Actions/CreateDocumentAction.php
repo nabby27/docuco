@@ -7,15 +7,17 @@ use Docuco\Domain\Documents\Entities\Document;
 
 class CreateDocumentAction
 {
-    private $documents_repository;
+    private $repository;
 
-    public function __construct(DocumentsRepository $documents_repository)
+    public function __construct(DocumentsRepository $repository)
     {
-        $this->documents_repository = $documents_repository;
+        $this->repository = $repository;
     }
 
+  // public function execute(int $user_group_id, DocumentRequest $document_to_create): ?Document
     public function execute(int $user_group_id, $document_to_create): ?Document
     {
-        return $this->documents_repository->create_document_by_user_group_id($user_group_id, $document_to_create);
+      // $document_to_create->uploadFile();
+        return $this->repository->create_document_by_user_group_id($user_group_id, $document_to_create);
     }
 }

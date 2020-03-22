@@ -7,15 +7,15 @@ use Docuco\Domain\Users\Entities\User;
 
 class CreateUserAction
 {
-  private $users_repository;
+    private $repository;
 
-  public function __construct(UsersRepository $users_repository)
-  {
-    $this->users_repository = $users_repository;
-  }
+    public function __construct(UsersRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
-  public function execute(int $user_group_id, $user): ?User
-  {
-    return $this->users_repository->create_user_by_user_group_id($user_group_id, $user);
-  }
+    public function execute(int $user_group_id, $user): ?User
+    {
+        return $this->repository->create_user_by_user_group_id($user_group_id, $user);
+    }
 }

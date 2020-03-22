@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     container_name: docuco_front
     restart: unless-stopped
+    env_file:
+      - .env
     volumes:
       - ./front:/app
     tty: true
@@ -27,6 +29,8 @@ services:
     image: digitalocean.com/php
     container_name: docuco_api
     restart: unless-stopped
+    env_file:
+      - .env
     tty: true
     environment:
       SERVICE_NAME: api
@@ -44,6 +48,8 @@ services:
     image: nginx:alpine
     container_name: docuco_webserver
     restart: unless-stopped
+    env_file:
+      - .env
     tty: true
     ports:
       - "8000:80"

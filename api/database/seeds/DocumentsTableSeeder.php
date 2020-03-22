@@ -10,11 +10,11 @@ class DocumentsTableSeeder extends Seeder
    *
    * @return void
    */
-  public function run()
-  {
-    DB::table('documents')->truncate();
-    DB::table('documents')->insert([
-      [
+    public function run()
+    {
+        DB::table('documents')->truncate();
+        DB::table('documents')->insert([
+        [
         'name' => 'Factura de Jazztel',
         'description' => '',
         'price' => 60.90,
@@ -24,8 +24,8 @@ class DocumentsTableSeeder extends Seeder
         'created_at' => date('Y-m-d'),
         'updated_at' => date('Y-m-d'),
         'type_id' => 2
-      ],
-      [
+        ],
+        [
         'name' => 'Factura de Jazztel',
         'description' => '',
         'price' => 60.90,
@@ -35,8 +35,8 @@ class DocumentsTableSeeder extends Seeder
         'created_at' => date('Y-m-d'),
         'updated_at' => date('Y-m-d'),
         'type_id' => 2
-      ],
-      [
+        ],
+        [
         'name' => 'Nomina enero',
         'description' => '',
         'price' => 841.78,
@@ -46,8 +46,8 @@ class DocumentsTableSeeder extends Seeder
         'created_at' => date('Y-m-d'),
         'updated_at' => date('Y-m-d'),
         'type_id' => 1
-      ],
-      [
+        ],
+        [
         'name' => 'Nomina febrero',
         'description' => '',
         'price' => 1615.28,
@@ -57,8 +57,8 @@ class DocumentsTableSeeder extends Seeder
         'created_at' => date('Y-m-d'),
         'updated_at' => date('Y-m-d'),
         'type_id' => 1
-      ],
-      [
+        ],
+        [
         'name' => 'Factura a Balearia',
         'description' => '',
         'price' => 1963.77,
@@ -68,8 +68,8 @@ class DocumentsTableSeeder extends Seeder
         'created_at' => date('Y-m-d'),
         'updated_at' => date('Y-m-d'),
         'type_id' => 1
-      ],
-      [
+        ],
+        [
         'name' => 'Factura a AVIS',
         'description' => '',
         'price' => 62.68,
@@ -79,8 +79,8 @@ class DocumentsTableSeeder extends Seeder
         'created_at' => date('Y-m-d'),
         'updated_at' => date('Y-m-d'),
         'type_id' => 1
-      ],
-      [
+        ],
+        [
         'name' => 'Factura a Enterprise',
         'description' => '',
         'price' => 182.04,
@@ -90,8 +90,8 @@ class DocumentsTableSeeder extends Seeder
         'created_at' => date('Y-m-d'),
         'updated_at' => date('Y-m-d'),
         'type_id' => 1
-      ],
-      [
+        ],
+        [
         'name' => 'Factura a Fred Olsen',
         'description' => '',
         'price' => 182.04,
@@ -101,7 +101,7 @@ class DocumentsTableSeeder extends Seeder
         'created_at' => date('Y-m-d'),
         'updated_at' => date('Y-m-d'),
         'type_id' => 1
-      ],
-    ]);
-  }
+        ],
+        ]);
+    }
 }

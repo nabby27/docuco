@@ -13,20 +13,20 @@ class AppServiceProvider extends ServiceProvider
    *
    * @return void
    */
-  public function boot()
-  {
-    Cache::extend('none', function ($app) {
-      return Cache::repository(new NullStore);
-    });
-  }
+    public function boot()
+    {
+        Cache::extend('none', function ($app) {
+            return Cache::repository(new NullStore());
+        });
+    }
 
   /**
    * Register any application services.
    *
    * @return void
    */
-  public function register()
-  {
-    //
-  }
+    public function register()
+    {
+      //
+    }
 }

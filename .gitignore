@@ -1,0 +1,28 @@
+.env
+.env.prod
+*.log
+.vscode
+*.sqlite
+
+# API
+/api/vendor
+/api/public/storage
+/api/bootstrap/cache
+/api/storage/framework/cache/data/
+/api/public/assets/documents/
+/api/storage/*.key
+/api/storage/logs
+/api/composer.lock
+/api/html-coverage-e2e
+/api/html-coverage-unit
+
+# Front
+/front/node_modules
+/front/dist
+/front/tmp
+/front/out-tsc
+/front/package-lock.json
+
+# Cypress
+/front/**/videos
+/front/**/screenshots

@@ -7,15 +7,15 @@ use Docuco\Domain\Users\Entities\User;
 
 class GetOneUserAction
 {
-    private $users_repository;
+    private $repository;
 
-    public function __construct(UsersRepository $users_repository)
+    public function __construct(UsersRepository $repository)
     {
-        $this->users_repository = $users_repository;
+        $this->repository = $repository;
     }
 
     public function execute(int $user_group_id, int $user_id): ?User
     {
-        return $this->users_repository->get_one_user_by_user_group_id($user_group_id, $user_id);
+        return $this->repository->get_one_user_by_user_group_id($user_group_id, $user_id);
     }
 }

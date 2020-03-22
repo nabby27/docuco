@@ -10,16 +10,16 @@ class TypesTableSeeder extends Seeder
    *
    * @return void
    */
-  public function run()
-  {
-    DB::table('types')->truncate();
-    DB::table('types')->insert([
-      [
+    public function run()
+    {
+        DB::table('types')->truncate();
+        DB::table('types')->insert([
+        [
         'name' => 'INCOME'
-      ],
-      [
+        ],
+        [
         'name' => 'EXPENSE'
-      ]
-    ]);
-  }
+        ]
+        ]);
+    }
 }
