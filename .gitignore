@@ -22,6 +22,7 @@
 /front/tmp
 /front/out-tsc
 /front/package-lock.json
+/front/src/environment.prod.ts
 
 # Cypress
 /front/**/videos
