@@ -3,6 +3,7 @@
 *.log
 .vscode
 *.sqlite
+.idea
 
 # API
 /api/vendor
