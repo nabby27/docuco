@@ -47,6 +47,9 @@ If you want can add fake data in database
 ```
 docker-compose exec docuco_api php artisan db:seed
 ```
+> see users and passwords on file `api/database/seeds/UsersTableSeeder.php`
+
+> be sure that are documents on folder `api/public/assets/documents`
 
 Create keys for authentication login
 ```
