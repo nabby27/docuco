@@ -2,7 +2,7 @@
 
 ## Requirments
 
-Se necesita tener instalado:
+You need to install:
 * [Docker](https://www.docker.com/get-started)
 * [Docker Compose](https://docs.docker.com/)
 
