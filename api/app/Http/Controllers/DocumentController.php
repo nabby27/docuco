@@ -13,6 +13,7 @@ use Docuco\Domain\Documents\Actions\UpdateDocumentAction;
 use Docuco\Domain\Documents\Actions\DeleteDocumentAction;
 use Docuco\Domain\Documents\Actions\GetDocumentsDataBarChartAction;
 use Docuco\Domain\Documents\Actions\GetDocumentsDataPieChartAction;
+use Docuco\Domain\Documents\Actions\UploadFileAction;
 
 class DocumentController extends Controller
 {
@@ -27,6 +28,7 @@ class DocumentController extends Controller
     public function get_one_document(Request $request, int $document_id)
     {
         $user_group_id = $this->get_user_group_id_from_request_service->execute($request);
+
         $get_one_document_action = new GetOneDocumentAction($this->document_repository);
         $document = $get_one_document_action->execute($user_group_id, $document_id);
 
@@ -39,6 +41,7 @@ class DocumentController extends Controller
     public function get_all_documents(Request $request)
     {
         $user_group_id = $this->get_user_group_id_from_request_service->execute($request);
+
         $get_all_documents_action = new GetAllDocumentsAction($this->document_repository);
         $document_collection = $get_all_documents_action->execute($user_group_id);
 
@@ -49,12 +52,11 @@ class DocumentController extends Controller
     {
         $user_group_id = $this->get_user_group_id_from_request_service->execute($request);
 
-        if ($request->hasFile('file')) {
-            $document_file = $request->file('file');
-            $name = time() . '.' . $document_file->getClientOriginalExtension();
-            $destination_path = public_path('/assets/documents');
-            $document_file->move($destination_path, $name);
-            $new_document['url'] = '/assets/documents/' . $name;
+        $upload_file_action = new UploadFileAction();
+        $url_file = $upload_file_action->execute($request->file('file'));
+
+        if (!isset($url_file)) {
+            return response()->json(['message' => 'Need a file to save document'], 400);
         }
 
         $new_document['name'] = $request->name;
@@ -62,6 +64,7 @@ class DocumentController extends Controller
         $new_document['price'] = $request->price;
         $new_document['date_of_issue'] = $request->date_of_issue;
         $new_document['type'] = $request->type;
+        $new_document['url'] = $url_file;
 
         $create_document_action = new CreateDocumentAction($this->document_repository);
         $document_created = $create_document_action->execute($user_group_id, $new_document);
