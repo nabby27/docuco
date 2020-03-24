@@ -8,11 +8,11 @@
 # API
 /api/vendor
 /api/public/storage
-/api/bootstrap/cache
+/api/bootstrap/cache/*.php
 /api/storage/framework/cache/data/
 /api/public/assets/documents/
 /api/storage/*.key
-/api/storage/logs
+/api/storage/logs/*
 /api/composer.lock
 /api/html-coverage-e2e
 /api/html-coverage-unit

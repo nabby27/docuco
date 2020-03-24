@@ -8,10 +8,28 @@ You need to install:
 
 ## To start
 
-Copy `.env.example` to `.env` and change varaibles:
+Copy `.env.example` to `.env`
 ``` shell
 cp .env.example .env
 ```
+
+Change variables on `.env` file
+
+And copy `.env` file on `api` folder
+```shell
+cp .env ./app/.env
+```
+
+Final structure
+```shell
+.
+`-- api
+|   `-- .env
+`-- front
+`-- .env
+```
+
+> Be sure to run docker as non-root user [more info](https://docs.docker.com/install/linux/linux-postinstall/)
 
 Build docker images with projects
 ```shell
