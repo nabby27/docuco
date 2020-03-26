@@ -4,6 +4,7 @@ import { DateAdapter } from '@angular/material/core';
 import { DocumentsService } from 'src/app/services/documents.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Document } from 'src/app/entities/document';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-document-form',
@@ -23,7 +24,8 @@ export class DocumentFormComponent implements OnInit {
     private adapter: DateAdapter<any>,
     private fb: FormBuilder,
     private documentsService: DocumentsService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -42,9 +44,10 @@ export class DocumentFormComponent implements OnInit {
     });
   }
 
-  update() {
-    this.documentsService.updateDocument(this.documentForm.value);
+  async update() {
+    await this.documentsService.updateDocument(this.documentForm.value);
     this.showMessage('Documento actualizado');
+    this.router.navigate(['/home']);
   }
 
 

@@ -1,0 +1,104 @@
+{
+  "name": "docuco/docuco",
+  "type": "project",
+  "description": "API for document manager software.",
+  "keywords": [
+    "docuco",
+    "document",
+    "manager",
+    "document manager"
+  ],
+  "authors": [
+    {
+      "name": "Iván Córdoba Donet",
+      "email": "icordobadonet@gmail.com",
+      "homepage": "https://www.icordoba.es",
+      "role": "Software Developer"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^7.2",
+    "doctrine/dbal": "^2.9",
+    "fideloper/proxy": "^4.0",
+    "guzzlehttp/guzzle": "^6.3",
+    "laravel/framework": "^6.0",
+    "laravel/passport": "^7.0",
+    "laravel/tinker": "^1.0"
+  },
+  "require-dev": {
+    "beyondcode/laravel-dump-server": "^1.0",
+    "filp/whoops": "^2.0",
+    "fzaninotto/faker": "^1.4",
+    "mockery/mockery": "^1.0",
+    "nunomaduro/collision": "^2.0",
+    "phpunit/phpunit": "^7.0",
+    "sebastian/phpcpd": "^4.1",
+    "squizlabs/php_codesniffer": "^3.5"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": []
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Docuco\\": "app/"
+    },
+    "classmap": [
+      "database/seeds",
+      "database/factories"
+    ]
+  },
+  "autoload-dev": {
+    "files": [
+      "tests/E2E/HelperE2E.php"
+    ],
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "test": [
+      "composer test:unit",
+      "composer test:e2e"
+    ],
+    "coverage": [
+      "composer coverage:unit",
+      "composer coverage:e2e"
+    ],
+    "test:unit": [
+      "vendor/bin/phpunit --testsuite unit"
+    ],
+    "coverage:unit": [
+      "vendor/phpunit/phpunit/phpunit -c phpunit-unit.xml --coverage-html html-coverage-unit --testsuite unit"
+    ],
+    "test:e2e": [
+      "vendor/bin/phpunit --testsuite e2e"
+    ],
+    "coverage:e2e": [
+      "vendor/phpunit/phpunit/phpunit --coverage-html html-coverage-e2e --testsuite e2e"
+    ],
+    "code:standard": [
+      "vendor/bin/phpcs app tests"
+    ],
+    "code:fix": [
+      "vendor/bin/phpcbf --ignore=*/vendor/*,*/docker/*,*/public/*,*/storage/*,*/resources/*,*/config/*,*/bootstrap/*"
+    ],
+    "code:duplicate": [
+      "vendor/bin/phpcpd --min-lines 3 --min-tokens 25 app tests"
+    ],
+    "code:quality": [
+      "composer test",
+      "composer code:standard",
+      "composer code:duplicate"
+    ]
+  }
+}

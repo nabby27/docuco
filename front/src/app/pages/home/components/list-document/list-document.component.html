@@ -14,7 +14,7 @@
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> Eliminar </th>
         <td mat-cell *matCellDef="let document">
-          <button mat-button (click)="removeDocument(document)" color="accent">
+          <button mat-button (click)="openDialog(document)" color="accent">
             <i class="material-icons">delete</i>
           </button>
         </td>
@@ -52,7 +52,7 @@
 
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef> Descripción </th>
-        <td mat-cell *matCellDef="let document"> {{ document.description }} </td>
+        <td mat-cell *matCellDef="let document"> {{ document.description ? document.description : '-' }} </td>
       </ng-container>
 
       <ng-container matColumnDef="date_of_issue">
@@ -73,7 +73,7 @@
       <ng-container matColumnDef="file">
         <th mat-header-cell *matHeaderCellDef> Documento </th>
         <td mat-cell *matCellDef="let document">
-          <a class="download-icon" target="_blank" href="http://localhost:8000/{{document.url}}">
+          <a class="download-icon" target="_blank" href="{{url}}{{document.url}}">
             <i class="material-icons">description</i>
           </a>
         </td>

@@ -27,13 +27,21 @@ export class AddDocumentComponent implements OnInit {
   }
 
   renderView(file: File): void {
-    if (file.type === 'application/pdf') {
+    if (this.isFilePDF(file) && this.isLessThan1MB(file)) {
       this.errorType = false;
       this.file = file;
       this.documentsService.setDocumentFileToPreview(this.file);
     } else {
       this.errorType = true;
     }
+  }
+
+  private isFilePDF(file: File) {
+    return file.type === 'application/pdf';
+  }
+
+  private isLessThan1MB(file: File) {
+    return (file.size / 1024 / 1024) < 1;
   }
 
   removeImage() {

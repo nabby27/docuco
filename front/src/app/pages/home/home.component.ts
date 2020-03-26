@@ -23,4 +23,5 @@ export class HomeComponent implements OnInit {
     this.documents = null;
     this.documents = await this.documentsService.getAllDocuments();
   }
+
 }

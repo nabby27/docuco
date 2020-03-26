@@ -4,6 +4,7 @@
 .vscode
 *.sqlite
 .idea
+.nvm
 
 # API
 /api/vendor

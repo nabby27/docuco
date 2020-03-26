@@ -7,7 +7,7 @@
     <form *ngIf="!file" class="form-file" [formGroup]="documentFileForm">
       <div class="drag-container" appDragDrop (click)="fileField.click()" (fileDropped)="renderView($event)">
         <span class="drag-drop-text">Clica y elige un documento <br>o<br> arrastralo aquí</span>
-        <div *ngIf="errorType" class="drag-drop-text error-message">El documento tiene que ser pdf</div>
+        <div *ngIf="errorType" class="drag-drop-text error-message">El documento tiene que ser pdf y pesar menos de 1MB</div>
         <input type="file" name="file" #fileField (change)="renderView($event.target.files[0])" accept=".pdf" hidden>
       </div>
     </form>

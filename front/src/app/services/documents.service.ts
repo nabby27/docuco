@@ -42,9 +42,12 @@ export class DocumentsService {
     this.http.post(this.url, data).subscribe();
   }
 
-  updateDocument(document: any): void {
+  updateDocument(document: any): Promise<void> {
     document.date_of_issue = moment(document.date_of_issue).format("YYYY-MM-DD");
-    this.http.put<Document>(`${this.url}/${document.id}`, document).subscribe();
+    return new Promise((resolve, reject) => {
+      this.http.put<Document>(`${this.url}/${document.id}`, document)
+        .subscribe(() => resolve());
+    })
   }
 
   deleteDocument(document: any): Observable<any> {

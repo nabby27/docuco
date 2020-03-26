@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DocumentsService } from 'src/app/services/documents.service';
 import { Document } from 'src/app/entities/document';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-update-document',
@@ -10,7 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-document.component.scss']
 })
 export class UpdateDocumentComponent implements OnInit {
-
+  
+  url = `${environment.url}`;
   errorType: boolean = false;
   documentFileForm: FormGroup;
   file: File;

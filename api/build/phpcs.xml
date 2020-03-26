@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ruleset name="Docuco-Coding-Standards">
+  <description>Docuco Coding Standards</description>
+
+  <!-- Scan all files in directory -->
+  <file>.</file>
+
+  <!-- Scan only PHP files -->
+  <arg name="extensions" value="php"/>
+
+  <!-- Ignore folder-->
+  <exclude-pattern>vendor/</exclude-pattern>
+  <exclude-pattern>bootstrap/</exclude-pattern>
+  <exclude-pattern>xdebug/</exclude-pattern>
+
+  <!-- Show colors in console -->
+  <arg value="-colors"/>
+
+  <!-- Show sniff codes in all reports -->
+  <arg value="ns"/>
+
+  <!-- Use PSR-2 as a base -->
+  <rule ref="PSR12"/>
+
+  <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+    <exclude-pattern>database/</exclude-pattern>
+  </rule>
+
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="120"/>
+      <property name="absoluteLineLimit" value="120"/>
+    </properties>
+  </rule>
+
+  <rule ref="PSR2">
+    <exclude name="PSR1.Methods.CamelCapsMethodName"/>
+  </rule>
+</ruleset>
+

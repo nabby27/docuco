@@ -11,12 +11,13 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import localeEsExtra from '@angular/common/locales/extra/es';
+import { DialogComponent } from './shared/dialog/dialog.component';
 
 registerLocaleData(localeEs, 'es', localeEsExtra);
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
