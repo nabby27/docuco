@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Chart from 'node_modules/chart.js';
 import { ChartsService } from 'src/app/services/charts.service';
 
@@ -7,19 +7,20 @@ import { ChartsService } from 'src/app/services/charts.service';
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss']
 })
-export class PieChartComponent implements AfterViewInit {
+export class PieChartComponent implements OnInit {
 
-  @Input() documents: Document[] = [];
   chart: Chart;
-  data;
+  dataChart;
 
   constructor(
     private chartsService: ChartsService
   ) { }
 
-  async ngAfterViewInit() {
-    this.data = await this.chartsService.getIncomeAndExpensesToPieChart();
-    this.createChart();
+  async ngOnInit() {
+    this.dataChart = await this.chartsService.getIncomeAndExpensesToPieChart();
+    setTimeout(() => {
+      this.createChart();
+    })
   }
 
   private createChart() {
@@ -30,10 +31,10 @@ export class PieChartComponent implements AfterViewInit {
     this.chart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: this.data.labels,
+        labels: this.dataChart.labels,
         datasets: [
           {
-            data: this.data.data,
+            data: this.dataChart.data,
             backgroundColor: ['rgba(0, 174, 255, 0.8)', 'rgba(255, 46, 23, 0.6)'],
           }
         ],

@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit, OnInit } from '@angular/core';
 import Chart from 'node_modules/chart.js';
 import { ChartsService } from 'src/app/services/charts.service';
 
@@ -7,9 +7,8 @@ import { ChartsService } from 'src/app/services/charts.service';
   templateUrl: './generic-chart.component.html',
   styleUrls: ['./generic-chart.component.scss']
 })
-export class GenericChartComponent implements AfterViewInit {
+export class GenericChartComponent implements OnInit {
 
-  @Input() documents: Document[] = [];
   chart: Chart;
   dataChart;
   
@@ -26,9 +25,11 @@ export class GenericChartComponent implements AfterViewInit {
     private chartsService: ChartsService
   ) { }
 
-  async ngAfterViewInit() {
+  async ngOnInit() {
     this.dataChart = await this.chartsService.getIncomeAndExpensesToGenericChart();
-    this.createChart();
+    setTimeout(() => {
+      this.createChart();
+    })
   }
 
   async changeChartFromDatasetType() {
@@ -48,7 +49,7 @@ export class GenericChartComponent implements AfterViewInit {
   }
 
   private createChart() {
-    const ctx = document.getElementById('bar-chart');
+    const ctx = document.getElementById('generic-chart');
     if (this.chart) {
       this.chart.destroy();
     }
@@ -59,10 +60,12 @@ export class GenericChartComponent implements AfterViewInit {
         datasets: this.dataChart.datasets
       },
       options: {
+        legend: {
+          display: this.chartDataset === 'income-expenses'
+        },
         responsive: true,
         maintainAspectRatio: true,
         scales: {
-          // legend: this.dataChart?.legend,
           yAxes: [{
             ticks: {
               beginAtZero: true

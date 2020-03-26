@@ -1,17 +1,10 @@
 <div class="first-row-cards">
   <mat-card class="small-card">
-    <app-generic-chart *ngIf="documents" [documents]="documents"></app-generic-chart>
-    <div *ngIf="!documents">
-      <app-spinner></app-spinner>
-    </div>
+    <app-generic-chart></app-generic-chart>
   </mat-card>
 
   <mat-card class="small-card">
-    <h4>Ingresos y gastos este año</h4>
-    <app-pie-chart *ngIf="documents" [documents]="documents"></app-pie-chart>
-    <div *ngIf="!documents">
-      <app-spinner></app-spinner>
-    </div>
+    <app-pie-chart></app-pie-chart>
   </mat-card>
 </div>
 

@@ -1,7 +1,10 @@
-<div *ngIf="documents">
-  <canvas class="chart" id="pie-chart"></canvas>
+<div *ngIf="dataChart">
+  <h4>Ingresos y gastos este año</h4>
+  <div>
+    <canvas id="pie-chart"></canvas>
+  </div>
 </div>
 
-<div *ngIf="!documents">
+<div *ngIf="!dataChart">
   <app-spinner></app-spinner>
 </div>
