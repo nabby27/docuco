@@ -11,8 +11,6 @@ use Docuco\Domain\Documents\Actions\GetOneDocumentAction;
 use Docuco\Domain\Documents\Actions\CreateDocumentAction;
 use Docuco\Domain\Documents\Actions\UpdateDocumentAction;
 use Docuco\Domain\Documents\Actions\DeleteDocumentAction;
-use Docuco\Domain\Documents\Actions\GetDocumentsDataBarChartAction;
-use Docuco\Domain\Documents\Actions\GetDocumentsDataPieChartAction;
 use Docuco\Domain\Documents\Actions\UploadFileAction;
 
 class DocumentController extends Controller
@@ -105,21 +103,4 @@ class DocumentController extends Controller
         return response()->json(['message' => 'Document not exist.'], 404);
     }
 
-    public function get_documents_data_bar_chart(Request $request)
-    {
-        $user_group_id = $this->get_user_group_id_from_request_service->execute($request);
-        $get_documents_data_bar_chart_action = new GetDocumentsDataBarChartAction($this->document_repository);
-        $data_chart = $get_documents_data_bar_chart_action->execute($user_group_id);
-
-        return response()->json(['data_chart' => $data_chart], 200);
-    }
-
-    public function get_documents_data_pie_chart(Request $request)
-    {
-        $user_group_id = $this->get_user_group_id_from_request_service->execute($request);
-        $get_documents_data_pie_chart_action = new GetDocumentsDataPieChartAction($this->document_repository);
-        $data_chart = $get_documents_data_pie_chart_action->execute($user_group_id);
-
-        return response()->json(['data_chart' => $data_chart], 200);
-    }
 }

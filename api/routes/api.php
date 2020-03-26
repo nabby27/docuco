@@ -33,10 +33,13 @@ Route::post('/login', 'UserController@login')->name('login.api');
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/documents', 'DocumentController@get_all_documents')->name('all_documents.api');
-    Route::get('/documents/bar-chart', 'DocumentController@get_documents_data_bar_chart')->name('documents_data_bar_chart.api');
-    Route::get('/documents/pie-chart', 'DocumentController@get_documents_data_pie_chart')->name('documents_data_pie_chart.api');
     Route::get('/documents/{document_id}', 'DocumentController@get_one_document')->name('one_document.api');
-
+    
+    // TODO: Change to chart controller
+    Route::get('/charts/pie-chart/income-expenses', 'ChartController@get_documents_data_pie_chart')->name('documents_data_pie_chart.api');
+    Route::get('/charts/generic-chart/income-expenses', 'ChartController@get_documents_data_bar_chart')->name('documents_data_bar_chart.api');
+    Route::get('/charts/generic-chart/benefit', 'ChartController@get_benefit_data_generic_chart')->name('benefit_data_generic_chart.api');
+    
     Route::get('/users', 'UserController@get_all_users')->name('all_user.api');
     Route::get('/users/current', 'UserController@get_current_user')->name('current_user.api');
     Route::get('/users/{user_id}', 'UserController@get_one_user')->name('one_user.api');

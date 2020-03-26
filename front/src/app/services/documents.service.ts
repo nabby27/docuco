@@ -53,21 +53,7 @@ export class DocumentsService {
   deleteDocument(document: any): Observable<any> {
     return this.http.delete(`${this.url}/${document.id}`);
   }
-
-  getDocumentsToBarChart(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.http.get(`${this.url}/bar-chart`)
-        .subscribe((data: any) => resolve(data.data_chart));
-    })
-  }
-
-  getDocumentsToPieChart(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.http.get(`${this.url}/pie-chart`)
-        .subscribe((data: any) => resolve(data.data_chart));
-    })
-  }
-
+  
   setDocumentFileToPreview(documentToPreview: File) {
     this.documentFile = documentToPreview;
   }

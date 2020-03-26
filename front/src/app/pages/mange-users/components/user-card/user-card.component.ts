@@ -43,8 +43,7 @@ export class UserCardComponent {
     this.dialogRef = this.dialog.open(DialogComponent, {
       width: '20vw',
       data: {
-        title: '¿Estas seguro?',
-        text: `Que quieres eliminar el usuario '${user.name}'`,
+        text: `¿Quieres eliminar el usuario '${user.name}'?`,
         clickFn: () => this.removeUser(user)
       }
     });

@@ -3,7 +3,7 @@
 namespace Docuco\Domain\Documents\Actions;
 
 use Docuco\Domain\Documents\Repositories\DocumentsRepository;
-use Docuco\Domain\Documents\Entities\DocumentDataPieChart;
+use Docuco\Domain\Documents\Entities\IncomeExpensesDataPieChart;
 
 class GetDocumentsDataPieChartAction
 {
@@ -14,7 +14,7 @@ class GetDocumentsDataPieChartAction
         $this->repository = $repository;
     }
 
-    public function execute(int $user_group_id): DocumentDataPieChart
+    public function execute(int $user_group_id): IncomeExpensesDataPieChart
     {
         $documents = $this->repository->get_all_documents_by_user_group_id($user_group_id);
         $labels = ['Ingresos', 'Gastos'];
@@ -32,6 +32,6 @@ class GetDocumentsDataPieChartAction
             }
         }
 
-        return new DocumentDataPieChart($labels, $data);
+        return new IncomeExpensesDataPieChart($labels, $data);
     }
 }

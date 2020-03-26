@@ -5,9 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 import { ListDocumentComponent } from './components/list-document/list-document.component';
-import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { DialogModule } from 'src/app/shared/dialog/dialog.module';
+import { GenericChartComponent } from './components/generic-chart/generic-chart.component';
 
 const routes: Routes = [
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
   declarations: [
     HomeComponent,
     ListDocumentComponent,
-    BarChartComponent,
+    GenericChartComponent,
     PieChartComponent
   ],
   imports: [

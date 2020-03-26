@@ -64,8 +64,7 @@ export class ListDocumentComponent implements OnInit, OnChanges {
     this.dialogRef = this.dialog.open(DialogComponent, {
       width: '20vw',
       data: {
-        title: '¿Estas seguro?',
-        text: `Que quieres eliminar el document '${document.name}'`,
+        text: `¿Quieres eliminar el documento '${document.name}'?`,
         clickFn: () => this.removeDocument(document)
       }
     });

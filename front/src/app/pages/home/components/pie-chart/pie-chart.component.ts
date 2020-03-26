@@ -1,6 +1,6 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 import Chart from 'node_modules/chart.js';
-import { DocumentsService } from 'src/app/services/documents.service';
+import { ChartsService } from 'src/app/services/charts.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -14,11 +14,11 @@ export class PieChartComponent implements AfterViewInit {
   data;
 
   constructor(
-    private documentsService: DocumentsService
+    private chartsService: ChartsService
   ) { }
 
   async ngAfterViewInit() {
-    this.data = await this.documentsService.getDocumentsToPieChart();
+    this.data = await this.chartsService.getIncomeAndExpensesToPieChart();
     this.createChart();
   }
 

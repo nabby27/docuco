@@ -3,9 +3,9 @@
 namespace Docuco\Domain\Documents\Actions;
 
 use Docuco\Domain\Documents\Repositories\DocumentsRepository;
-use Docuco\Domain\Documents\Entities\DocumentDataBarChart;
+use Docuco\Domain\Documents\Entities\DataGenericChart;
 
-class GetDocumentsDataBarChartAction
+class GetIncomeAndExpensesDataToGenericChartAction
 {
     private $repository;
 
@@ -14,7 +14,7 @@ class GetDocumentsDataBarChartAction
         $this->repository = $repository;
     }
 
-    public function execute(int $user_group_id): DocumentDataBarChart
+    public function execute(int $user_group_id): DataGenericChart
     {
         $documents = $this->repository->get_all_documents_by_user_group_id($user_group_id);
         $labels = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
@@ -34,6 +34,23 @@ class GetDocumentsDataBarChartAction
             }
         }
 
-        return new DocumentDataBarChart($labels, $income_data, $expenses_data);
+        $incomeDataset = [
+            'data' => $income_data,
+            'label' => 'Ingresos',
+            'backgroundColor' => 'rgba(0, 174, 255, 0.8)'
+        ];
+
+        $expensesDataset = [
+            'data' => $expenses_data,
+            'label' => 'Gastos',
+            'backgroundColor' => 'rgba(255, 46, 23, 0.6)'
+        ];
+
+        $datasets = [
+            $incomeDataset,
+            $expensesDataset
+        ];
+
+        return new DataGenericChart($labels, $datasets);
     }
 }

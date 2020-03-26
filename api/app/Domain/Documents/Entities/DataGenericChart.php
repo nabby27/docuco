@@ -2,16 +2,16 @@
 
 namespace Docuco\Domain\Documents\Entities;
 
-class DocumentDataPieChart
+class DataGenericChart
 {
     public $labels;
-    public $data;
+    public $datasets;
 
     public function __construct(
         array $labels,
-        array $data
+        array $datasets
     ) {
         $this->labels = $labels;
-        $this->data = $data;
+        $this->datasets = $datasets;
     }
 }
