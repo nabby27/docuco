@@ -1,6 +1,6 @@
-<mat-card class="login-card">
+<mat-card>
   <mat-card-header class="title">
-    <img class="logo" src="/assets/logo.svg" alt="">
+    <img class="logo" src="/assets/logo.svg" alt="docuco logo">
     <mat-card-title>
       Inicia sesión en Docuco
     </mat-card-title>
@@ -32,9 +32,9 @@
     </form>
   </mat-card-content>
   <mat-card-actions class="input-container">
-    <button data-cy="submit" class="button-container" [disabled]="!loginForm.valid" mat-stroked-button color="primary"
+    <button data-cy="submit" class="button" [disabled]="!loginForm.valid" mat-stroked-button color="primary"
       (click)="login()">
-      <div class="button" *ngIf="!isLogin">
+      <div class="button-content" *ngIf="!isLogin">
         Iniciar sesión
         <mat-icon>keyboard_arrow_right</mat-icon>
       </div>

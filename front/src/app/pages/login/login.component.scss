@@ -1,50 +1,88 @@
-// font-family: 'Major Mono Display', monospace;
-// font-family: 'Gothic A1', sans-serif;
-// font-family: 'Varela', sans-serif;
-// font-family: 'Anonymous Pro', monospace;
-// font-family: 'Magra', sans-serif;
-
 .container {
   min-height: 100vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  background-image: linear-gradient(-45deg, #3f51b5 0%, #3f51b5 15%, #FFF 15%, #FFF 15.1%, #f0f0f0 15.1%, #f0f0f0 100%);
+  background-image: linear-gradient(-45deg, #f0f0f0 0%, #f0f0f0 80%, #3f51b5 80%, #3f51b5 100%);
 }
 
 .card {
-  width: 30%;
+  width: 90%;
 }
 
-.card-info {
-  display: flex;
-  flex-direction: column;
+.card--info {
+  display: none;
 }
 
-.docuco-name {
-  font-size: calc(20px + 3vw);
-  font-weight: lighter;
-  font-family: 'Anonymous Pro', monospace;
+/* tablet */
+@media screen and (min-width: 655px) {
+  .container {
+    flex-direction: column;
+    justify-content: space-around;
+    background-image: linear-gradient(-45deg, #3f51b5 0%, #3f51b5 30%, #f0f0f0 30%, #f0f0f0 100%);
+  }
+  
+  .card {
+    width: 80%;
+  }
+  
+  .card--info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+  }
+  
+  .info-title {
+    margin: 20px 0;
+    font-weight: lighter;
+    font-size: calc(30px + 1.5vw);
+  }
+
+  .info-subtitle {
+    text-align: end;
+    margin: 1.5vw 0;
+    font-weight: 600;
+    font-size: calc(15px + 0.5vw);
+  }
+
+  .info-text {
+    margin: 1.5vw 0;
+    font-size: calc(15px + 0.5vw);
+  }
+
+  .info-image {
+    display: none;
+  }
 }
 
-.logo-container {
-  display: flex;
-  justify-content: center;
-}
+/* desktop */
+@media screen and (min-width: 1222px) {
+  .container {
+    flex-direction: row;
+    background-image: linear-gradient(-45deg, #3f51b5 0%, #3f51b5 15%, #FFF 15%, #FFF 15.1%, #f0f0f0 15.1%, #f0f0f0 100%);
+  }
+  
+  .card {
+    width: 40%;
+  }
+  
+  .info-title {
+    font-size: calc(30px + 1vw);
+  }
 
-.title-info {
-  font-size: calc(20px + 0.4vw);
-  font-weight: 500;
-  margin-bottom: 30px;
-}
+  .info-subtitle {
+    text-align: start;
+    font-size: calc(15px + 0.5vw);
+  }
 
-.text-info {
-  font-size: calc(18px + 0.1vw);
-  line-height: 2em;
-  font-weight: lighter;
-  margin-bottom: 30px;
-}
+  .info-text {
+    font-size: calc(15px + 0.5vw);
+  }
 
-.card-login {
-  margin-bottom: 200px;
+  .info-image {
+    margin-top: 20px;
+    display: block;
+    width: calc(30px + 15vw);
+  }
 }

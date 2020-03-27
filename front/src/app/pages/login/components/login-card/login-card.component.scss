@@ -1,9 +1,3 @@
-.input-container {
-  margin-top: 40px !important;
-  width: 80%;
-  margin: auto;
-}
-
 mat-form-field {
   width: 100%;
 }
@@ -17,16 +11,31 @@ mat-form-field {
 
 .logo {
   margin-right: 20px;
-  width: 2vw;
+  width: calc(20px + 1.5vw);
 }
 
-.button-container {
+.input-container {
+  margin-top: 40px !important;
+  width: 80%;
+  margin: auto;
+}
+
+.button {
   width: 100%;
   margin-bottom: 40px !important;
 }
 
-.button {
+.button-content {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+/* tablet */
+@media screen and (min-width: 655px) {
+}
+
+/* desktop */
+@media screen and (min-width: 1222px) {
 }
