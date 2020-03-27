@@ -1,9 +1,9 @@
 <div>
-  <app-header></app-header>
+  <app-header [sidenavElement]="sidenav"></app-header>
 
   <mat-sidenav-container class="container">
-    <mat-sidenav class="sidenav" mode="side" [opened]="userCanEdit()" fixedInViewport="true">
-      <app-sidenav></app-sidenav>
+    <mat-sidenav #sidenav class="sidenav" [mode]="isDesktopScreen ? 'side' : 'over'" [opened]="userCanEdit() && isDesktopScreen" fixedInViewport="true">
+      <app-sidenav [sidenavElement]="sidenav" [isDesktopScreen]="isDesktopScreen"></app-sidenav>
     </mat-sidenav>
 
     <mat-sidenav-content class="main-content">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/entities/user';
 
@@ -9,6 +9,8 @@ import { User } from 'src/app/entities/user';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() sidenavElement;
+  
   user: User;
 
   constructor(
@@ -19,6 +21,10 @@ export class HeaderComponent implements OnInit {
     this.user = await this.usersService.getCurrentUser();
   }
 
+  userCanEdit() {
+    return this.usersService.hasPermissionToEdit();
+  }
+  
   logout() {
     this.usersService.doLogout();
   }

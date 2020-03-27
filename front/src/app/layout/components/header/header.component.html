@@ -1,5 +1,9 @@
 <mat-toolbar color="primary" class="header-toolbar">
-  <span></span>
+  <span>
+    <button mat-icon-button (click)="sidenavElement.toggle()" aria-label="menu" *ngIf="userCanEdit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </span>
   <div>
     <span class="docuco-name">Docuco</span>
   </div>

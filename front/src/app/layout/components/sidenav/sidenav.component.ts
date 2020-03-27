@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/entities/user';
 
@@ -16,6 +16,9 @@ export interface Link {
 })
 export class SidenavComponent implements OnInit {
 
+  @Input() sidenavElement;
+  @Input() isDesktopScreen;
+  
   user: User;
   links: Link[] = [
     {
@@ -44,6 +47,12 @@ export class SidenavComponent implements OnInit {
 
   async ngOnInit() {
     this.user = await this.usersService.getCurrentUser();
+  }
+
+  closeIfIsNotDesktop() {
+    if (!this.isDesktopScreen) {
+      this.sidenavElement.close();
+    }
   }
 
   userCanAccess(link: Link) {

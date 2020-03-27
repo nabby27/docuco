@@ -1,13 +1,13 @@
-<div class="first-row-cards">
-  <mat-card class="small-card">
+<div class="container">
+  <mat-card class="card card--chart">
     <app-generic-chart></app-generic-chart>
   </mat-card>
-
-  <mat-card class="small-card">
+  
+  <mat-card class="card card--chart">
     <app-pie-chart></app-pie-chart>
   </mat-card>
+  
+  <mat-card class="card card--list">
+    <!-- <app-list-document [documents]="documents" (documentDeleted)="refreshDocuments()"></app-list-document> -->
+  </mat-card>
 </div>
-
-<mat-card class="large-card">
-  <app-list-document [documents]="documents" (documentDeleted)="refreshDocuments()"></app-list-document>
-</mat-card>

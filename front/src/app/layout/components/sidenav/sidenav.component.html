@@ -4,7 +4,7 @@
       <mat-button-toggle-group class="menu-list" vertical="true">
         <div *ngFor="let link of links">
           <mat-button-toggle *ngIf="userCanAccess(link)" class="menu-item" mat-button [routerLink]="link.url"
-            routerLinkActive="mat-button-toggle-checked">
+            routerLinkActive="mat-button-toggle-checked" (click)="closeIfIsNotDesktop()">
             <i class="sidenav-icon-item material-icons">{{ link.icon }}</i>
             {{ link.text }}
           </mat-button-toggle>
@@ -15,6 +15,6 @@
 
   <section class="sidenav-footer">
     <img class="sidenav-footer-logo" src="/assets/logo.svg" alt="">
-    <span class="docuco-name">Docuco</span>
+    <span class="docuco sidenav-footer-text">Docuco</span>
   </section>
 </div>

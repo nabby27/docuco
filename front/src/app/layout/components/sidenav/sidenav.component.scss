@@ -1,3 +1,4 @@
+/* mobile */
 .sidenav-container {
   height: 100%;
   display: flex;
@@ -49,12 +50,37 @@
 }
 
 .sidenav-footer-logo {
-  width: 2vw;
+  width: calc(20px + 2vw);
   margin-bottom: 10px;
 }
 
-.docuco-name {
-  font-size: calc(18px + 0.5vw);
+.sidenav-footer-text {
+  font-size: calc(20px + 1vw);
   font-weight: lighter;
-  font-family: 'Anonymous Pro', monospace;
+}
+
+/* tablet */
+@media screen and (min-width: 655px) {
+  .sidenav-footer-logo {
+    width: calc(18px + 2vw);
+    margin-bottom: 10px;
+  }
+  
+  .sidenav-footer-text {
+    font-size: calc(18px + 1vw);
+    font-weight: lighter;
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 1222px) {
+  .sidenav-footer-logo {
+    width: calc(18px + 1vw);
+    margin-bottom: 10px;
+  }
+  
+  .sidenav-footer-text {
+    font-size: calc(18px + 0.5vw);
+    font-weight: lighter;
+  }
 }

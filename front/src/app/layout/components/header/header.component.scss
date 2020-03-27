@@ -1,3 +1,4 @@
+/* mobile */
 .header-toolbar {
   display: flex;
   justify-content: space-between;
@@ -10,11 +11,20 @@
 .icon {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
   width: 100px;
-  // fill: white;
 }
 
 .docuco-name {
   font-size: calc(20px + 0.8vw);
   font-weight: lighter;
   font-family: 'Anonymous Pro', monospace;
+}
+
+/* tablet */
+@media screen and (min-width: 600px) {
+  
+}
+
+/* desktop */
+@media screen and (min-width: 991px) {
+
 }
