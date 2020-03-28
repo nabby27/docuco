@@ -1,11 +1,14 @@
-import { Component, Input, AfterViewInit, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Chart from 'node_modules/chart.js';
 import { ChartsService } from 'src/app/services/charts.service';
 
 @Component({
   selector: 'app-generic-chart',
   templateUrl: './generic-chart.component.html',
-  styleUrls: ['./generic-chart.component.scss']
+  styleUrls: ['./generic-chart.component.scss'],
+  host: {
+    '(window:resize)': 'onResize($event)'
+  }
 })
 export class GenericChartComponent implements OnInit {
 
@@ -27,9 +30,14 @@ export class GenericChartComponent implements OnInit {
 
   async ngOnInit() {
     this.dataChart = await this.chartsService.getIncomeAndExpensesToGenericChart();
+    setTimeout(() => this.createChart());
+  }
+
+  onResize(event) {
+    this.chart.destroy();
     setTimeout(() => {
       this.createChart();
-    })
+    });
   }
 
   async changeChartFromDatasetType() {
@@ -60,6 +68,10 @@ export class GenericChartComponent implements OnInit {
         datasets: this.dataChart.datasets
       },
       options: {
+        onResize: function(chart, size) {
+          chart.options.legend.display = size.height > 128;
+          chart.update();
+        },
         legend: {
           display: this.chartDataset === 'income-expenses'
         },

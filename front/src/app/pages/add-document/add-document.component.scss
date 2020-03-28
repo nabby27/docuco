@@ -1,40 +1,30 @@
-.cards-container {
-  display: grid;
-  grid-template-columns: 1fr 0.3fr;
-  grid-gap: 40px;
-}
-
-.card-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 40px;
-}
-
-.card {
-  height: 74.7vh;
-}
-
-.btn-container {
-  width: 100%;
-  margin-bottom: 40px;
-}
-
-.btn-remove-document {
+/* mobile */
+.container {
   display: flex;
-  justify-content: space-around;
+  padding: 10px;
+}
+
+.container-card {
   align-items: center;
+  justify-content: stretch;
+  padding: 10px;
+  min-height: 70vh;
 }
 
-.card__pdf {
-  background-color: #e0e0e0;
-  overflow: auto;
+.container-cards {
+  flex-direction: column-reverse;
 }
 
-.form-file {
+.card__drag-drop {
+  height: 400px;
+  width: 100%;
+}
+
+.form__drag-drop {
   height: 100%;
 }
 
-.drag-container {
+.drag-drop__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,15 +33,52 @@
   min-height: 100%;
 }
 
-.drag-drop-text {
+.drag-drop__text {
   text-align: center;
 }
 
-.error-message {
+.drag-drop__text--error {
   color: rgb(201, 17, 17);
 }
 
-.preview-document {
+.card__pdf {
+  background-color: #e0e0e0;
+  overflow: auto;
+}
+
+.button {
   width: 100%;
-  height: auto;
+  margin-bottom: 40px;
+}
+
+.button__remove {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* tablet */
+@media screen and (min-width: 655px) {
+  .container {
+    padding: 30px;
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 1222px) {
+  /* mobile */
+  .container {
+    display: grid;
+    padding: 40px;
+  }
+    
+  .container-cards {
+    grid-template-columns: 1fr 0.3fr;
+    grid-gap: 40px;
+  }
+
+  .card__pdf {
+    height: 85vh;
+    overflow: auto;
+  }
 }

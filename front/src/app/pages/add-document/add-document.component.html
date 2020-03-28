@@ -1,21 +1,22 @@
-<div [ngClass]="{'cards-container': file, 'card-container': !file}">
-  <mat-card class="card card__pdf">
-    <div *ngIf="file">
-      <app-pdf-viewer [file]="file"></app-pdf-viewer>
-    </div>
-
-    <form *ngIf="!file" class="form-file" [formGroup]="documentFileForm">
-      <div class="drag-container" appDragDrop (click)="fileField.click()" (fileDropped)="renderView($event)">
-        <span class="drag-drop-text">Clica y elige un documento <br>o<br> arrástralo aquí</span>
-        <div *ngIf="errorType" class="drag-drop-text error-message">El documento tiene que ser pdf y pesar menos de 1MB</div>
+<div class="container" [ngClass]="{'container-cards': file, 'container-card': !file}">
+  
+  <div class="card__drag-drop" *ngIf="!file">
+    <form class="form__drag-drop" [formGroup]="documentFileForm">
+      <div class="drag-drop__container" appDragDrop (click)="fileField.click()" (fileDropped)="renderView($event)">
+        <span class="drag-drop__text">Clica y elige un documento <br>o<br> arrástralo aquí</span>
+        <div *ngIf="errorType" class="drag-drop__text drag-drop__text--error">El documento tiene que ser pdf y pesar menos de 1MB</div>
         <input type="file" name="file" #fileField (change)="renderView($event.target.files[0])" accept=".pdf" hidden>
       </div>
     </form>
+  </div>
+
+  <mat-card class="card__pdf" *ngIf="file">
+    <app-my-pdf-viewer [file]="file"></app-my-pdf-viewer>
   </mat-card>
 
-  <div class="card" *ngIf="file">
-    <button class="btn-container" (click)="removeImage()" mat-stroked-button color="accent">
-      <div class="btn-remove-document">
+  <div *ngIf="file">
+    <button class="button" (click)="removeImage()" mat-stroked-button color="accent">
+      <div class="button__remove">
         Quitar este documento
         <mat-icon>close</mat-icon>
       </div>

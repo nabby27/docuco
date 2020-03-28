@@ -11,7 +11,7 @@
   width: 90%;
 }
 
-.card--info {
+.card__info {
   display: none;
 }
 
@@ -27,7 +27,7 @@
     width: 80%;
   }
   
-  .card--info {
+  .card__info {
     display: flex;
     flex-direction: column;
     justify-content: center;

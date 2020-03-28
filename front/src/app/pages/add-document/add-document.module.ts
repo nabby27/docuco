@@ -5,10 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropDirective } from './directives/drag-drop.directive';
-import { PdfViewerComponent } from './components/pdf-viewer/pdf-viewer.component';
 import { DocumentFormComponent } from './components/document-form/document-form.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
+import { MyPdfViewerModule } from 'src/app/shared/pdf-viewer/my-pdf-viewer.module';
 
 const routes: Routes = [
   {
@@ -22,13 +21,12 @@ const routes: Routes = [
     AddDocumentComponent,
     DragDropDirective,
     DocumentFormComponent,
-    PdfViewerComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     SpinnerModule,
-    PdfViewerModule,
+    MyPdfViewerModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]

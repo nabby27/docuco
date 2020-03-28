@@ -1,18 +1,31 @@
+/* mobile */
 .header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 0 30px;
-}
-
-.container-table {
-  height: 300px;
-  overflow: auto;
 }
 
 .table {
   width: 100%;
 }
 
+.column {
+  min-width: 100px;
+}
+
 .download-icon {
   color: rgb(8, 4, 42);
+}
+
+/* tablet */
+@media screen and (min-width: 655px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 1222px) {
+
 }

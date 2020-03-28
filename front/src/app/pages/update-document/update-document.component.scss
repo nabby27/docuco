@@ -1,25 +1,45 @@
-.cards-container {
-  display: grid;
-  grid-template-columns: 0.3fr 1fr;
-  grid-gap: 40px;
-}
-
-.card {
-  height: 74.7vh;
-}
-
-.btn-container {
-  width: 100%;
-  margin-bottom: 40px;
-}
-
-.btn-remove-document {
+/* mobile */
+.container {
+  padding: 10px;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
 }
 
 .card__pdf {
   background-color: #e0e0e0;
   overflow: auto;
+}
+
+.button {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.button__remove {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* tablet */
+@media screen and (min-width: 655px) {
+  .container {
+    padding: 30px;
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 1222px) {
+  /* mobile */
+  .container {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    grid-gap: 40px;
+  }
+
+  .card__pdf {
+    height: 85vh;
+    overflow: auto;
+  }
 }

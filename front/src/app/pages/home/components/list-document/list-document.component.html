@@ -8,12 +8,12 @@
     </mat-form-field>
   </div>
 
-  <div class="container-table">
+  <div>
     <table class="table" mat-table [dataSource]="dataSource">
 
       <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-        <td mat-cell *matCellDef="let document">
+        <th mat-header-cell *matHeaderCellDef class="column"> Eliminar </th>
+        <td mat-cell *matCellDef="let document" class="column">
           <button mat-button (click)="openDialog(document)" color="accent">
             <i class="material-icons">delete</i>
           </button>
@@ -21,8 +21,8 @@
       </ng-container>
 
       <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef> Editar </th>
-        <td mat-cell *matCellDef="let document">
+        <th mat-header-cell *matHeaderCellDef class="column"> Editar </th>
+        <td mat-cell *matCellDef="let document" class="column">
           <button mat-button (click)="goToUpdate(document)" color="primary">
             <i class="material-icons">edit</i>
           </button>
@@ -30,13 +30,13 @@
       </ng-container>
 
       <!-- <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let document"> {{document.id}} </td>
+        <th mat-header-cell *matHeaderCellDef class="column"> ID </th>
+        <td mat-cell *matCellDef="let document" class="column"> {{document.id}} </td>
       </ng-container> -->
 
       <!-- <ng-container matColumnDef="tags">
-        <th mat-header-cell *matHeaderCellDef> Tags </th>
-        <td mat-cell *matCellDef="let document">
+        <th mat-header-cell *matHeaderCellDef class="column"> Tags </th>
+        <td mat-cell *matCellDef="let document" class="column">
           <mat-chip-list aria-label="Fish selection">
             <mat-chip *ngFor="let tag of document.tags">
               {{ tag }}
@@ -46,33 +46,33 @@
       </ng-container> -->
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let document"> {{ document.name }} </td>
+        <th mat-header-cell *matHeaderCellDef class="column"> Nombre </th>
+        <td mat-cell *matCellDef="let document" class="column"> {{ document.name }} </td>
       </ng-container>
 
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Descripción </th>
-        <td mat-cell *matCellDef="let document"> {{ document.description ? document.description : '-' }} </td>
+        <th mat-header-cell *matHeaderCellDef class="column"> Descripción </th>
+        <td mat-cell *matCellDef="let document" class="column"> {{ document.description ? document.description : '-' }} </td>
       </ng-container>
 
       <ng-container matColumnDef="date_of_issue">
-        <th mat-header-cell *matHeaderCellDef> Fecha del document</th>
-        <td mat-cell *matCellDef="let document"> {{ document.date_of_issue }} </td>
+        <th mat-header-cell *matHeaderCellDef class="column"> Fecha del document</th>
+        <td mat-cell *matCellDef="let document" class="column"> {{ document.date_of_issue }} </td>
       </ng-container>
 
       <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Precio </th>
-        <td mat-cell *matCellDef="let document"> {{ document.price | currency:'EUR':'symbol':'1.2-2':'es' }} </td>
+        <th mat-header-cell *matHeaderCellDef class="column"> Precio </th>
+        <td mat-cell *matCellDef="let document" class="column"> {{ document.price | currency:'EUR':'symbol':'1.2-2':'es' }} </td>
       </ng-container>
 
       <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef> Type </th>
-        <td mat-cell *matCellDef="let document"> {{ document.type }} </td>
+        <th mat-header-cell *matHeaderCellDef class="column"> Type </th>
+        <td mat-cell *matCellDef="let document" class="column"> {{ document.type }} </td>
       </ng-container>
 
       <ng-container matColumnDef="file">
-        <th mat-header-cell *matHeaderCellDef> Documento </th>
-        <td mat-cell *matCellDef="let document">
+        <th mat-header-cell *matHeaderCellDef class="column"> Documento </th>
+        <td mat-cell *matCellDef="let document" class="column">
           <a class="download-icon" target="_blank" href="{{url}}{{document.url}}">
             <i class="material-icons">description</i>
           </a>

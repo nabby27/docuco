@@ -1,3 +1,4 @@
+/* mobile */
 .form-container {
   min-height: 633px;
   display: flex;
@@ -19,4 +20,14 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+/* tablet */
+@media screen and (min-width: 655px) {
+
+}
+
+/* desktop */
+@media screen and (min-width: 1222px) {
+
 }

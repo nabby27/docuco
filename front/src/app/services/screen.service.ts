@@ -8,7 +8,7 @@ export class ScreenService {
   constructor() { }
 
   isDesktopScreen(): boolean {
-    return window.innerWidth > 991;
+    return window.innerWidth > 1222;
   }
 
 }

@@ -5,7 +5,10 @@ import { ChartsService } from 'src/app/services/charts.service';
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
-  styleUrls: ['./pie-chart.component.scss']
+  styleUrls: ['./pie-chart.component.scss'],
+  host: {
+    '(window:resize)': 'onResize($event)'
+  }
 })
 export class PieChartComponent implements OnInit {
 
@@ -18,9 +21,14 @@ export class PieChartComponent implements OnInit {
 
   async ngOnInit() {
     this.dataChart = await this.chartsService.getIncomeAndExpensesToPieChart();
+    setTimeout(() => this.createChart());
+  }
+
+  onResize(event) {
+    this.chart.destroy();
     setTimeout(() => {
       this.createChart();
-    })
+    });
   }
 
   private createChart() {

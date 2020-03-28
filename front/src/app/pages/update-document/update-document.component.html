@@ -1,7 +1,7 @@
-<div class="cards-container">
-  <div class="card" *ngIf="document">
-    <button class="btn-container" (click)="goToHome()" mat-stroked-button color="accent">
-      <div class="btn-remove-document">
+<div class="container">
+  <div *ngIf="document">
+    <button class="button" (click)="goToHome()" mat-stroked-button color="accent">
+      <div class="button__remove">
         Cancelar edición
         <mat-icon>close</mat-icon>
       </div>
@@ -11,9 +11,9 @@
     </mat-card>
   </div>
 
-  <mat-card class="card card__pdf">
+  <mat-card class="card__pdf">
     <div *ngIf="document">
-      <app-pdf-viewer file="{{url}}{{document.url}}"></app-pdf-viewer>
+      <app-my-pdf-viewer file="{{url}}{{document.url}}"></app-my-pdf-viewer>
     </div>
   </mat-card>
 </div>
