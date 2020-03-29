@@ -1,48 +1,65 @@
+/* mobile */
+.container {
+  padding: 10px;
+  height: 75vh;
+}
+
 .card {
-  min-height: 74.7vh;
+  height: 100%;
+  overflow: auto;
 }
 
 .title {
   font-size: calc(20px + 0.5vw);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .button {
+  margin: 10px 0;
+  align-self: flex-end;
+}
+
+.button__content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .container-users {
+  padding: 5px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 40px;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
 }
 
-.content-user {
-  text-align: center;
+/* tablet */
+@media screen and (min-width: 655px) {
+  .container {
+    padding: 30px;
+  }
+
+  .title {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .container-users {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+  }
 }
 
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* desktop */
+@media screen and (min-width: 1222px) {
+  .container {
+    padding: 40px;
+  }
 
-.chip {
-  color: #202020;
-}
-
-.admin-chip {
-  background-color: #ffb3b3;
-}
-
-.edit-chip {
-  background-color: #b3b3ff;
-}
-
-.view-chip {
-  background-color: #b3ffb3;
+  .container-users {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+  }
 }

@@ -1,17 +1,19 @@
-<mat-card class="card">
-  <div *ngIf="!users">
-    <app-spinner></app-spinner>
-  </div>
-  <h2 *ngIf="users" class="title">
-    {{ users[0].user_group }}
-    <button class="button" mat-stroked-button color="primary" (click)="createUser()">
-      <div class="button">
-        Crear usuario
-        <mat-icon class="button-icon">add_circle_outline</mat-icon>
-      </div>
-    </button>
-  </h2>
-  <div class="container-users">
-    <app-user-card *ngFor="let user of users" [user]="user" (userRemoved)="getAllUsers()"></app-user-card>
-  </div>
-</mat-card>
+<div class="container">
+  <mat-card class="card">
+    <div *ngIf="!users">
+      <app-spinner></app-spinner>
+    </div>
+    <h2 *ngIf="users" class="title">
+      {{ users[0].user_group }}
+      <button class="button" mat-stroked-button color="primary" (click)="createUser()">
+        <div class="button__content">
+          Crear usuario
+          <mat-icon class="button-icon">add_circle_outline</mat-icon>
+        </div>
+      </button>
+    </h2>
+    <div class="container-users">
+      <app-user-card *ngFor="let user of users" [user]="user" (userRemoved)="getAllUsers()"></app-user-card>
+    </div>
+  </mat-card>
+</div>

@@ -1,18 +1,12 @@
 <div class="container">
-  <mat-card class="card card-users-container">
-    <h4 class="header">
+  <mat-card class="card list-users__container">
+    <h4 class="list-users__header">
       Usuarios
-      <!-- <button class="button" mat-stroked-button color="primary" (click)="createUser()">
-        <div class="button">
-          Crear usuario
-          <mat-icon class="button-icon">add_circle_outline</mat-icon>
-        </div>
-      </button> -->
     </h4>
     <div *ngIf="!users">
       <app-spinner></app-spinner>
     </div>
-    <div class="container-users">
+    <div class="list-users__list">
       <app-user-card *ngFor="let user of users" [user]="user"></app-user-card>
     </div>
   </mat-card>

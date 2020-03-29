@@ -1,7 +1,9 @@
+/* mobile */
 .container {
   border-top: 10px solid #AAAAAA;
   display: flex;
   justify-content: center;
+  height: 100%;
 }
 
 .line-red {
@@ -44,4 +46,14 @@
 
 .button-icon {
   margin-left: 10px;
+}
+
+/* tablet */
+@media screen and (min-width: 655px) {
+
+}
+
+/* desktop */
+@media screen and (min-width: 1222px) {
+
 }
