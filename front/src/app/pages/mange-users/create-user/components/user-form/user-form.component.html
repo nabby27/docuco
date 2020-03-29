@@ -17,6 +17,9 @@
       <mat-error *ngIf="userForm.get('email').invalid && userForm.get('email').errors.required">
         El email es <strong>obligatorio</strong>
       </mat-error>
+      <mat-error *ngIf="userForm.get('email').invalid && userForm.get('email').errors.email">
+        El email <strong>no es valido</strong>
+      </mat-error>
     </mat-form-field>
 
     <div>
