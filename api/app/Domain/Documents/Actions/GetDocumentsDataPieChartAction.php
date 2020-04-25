@@ -18,7 +18,7 @@ class GetDocumentsDataPieChartAction
     {
         $documents = $this->repository->get_all_documents_by_user_group_id($user_group_id);
         $labels = ['Ingresos', 'Gastos'];
-        $data = [0, 0];
+        $data = [null, null];
 
         foreach ($documents->all() as $document) {
             $year = date("Y", strtotime($document->date_of_issue));

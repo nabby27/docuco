@@ -8,7 +8,7 @@ use Docuco\Domain\Users\Repositories\UsersRepository;
 use Docuco\Domain\Users\Collections\UserCollection;
 use Docuco\Models\RoleModel;
 
-class UsersRepositoryORM implements UsersRepository
+class UsersRepositoryPostgreSQL implements UsersRepository
 {
 
     private $user_model;

@@ -10,7 +10,7 @@ use Docuco\Domain\Documents\Entities\Document;
 use Docuco\Models\TagModel;
 use Docuco\Models\TypeModel;
 
-class DocumentsRepositoryORM implements DocumentsRepository
+class DocumentsRepositoryPostgreSQL implements DocumentsRepository
 {
 
     private $document_model;

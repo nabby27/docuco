@@ -1,34 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import Chart from 'node_modules/chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ChartsService } from 'src/app/services/charts.service';
 
 @Component({
   selector: 'app-generic-chart',
   templateUrl: './generic-chart.component.html',
-  styleUrls: ['./generic-chart.component.scss'],
-  host: {
-    '(window:resize)': 'onResize($event)'
-  }
+  styleUrls: ['./generic-chart.component.scss']
 })
+
 export class GenericChartComponent implements OnInit {
 
   chart: Chart;
   dataChart;
-  
+
   chartType: 'bar'|'line' = 'bar';
   // toChartTypeText = 'cambiar a lineas';
-  
+
   titleChart = 'Ingresos y gastos este año';
-  
+
   chartDataset: 'income-expenses'|'benefit' = 'income-expenses';
   toChartDatasetText = 'ver beneficio';
-  
 
   constructor(
     private chartsService: ChartsService
   ) { }
 
+  @HostListener('window:resize', ['$event']) onWindowResize(event) {
+    this.onResize(event);
+  }
+
   async ngOnInit() {
+    Chart.plugins.unregister(ChartDataLabels);
     this.dataChart = await this.chartsService.getIncomeAndExpensesToGenericChart();
     setTimeout(() => this.createChart());
   }
@@ -67,13 +70,22 @@ export class GenericChartComponent implements OnInit {
         labels: this.dataChart.labels,
         datasets: this.dataChart.datasets
       },
+      plugins: [ChartDataLabels],
       options: {
-        onResize: function(chart, size) {
+        onResize(chart, size) {
           chart.options.legend.display = size.height > 128;
           chart.update();
         },
         legend: {
           display: this.chartDataset === 'income-expenses'
+        },
+        layout: {
+          padding: {
+            left: 0,
+            right: 0,
+            top: this.chartDataset === 'benefit' ? 20 : 0,
+            bottom: 0
+          }
         },
         responsive: true,
         maintainAspectRatio: true,
@@ -83,6 +95,13 @@ export class GenericChartComponent implements OnInit {
               beginAtZero: true
             }
           }]
+        },
+        plugins: {
+          datalabels: {
+            anchor: 'end',
+            align: 'end',
+            offset: 3
+          }
         }
       }
     });

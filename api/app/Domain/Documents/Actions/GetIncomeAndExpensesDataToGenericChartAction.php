@@ -18,8 +18,8 @@ class GetIncomeAndExpensesDataToGenericChartAction
     {
         $documents = $this->repository->get_all_documents_by_user_group_id($user_group_id);
         $labels = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-        $income_data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        $expenses_data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        $income_data = [null, null, null, null, null, null, null, null, null, null, null, null];
+        $expenses_data = [null, null, null, null, null, null, null, null, null, null, null, null];
 
         foreach ($documents->all() as $document) {
             $year = date("Y", strtotime($document->date_of_issue));

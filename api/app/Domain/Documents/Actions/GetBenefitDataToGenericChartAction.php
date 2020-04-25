@@ -18,7 +18,7 @@ class GetBenefitDataToGenericChartAction
     {
         $documents = $this->repository->get_all_documents_by_user_group_id($user_group_id);
         $labels = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-        $data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        $data = [null, null, null, null, null, null, null, null, null, null, null, null];
         $backgroundColors = ['', '', '', '', '', '', '', '', '', '', '', ''];
 
         foreach ($documents->all() as $document) {

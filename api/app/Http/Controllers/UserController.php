@@ -11,7 +11,7 @@ use Docuco\Domain\Users\Actions\GetOneUserAction;
 use Docuco\Domain\Users\Actions\GetAllUsersAction;
 use Docuco\Domain\Users\Actions\UpdateUserAction;
 use Docuco\Domain\Users\Exceptions\InvalidLoginException;
-use Docuco\Infrastructure\Repositories\Users\UsersRepositoryORM;
+use Docuco\Infrastructure\Repositories\Users\UsersRepositoryPostgreSQL;
 use Docuco\Infrastructure\Services\GetUserGroupIdFromRequestService;
 use Docuco\Infrastructure\Services\GetUserIdFromRequestService;
 use Exception;
@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->user_repository = new UsersRepositoryORM();
+        $this->user_repository = new UsersRepositoryPostgreSQL();
         $this->get_user_group_id_from_request_service = new GetUserGroupIdFromRequestService();
         $this->get_user_id_from_request_service = new GetUserIdFromRequestService();
     }

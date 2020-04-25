@@ -4,7 +4,7 @@ namespace Docuco\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Docuco\Infrastructure\Repositories\Documents\DocumentsRepositoryORM;
+use Docuco\Infrastructure\Repositories\Documents\DocumentsRepositoryPostgreSQL;
 use Docuco\Infrastructure\Services\GetUserGroupIdFromRequestService;
 use Docuco\Domain\Documents\Actions\GetAllDocumentsAction;
 use Docuco\Domain\Documents\Actions\GetOneDocumentAction;
@@ -19,7 +19,7 @@ class DocumentController extends Controller
 
     public function __construct()
     {
-        $this->document_repository = new DocumentsRepositoryORM();
+        $this->document_repository = new DocumentsRepositoryPostgreSQL();
         $this->get_user_group_id_from_request_service = new GetUserGroupIdFromRequestService();
     }
 

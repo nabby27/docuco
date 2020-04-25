@@ -17,7 +17,7 @@ Change variables on `.env` file
 
 And copy `.env` file on `api` folder
 ```shell
-cp .env ./app/.env
+cp .env ./api/.env
 ```
 
 Final structure
@@ -41,7 +41,7 @@ Run docker containers
 docker-compose up -d
 ```
 
-<!-- Install api dependencies
+Install api dependencies
 ```shell
 docker-compose exec docuco_api composer install
 ```
@@ -49,7 +49,7 @@ docker-compose exec docuco_api composer install
 Install front dependencies
 ```shell
 docker-compose exec docuco_front npm i
-``` -->
+```
 
 Generate laravel key
 ```
@@ -68,6 +68,7 @@ docker-compose exec docuco_api php artisan db:seed
 > see users and passwords on file `api/database/seeds/UsersTableSeeder.php`
 
 > be sure that are documents on folder `api/public/assets/documents`
+
 
 Create keys for authentication login
 ```

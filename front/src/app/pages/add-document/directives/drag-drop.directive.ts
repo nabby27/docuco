@@ -7,7 +7,7 @@ export class DragDropDirective {
 
   @Output() fileDropped = new EventEmitter<any>();
 
-  @HostBinding('style.background-color') private background = '#e0e0e0'
+  @HostBinding('style.background-color') private background = '#e0e0e0';
 
   constructor() { }
 
@@ -32,7 +32,7 @@ export class DragDropDirective {
     this.background = '#e0e0e0';
     const file = event.dataTransfer.files[0];
     if (file) {
-      this.fileDropped.emit(file)
+      this.fileDropped.emit(file);
     }
   }
 
