@@ -1,14 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import Chart from 'node_modules/chart.js';
+import { Component, OnInit, HostListener } from '@angular/core';
+import Chart from 'chart.js';
 import { ChartsService } from 'src/app/services/charts.service';
 
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss'],
-  host: {
-    '(window:resize)': 'onResize($event)'
-  }
 })
 export class PieChartComponent implements OnInit {
 
@@ -18,6 +15,11 @@ export class PieChartComponent implements OnInit {
   constructor(
     private chartsService: ChartsService
   ) { }
+
+
+  @HostListener('window:resize', ['$event']) onWindowResize(event) {
+    this.onResize(event);
+  }
 
   async ngOnInit() {
     this.dataChart = await this.chartsService.getIncomeAndExpensesToPieChart();
@@ -32,7 +34,7 @@ export class PieChartComponent implements OnInit {
   }
 
   private createChart() {
-    const ctx = document.getElementById('pie-chart');
+    const ctx = document.getElementById('pie-chart') as HTMLCanvasElement;
     if (this.chart) {
       this.chart.destroy();
     }

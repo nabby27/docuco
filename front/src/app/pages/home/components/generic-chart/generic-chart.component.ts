@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import Chart from 'node_modules/chart.js';
+import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ChartsService } from 'src/app/services/charts.service';
 
@@ -60,7 +60,7 @@ export class GenericChartComponent implements OnInit {
   }
 
   private createChart() {
-    const ctx = document.getElementById('generic-chart');
+    const ctx = document.getElementById('generic-chart') as HTMLCanvasElement;
     if (this.chart) {
       this.chart.destroy();
     }
@@ -72,10 +72,10 @@ export class GenericChartComponent implements OnInit {
       },
       plugins: [ChartDataLabels],
       options: {
-        onResize(chart, size) {
-          chart.options.legend.display = size.height > 128;
-          chart.update();
-        },
+        // onResize(chart: Chart, size: Chart.ChartSize) {
+        //   chart.options.legend.display = size.height > 128;
+        //   chart.update();
+        // },
         legend: {
           display: this.chartDataset === 'income-expenses'
         },
